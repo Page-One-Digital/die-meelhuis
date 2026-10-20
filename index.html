@@ -629,18 +629,21 @@
     @media (max-width: 768px) {
       header {
         padding: 15px 20px;
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      /* Hide text nav links on mobile to eliminate clutter */
+      .nav-links .nav-item {
+        display: none;
       }
 
       .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 0;
       }
 
       .brand-logo-text {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .hero-logo-circle {
@@ -1232,7 +1235,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Colors, Fonts & Button Styles',
+            message: 'CMS Update: Mobile Header Clean & Styling Updates',
             content: contentBase64,
             sha: sha || undefined
           })
