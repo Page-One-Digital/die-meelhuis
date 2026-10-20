@@ -1,1 +1,19 @@
-{}
+{
+  "heroTitle": "DIE MEELHUIS",
+  "heroSubtitle": "NEAPOLITAN STYLE PIZZAS & SMASH BURGERS",
+  "heroHashtags": "#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES",
+  "bgColor": "#0052cc",
+  "primaryColor": "#f7f3e9",
+  "btn1Label": "OUR MENU",
+  "btn1Bg": "#f7f3e9",
+  "btn1Text": "#0052cc",
+  "btn2Label": "WHERE ARE WE?",
+  "btn2Bg": "#0052cc",
+  "btn2Text": "#ffffff",
+  "btn3Label": "EVENT BOOKINGS & CONTACT US",
+  "btn3Bg": "#f7f3e9",
+  "btn3Text": "#0052cc",
+  "ghOwner": "page-one-digital",
+  "ghRepo": "die-meelhuis",
+  "ghToken": ""
+}
