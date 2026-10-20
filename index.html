@@ -823,7 +823,7 @@
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>GitHub Owner / Username</label>
-          <input type="text" id="gh-owner" class="cms-input" placeholder="Page-One-Digital" value="Page-One-Digital">
+          <input type="text" id="gh-owner" class="cms-input" placeholder="page-one-digital" value="page-one-digital">
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>Repository Name</label>
@@ -948,7 +948,7 @@
       btn3Label: "EVENT BOOKINGS & CONTACT US",
       btn3Bg: "#f7f3e9",
       btn3Text: "#0052cc",
-      ghOwner: "Page-One-Digital",
+      ghOwner: "page-one-digital",
       ghRepo: "die-meelhuis",
       ghToken: ""
     };
@@ -981,7 +981,7 @@
       loadSavedConfig();
 
       // 2. Fetch the latest live config published from GitHub
-      const owner = currentConfig.ghOwner || 'Page-One-Digital';
+      const owner = currentConfig.ghOwner || 'page-one-digital';
       const repo = currentConfig.ghRepo || 'die-meelhuis';
       const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?t=${Date.now()}`;
 
@@ -1046,7 +1046,7 @@
       document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg;
       document.getElementById('cms-btn3-text').value = currentConfig.btn3Text;
 
-      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'Page-One-Digital';
+      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
       document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
       document.getElementById('gh-token').value = currentConfig.ghToken || '';
     }
@@ -1078,7 +1078,7 @@
       applyConfigToDOM();
     }
 
-    // GITHUB DIRECT REST API SAVE FUNCTION
+    // GITHUB DIRECT REST API SAVE FUNCTION (EXCLUDES TOKEN FROM PUBLIC JSON)
     async function pushToGitHub() {
       const statusDiv = document.getElementById('github-sync-status');
       const owner = document.getElementById('gh-owner').value.trim();
@@ -1092,9 +1092,13 @@
 
       statusDiv.innerHTML = `<span class="status-badge" style="background:#0284c7; color:#fff;">Connecting to GitHub API...</span>`;
 
+      // Create a clean payload object THAT DOES NOT INCLUDE THE TOKEN
+      const cleanConfigToSave = { ...currentConfig };
+      delete cleanConfigToSave.ghToken;
+
       const path = 'data/config.json';
       const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-      const contentBase64 = btoa(JSON.stringify(currentConfig, null, 2));
+      const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(cleanConfigToSave, null, 2))));
 
       try {
         // Step 1: Check if file exists to get SHA
