@@ -823,15 +823,15 @@
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>GitHub Owner / Username</label>
-          <input type="text" id="gh-owner" class="cms-input" placeholder="page-one-digital" value="page-one-digital">
+          <input type="text" id="gh-owner" class="cms-input" placeholder="Page-One-Digital" value="Page-One-Digital">
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>Repository Name</label>
           <input type="text" id="gh-repo" class="cms-input" placeholder="die-meelhuis" value="die-meelhuis">
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
-          <label>Fine-Grained GitHub Access Token</label>
-          <input type="password" id="gh-token" class="cms-input" placeholder="github_pat_...">
+          <label>GitHub Access Token</label>
+          <input type="password" id="gh-token" class="cms-input" placeholder="ghp_... or github_pat_...">
         </div>
         <button class="btn-github-push" onclick="pushToGitHub()">
           <i class="fa-solid fa-cloud-arrow-up"></i> 🚀 Save & Push Live to GitHub
@@ -948,7 +948,7 @@
       btn3Label: "EVENT BOOKINGS & CONTACT US",
       btn3Bg: "#f7f3e9",
       btn3Text: "#0052cc",
-      ghOwner: "page-one-digital",
+      ghOwner: "Page-One-Digital",
       ghRepo: "die-meelhuis",
       ghToken: ""
     };
@@ -969,12 +969,36 @@
 
     let currentConfig = { ...DEFAULT_CONFIG };
 
-    // INITIALIZATION
-    window.addEventListener('DOMContentLoaded', () => {
-      loadSavedConfig();
+    // INITIALIZATION & AUTOMATIC GITHUB CONFIG FETCH
+    window.addEventListener('DOMContentLoaded', async () => {
+      await fetchRemoteConfig();
       renderMenu(menuData);
       renderMarkets(marketData);
     });
+
+    async function fetchRemoteConfig() {
+      // 1. First load local cache if present
+      loadSavedConfig();
+
+      // 2. Fetch the latest live config published from GitHub
+      const owner = currentConfig.ghOwner || 'Page-One-Digital';
+      const repo = currentConfig.ghRepo || 'die-meelhuis';
+      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?t=${Date.now()}`;
+
+      try {
+        const res = await fetch(rawUrl);
+        if (res.ok) {
+          const remoteData = await res.json();
+          if (remoteData && Object.keys(remoteData).length > 0) {
+            currentConfig = { ...DEFAULT_CONFIG, ...remoteData };
+            localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
+            applyConfigToDOM();
+          }
+        }
+      } catch (err) {
+        console.log('Using local configuration:', err);
+      }
+    }
 
     function loadSavedConfig() {
       const saved = localStorage.getItem('meelhuis_config');
@@ -1022,7 +1046,7 @@
       document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg;
       document.getElementById('cms-btn3-text').value = currentConfig.btn3Text;
 
-      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
+      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'Page-One-Digital';
       document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
       document.getElementById('gh-token').value = currentConfig.ghToken || '';
     }
@@ -1062,7 +1086,7 @@
       const token = document.getElementById('gh-token').value.trim();
 
       if (!token) {
-        statusDiv.innerHTML = `<span class="status-badge error">Please paste your Fine-Grained GitHub Access Token above!</span>`;
+        statusDiv.innerHTML = `<span class="status-badge error">Please paste your GitHub Access Token above!</span>`;
         return;
       }
 
