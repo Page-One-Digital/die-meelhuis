@@ -195,7 +195,7 @@
     }
 
     .hero-title {
-      font-size: clamp(48px, 8vw, 92px);
+      font-size: clamp(38px, 8vw, 92px);
       font-weight: 900;
       line-height: 0.95;
       text-transform: uppercase;
@@ -205,7 +205,7 @@
     }
 
     .hero-subtitle {
-      font-size: clamp(18px, 2.5vw, 24px);
+      font-size: clamp(16px, 2.5vw, 24px);
       font-weight: 700;
       margin-bottom: 25px;
       max-width: 700px;
@@ -270,19 +270,6 @@
       border-color: var(--btn3-border);
       font-family: var(--btn3-font);
       font-size: var(--btn3-size);
-    }
-
-    .scroll-indicator {
-      margin-top: 40px;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 2px solid var(--primary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0.8;
     }
 
     /* MODAL POPUPS */
@@ -416,7 +403,7 @@
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
     }
 
@@ -637,6 +624,66 @@
       font-size: 12px;
       opacity: 0.7;
     }
+
+    /* MOBILE & TABLET RESPONSIVE OPTIMIZATIONS */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .brand-logo-text {
+        font-size: 22px;
+      }
+
+      .hero-logo-circle {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+      }
+
+      .hero-logo-circle i {
+        font-size: 45px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .custom-btn {
+        width: 100%;
+        padding: 16px 20px;
+      }
+
+      .modal-card {
+        max-height: 95vh;
+        border-radius: 16px;
+      }
+
+      .modal-header {
+        padding: 18px 20px;
+      }
+
+      .modal-body {
+        padding: 20px;
+      }
+
+      .cms-row {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-panel {
+        width: 100vw;
+      }
+    }
   </style>
 </head>
 <body>
@@ -684,10 +731,6 @@
       <button id="hero-btn-3" class="custom-btn" onclick="openModal('contact-modal')">
         <i class="fa-solid fa-calendar-check"></i> <span id="btn3-label-text">EVENT BOOKINGS & CONTACT US</span>
       </button>
-    </div>
-
-    <div class="scroll-indicator" onclick="openModal('menu-modal')">
-      <i class="fa-solid fa-chevron-down"></i>
     </div>
   </main>
 
