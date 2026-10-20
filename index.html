@@ -1,1337 +1,1197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Die Meelhuis | Est. 2023</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Fredoka:wght@300;400;500;600;700&family=Montserrat:wght@400;600;800;900&family=Outfit:wght@300;400;500;600;700;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Meelhuis | Neapolitan Pizza & Smash Burgers</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Montserrat:wght@400;600;800;900&family=Playfair+Display:wght@700&family=Space+Grotesk:wght@500;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style id="dynamicStyles">
-        :root {
-            --bg-color: #0055c8;
-            --text-color: #FAF6EE;
-            --accent-color: #EFE6D5;
-            --card-bg: #FAF6EE;
-            --card-text: #121212;
-            --font-family: 'Fredoka', sans-serif;
-            --border-radius: 9999px;
+  <style>
+    /* BASE CSS VARIABLES - DYNAMICALLY UPDATED BY CMS */
+    :root {
+      --bg-color: #0052cc;
+      --primary-color: #f7f3e9;
+      --accent-color: #ffffff;
+      --card-bg: #ffffff;
+      --text-main: #0052cc;
+      --text-muted: #666666;
+      --body-font: 'Fredoka', sans-serif;
+      --heading-font: 'Fredoka', sans-serif;
+      
+      /* Individual Button Default Variables */
+      --btn1-bg: #f7f3e9;
+      --btn1-text: #0052cc;
+      --btn1-border: #f7f3e9;
+      --btn1-font: 'Fredoka', sans-serif;
+      --btn1-size: 16px;
 
-            /* Button 1 Variables */
-            --btn1-bg: #FAF6EE;
-            --btn1-text: #0055c8;
-            --btn1-border: #FAF6EE;
-            --btn1-font: 'Fredoka', sans-serif;
-            --btn1-size: 1rem;
+      --btn2-bg: #0052cc;
+      --btn2-text: #ffffff;
+      --btn2-border: #ffffff;
+      --btn2-font: 'Fredoka', sans-serif;
+      --btn2-size: 16px;
 
-            /* Button 2 Variables */
-            --btn2-bg: transparent;
-            --btn2-text: #FAF6EE;
-            --btn2-border: #FAF6EE;
-            --btn2-font: 'Fredoka', sans-serif;
-            --btn2-size: 1rem;
+      --btn3-bg: #f7f3e9;
+      --btn3-text: #0052cc;
+      --btn3-border: #f7f3e9;
+      --btn3-font: 'Fredoka', sans-serif;
+      --btn3-size: 16px;
+    }
 
-            /* Button 3 Variables */
-            --btn3-bg: #EFE6D5;
-            --btn3-text: #0055c8;
-            --btn3-border: #EFE6D5;
-            --btn3-font: 'Fredoka', sans-serif;
-            --btn3-size: 1rem;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
 
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--primary-color);
+      font-family: var(--body-font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        /* Watermark Pattern */
-        .bg-watermark {
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: 28px 28px;
-        }
+    /* WATERMARK BACKGROUND EFFECT */
+    .bg-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 900px;
+      height: 90vw;
+      max-height: 900px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cpath fill='rgba(255,255,255,0.06)' d='M250,50 C140,50 50,140 50,250 C50,360 140,450 250,450 C360,450 450,360 450,250 C450,140 360,50 250,50 Z M250,100 C332.8,100 400,167.2 400,250 C400,332.8 332.8,400 250,400 C167.2,400 100,332.8 100,250 C100,167.2 167.2,100 250,100 Z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .svg-watermark {
-            position: absolute;
-            opacity: 0.08;
-            pointer-events: none;
-            user-select: none;
-        }
+    /* NAVBAR HEADER */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-        /* Button 1 Dynamic Style */
-        .btn-custom-1 {
-            background-color: var(--btn1-bg) !important;
-            color: var(--btn1-text) !important;
-            border: 2px solid var(--btn1-border) !important;
-            font-family: var(--btn1-font) !important;
-            font-size: var(--btn1-size) !important;
-            border-radius: var(--border-radius);
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .btn-custom-1:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
-        }
+    .brand-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
 
-        /* Button 2 Dynamic Style */
-        .btn-custom-2 {
-            background-color: var(--btn2-bg) !important;
-            color: var(--btn2-text) !important;
-            border: 2px solid var(--btn2-border) !important;
-            font-family: var(--btn2-font) !important;
-            font-size: var(--btn2-size) !important;
-            border-radius: var(--border-radius);
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .btn-custom-2:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
-        }
+    .brand-logo-text {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+    }
 
-        /* Button 3 Dynamic Style */
-        .btn-custom-3 {
-            background-color: var(--btn3-bg) !important;
-            color: var(--btn3-text) !important;
-            border: 2px solid var(--btn3-border) !important;
-            font-family: var(--btn3-font) !important;
-            font-size: var(--btn3-size) !important;
-            border-radius: var(--border-radius);
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .btn-custom-3:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
-        }
+    .brand-badge {
+      background: var(--primary-color);
+      color: var(--bg-color);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
 
-        .modal-card {
-            background-color: var(--card-bg);
-            color: var(--card-text);
-        }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
 
-        .modal-backdrop {
-            backdrop-filter: blur(8px);
-            transition: opacity 0.25s ease, visibility 0.25s ease;
-        }
+    .nav-item {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      opacity: 0.9;
+    }
 
-        /* Custom Scrollbars */
-        .custom-scroll::-webkit-scrollbar {
-            width: 8px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05);
-            border-radius: 8px;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: var(--bg-color);
-            border-radius: 8px;
-        }
+    .nav-item:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
 
-        /* Print Style for Menu */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #printableMenu, #printableMenu * {
-                visibility: visible;
-            }
-            #printableMenu {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                color: #000 !important;
-                background: #fff !important;
-                padding: 20px;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-    </style>
+    .admin-trigger-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* HERO SECTION */
+    main.hero {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-logo-circle {
+      width: 140px;
+      height: 140px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .hero-logo-circle i {
+      font-size: 65px;
+      color: var(--bg-color);
+    }
+
+    .hero-est {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 8vw, 92px);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 700;
+      margin-bottom: 25px;
+      max-width: 700px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    .hero-hashtags {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 40px;
+      opacity: 0.8;
+    }
+
+    /* 3 BUTTONS LAYOUT */
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .custom-btn {
+      padding: 18px 32px;
+      border-radius: 40px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 2px solid transparent;
+      text-decoration: none;
+    }
+
+    /* INDIVIDUAL HERO BUTTON STYLES */
+    #hero-btn-1 {
+      background-color: var(--btn1-bg);
+      color: var(--btn1-text);
+      border-color: var(--btn1-border);
+      font-family: var(--btn1-font);
+      font-size: var(--btn1-size);
+    }
+
+    #hero-btn-2 {
+      background-color: var(--btn2-bg);
+      color: var(--btn2-text);
+      border-color: var(--btn2-border);
+      font-family: var(--btn2-font);
+      font-size: var(--btn2-size);
+    }
+
+    #hero-btn-3 {
+      background-color: var(--btn3-bg);
+      color: var(--btn3-text);
+      border-color: var(--btn3-border);
+      font-family: var(--btn3-font);
+      font-size: var(--btn3-size);
+    }
+
+    .scroll-indicator {
+      margin-top: 40px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    /* MODAL POPUPS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      color: var(--text-main);
+      width: 100%;
+      max-width: 850px;
+      max-height: 90vh;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: 25px 35px;
+      border-bottom: 2px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    .modal-close-btn {
+      background: #eee;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .modal-body {
+      padding: 35px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* MENU MODAL SPECIFICS */
+    .menu-controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .search-bar {
+      flex: 1;
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .pill-btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: #eee;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .pill-btn.active {
+      background: var(--text-main);
+      color: #fff;
+    }
+
+    .menu-category-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 25px 0 15px 0;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--text-main);
+      padding-bottom: 5px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .menu-item-card {
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .menu-item-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* SCHEDULE MODAL SPECIFICS */
+    .market-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .market-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #f9f9fb;
+      border: 1px solid #eef;
+    }
+
+    .market-date-badge {
+      background: var(--text-main);
+      color: #fff;
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      min-width: 75px;
+    }
+
+    .market-date-badge .day {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .market-date-badge .month {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .market-info h4 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .market-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* FORM MODAL SPECIFICS */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    /* ADMIN CMS SIDEBAR PANEL */
+    .admin-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 440px;
+      max-width: 100vw;
+      height: 100vh;
+      background: #111625;
+      color: #fff;
+      z-index: 2000;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-panel.active {
+      transform: translateX(0);
+    }
+
+    .admin-header {
+      padding: 20px 25px;
+      background: #1a2236;
+      border-bottom: 1px solid #2a344d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-body {
+      padding: 25px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .cms-section {
+      margin-bottom: 30px;
+      background: #182033;
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid #28334f;
+    }
+
+    .cms-section-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #7b9acc;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cms-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .cms-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .cms-input-group label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #aaa;
+    }
+
+    .cms-input {
+      background: #0d121f;
+      border: 1px solid #2a3550;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .cms-input[type="color"] {
+      height: 38px;
+      padding: 2px;
+      cursor: pointer;
+    }
+
+    .admin-footer {
+      padding: 15px 25px;
+      background: #1a2236;
+      border-top: 1px solid #2a344d;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-github-push {
+      background: #238636;
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .status-badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    .status-badge.success { background: #238636; color: #fff; }
+    .status-badge.error { background: #da3633; color: #fff; }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between relative bg-watermark select-none">
+<body>
 
-    <!-- Background Line Art Graphic Watermarks -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <svg class="svg-watermark -top-20 -left-20 w-[600px] h-[600px] text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-        </svg>
-        <svg class="svg-watermark -bottom-20 -right-20 w-[700px] h-[700px] text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 3L2 12h3v8h14v-8h3L12 3zm1 15h-2v-4h2v4zm0-6h-2V8h2v4z"/>
-        </svg>
+  <div class="bg-watermark"></div>
+
+  <!-- HEADER NAVBAR -->
+  <header>
+    <div class="brand-logo-container">
+      <span class="brand-logo-text" id="nav-brand-text">DIE MEELHUIS</span>
+      <span class="brand-badge" id="nav-est-badge">EST. 2023</span>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="relative z-10 w-full px-6 py-5 flex justify-between items-center max-w-7xl mx-auto">
-        <!-- Logo Header Text -->
-        <div class="flex items-center space-x-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <div id="renderHeaderTitle" class="text-2xl md:text-3xl font-extrabold tracking-tight uppercase">
-                DIE MEELHUIS
-            </div>
-            <span id="renderHeaderEst" class="text-xs bg-white text-black font-bold px-2 py-0.5 rounded-full uppercase tracking-wider hidden sm:inline-block">EST. 2023</span>
-        </div>
+    <nav class="nav-links">
+      <a class="nav-item" onclick="openModal('menu-modal')">Our Menu</a>
+      <a class="nav-item" onclick="openModal('where-modal')">Where Are We?</a>
+      <a class="nav-item" onclick="openModal('contact-modal')">Event Bookings</a>
+      <button class="admin-trigger-btn" onclick="toggleAdminPanel()">
+        <i class="fa-solid fa-gear"></i> <span>⚙ ADMIN CMS</span>
+      </button>
+    </nav>
+  </header>
 
-        <!-- Quick Links Nav -->
-        <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wider uppercase">
-            <button onclick="openModal('menuModal')" class="hover:opacity-80 transition">Our Menu</button>
-            <button onclick="openModal('whereModal')" class="hover:opacity-80 transition">Where Are We?</button>
-            <button onclick="openModal('contactModal')" class="hover:opacity-80 transition">Event Bookings</button>
-            <button onclick="openModal('contactModal')" class="hover:opacity-80 transition">Contact</button>
-        </nav>
-
-        <!-- Admin Dashboard Toggle Button -->
-        <div class="flex items-center gap-3">
-            <button onclick="toggleAdminPanel()" title="Open Live Admin CMS Panel" 
-                    class="p-2.5 px-4 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur border border-white/30 transition shadow-lg flex items-center justify-center gap-2 text-xs font-bold uppercase">
-                <i class="fa-solid fa-gear text-sm"></i>
-                <span>ADMIN CMS</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Main Hero Landing Section -->
-    <main class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4 py-8">
-        <div class="max-w-3xl w-full flex flex-col items-center">
-
-            <!-- Logo Icon Badge -->
-            <div class="mb-6 flex flex-col items-center">
-                <div class="w-24 h-24 md:w-32 md:h-32 mb-4 bg-white rounded-full flex items-center justify-center text-black shadow-2xl border-4 border-white/30">
-                    <i class="fa-solid fa-wheat-awn text-4xl md:text-6xl"></i>
-                </div>
-
-                <!-- Hero Title Header -->
-                <div class="flex items-center justify-center gap-3 md:gap-5 my-2">
-                    <span id="renderHeroEstPrefix" class="text-xs md:text-base font-bold uppercase tracking-widest opacity-90">EST.</span>
-                    <h1 id="renderHeroTitle" class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-none drop-shadow-md uppercase">
-                        DIE MEELHUIS
-                    </h1>
-                    <span id="renderHeroEstYear" class="text-xs md:text-base font-bold uppercase tracking-widest opacity-90">2023</span>
-                </div>
-            </div>
-
-            <!-- Tagline / Subtitle -->
-            <p id="renderHeroTagline" class="text-base sm:text-xl font-extrabold tracking-wider uppercase opacity-90 mb-3">
-                NEAPOLITAN STYLE PIZZAS & SMASH BURGERS
-            </p>
-
-            <!-- Hashtags -->
-            <p id="renderHeroHashtags" class="text-xs sm:text-sm font-bold tracking-wider opacity-80 uppercase mb-8 space-x-2">
-                #PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES
-            </p>
-
-            <!-- 3 MAIN ACTION BUTTONS -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-3xl px-4">
-                <!-- Button 1: Our Menu -->
-                <button id="mainBtn1" onclick="openModal('menuModal')" 
-                        class="btn-custom-1 w-full sm:w-auto px-7 py-4 font-bold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-utensils text-sm"></i>
-                    <span id="renderBtn1Text">OUR MENU</span>
-                </button>
-
-                <!-- Button 2: Where Are We? -->
-                <button id="mainBtn2" onclick="openModal('whereModal')" 
-                        class="btn-custom-2 w-full sm:w-auto px-7 py-4 font-bold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-location-dot text-sm"></i>
-                    <span id="renderBtn2Text">WHERE ARE WE?</span>
-                </button>
-
-                <!-- Button 3: Event Bookings & Contact Us -->
-                <button id="mainBtn3" onclick="openModal('contactModal')" 
-                        class="btn-custom-3 w-full sm:w-auto px-7 py-4 font-bold uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-calendar-check text-sm"></i>
-                    <span id="renderBtn3Text">EVENT BOOKINGS & CONTACT US</span>
-                </button>
-            </div>
-
-            <!-- Down Arrow -->
-            <div class="mt-12 opacity-80 hover:opacity-100 transition cursor-pointer" onclick="openModal('whereModal')">
-                <div class="w-10 h-10 rounded-full border border-white/50 flex items-center justify-center animate-bounce">
-                    <i class="fa-solid fa-chevron-down text-sm"></i>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="relative z-10 py-6 text-center text-xs opacity-75 font-sans tracking-wider">
-        <p>© <span id="renderFooterYear">2023–2026</span> Die Meelhuis. All Rights Reserved. Live Admin CMS Enabled.</p>
-    </footer>
-
-
-    <!-- ==================== MODAL 1: OUR MENU ==================== -->
-    <div id="menuModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 modal-backdrop opacity-0 pointer-events-none">
-        <div class="modal-card w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border-4 border-black/10">
-            
-            <!-- Modal Header -->
-            <div class="bg-black/10 px-6 py-5 flex justify-between items-center border-b border-black/10 no-print">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">Our Menu</h2>
-                    <p class="text-xs opacity-80 font-sans">Neapolitan style pizzas, smash burgers & artisanal bakes.</p>
-                </div>
-                <button onclick="closeModal('menuModal')" class="w-10 h-10 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Search and Filter Bar -->
-            <div class="px-6 pt-4 pb-2 bg-black/5 border-b border-black/5 flex flex-col sm:flex-row justify-between items-center gap-3 no-print">
-                <div class="relative w-full sm:w-64">
-                    <i class="fa-solid fa-search absolute left-3 top-3 text-xs opacity-50"></i>
-                    <input type="text" id="menuSearch" oninput="renderMenuModal()" placeholder="Search menu items..." 
-                           class="w-full bg-white text-black pl-8 pr-3 py-1.5 rounded-full text-xs focus:outline-none border border-black/10">
-                </div>
-                <div class="flex items-center gap-1 overflow-x-auto w-full sm:w-auto" id="categoryFilterContainer">
-                    <!-- Filter Pills rendered JS -->
-                </div>
-            </div>
-
-            <!-- Printable & Dynamic Menu Content -->
-            <div id="printableMenu" class="p-6 md:p-8 overflow-y-auto custom-scroll flex-grow space-y-6">
-                <!-- Dynamic Menu Content Rendered Here -->
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="bg-black/5 px-6 py-4 border-t border-black/10 flex flex-col sm:flex-row justify-between items-center gap-3 no-print">
-                <span class="text-xs opacity-70">Need bulk orders? Contact us in Event Bookings.</span>
-                <button onclick="window.print()" class="px-6 py-2.5 bg-black text-white rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow hover:opacity-80">
-                    <i class="fa-solid fa-print"></i>
-                    <span>Print / Download PDF Menu</span>
-                </button>
-            </div>
-
-        </div>
+  <!-- HERO MAIN SECTION -->
+  <main class="hero">
+    <div class="hero-logo-circle">
+      <i class="fa-solid fa-wheat-awn"></i>
     </div>
 
+    <div class="hero-est" id="display-est">EST. 2023</div>
+    <h1 class="hero-title" id="display-hero-title">DIE MEELHUIS</h1>
+    <h2 class="hero-subtitle" id="display-hero-subtitle">NEAPOLITAN STYLE PIZZAS & SMASH BURGERS</h2>
+    <div class="hero-hashtags" id="display-hero-hashtags">#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES</div>
 
-    <!-- ==================== MODAL 2: WHERE ARE WE? ==================== -->
-    <div id="whereModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 modal-backdrop opacity-0 pointer-events-none">
-        <div class="modal-card w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border-4 border-black/10">
-            
-            <!-- Modal Header -->
-            <div class="bg-black/10 px-6 py-5 flex justify-between items-center border-b border-black/10">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">Where Are We?</h2>
-                    <p class="text-xs opacity-80 font-sans">Find our mobile stall at local markets, fairs, and pop-ups.</p>
-                </div>
-                <button onclick="closeModal('whereModal')" class="w-10 h-10 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
+    <!-- 3 BUTTONS -->
+    <div class="hero-buttons">
+      <button id="hero-btn-1" class="custom-btn" onclick="openModal('menu-modal')">
+        <i class="fa-solid fa-utensils"></i> <span id="btn1-label-text">OUR MENU</span>
+      </button>
 
-            <!-- Modal Body -->
-            <div class="p-6 md:p-8 overflow-y-auto custom-scroll flex-grow space-y-6">
-                <!-- Month Selection Filter -->
-                <div class="flex items-center justify-center gap-2 border-b border-black/10 pb-4 overflow-x-auto" id="scheduleMonthFilters">
-                    <!-- Dynamic Month Filters -->
-                </div>
+      <button id="hero-btn-2" class="custom-btn" onclick="openModal('where-modal')">
+        <i class="fa-solid fa-location-dot"></i> <span id="btn2-label-text">WHERE ARE WE?</span>
+      </button>
 
-                <!-- Schedule List -->
-                <div class="space-y-4" id="scheduleListContainer">
-                    <!-- Dynamic Schedule Items -->
-                </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="bg-black/5 px-6 py-4 border-t border-black/10 flex justify-between items-center text-xs">
-                <span>Want Die Meelhuis at your venue? Invite us!</span>
-                <button onclick="closeModal('whereModal'); openModal('contactModal');" class="font-bold underline uppercase">Submit Market Invitation →</button>
-            </div>
-
-        </div>
+      <button id="hero-btn-3" class="custom-btn" onclick="openModal('contact-modal')">
+        <i class="fa-solid fa-calendar-check"></i> <span id="btn3-label-text">EVENT BOOKINGS & CONTACT US</span>
+      </button>
     </div>
 
+    <div class="scroll-indicator" onclick="openModal('menu-modal')">
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </main>
 
-    <!-- ==================== MODAL 3: EVENT BOOKINGS & CONTACT US ==================== -->
-    <div id="contactModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 modal-backdrop opacity-0 pointer-events-none">
-        <div class="modal-card w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border-4 border-black/10">
-            
-            <!-- Modal Header -->
-            <div class="bg-black/10 px-6 py-5 flex justify-between items-center border-b border-black/10">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-wide">Event Bookings & Contact</h2>
-                    <p class="text-xs opacity-80 font-sans">Send us an inquiry for event catering, market invites, or wholesale.</p>
-                </div>
-                <button onclick="closeModal('contactModal')" class="w-10 h-10 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
+  <!-- FOOTER -->
+  <footer>
+    © 2023–2026 Die Meelhuis. All Rights Reserved. Live Admin CMS Enabled.
+  </footer>
 
-            <!-- Modal Form Body -->
-            <div class="p-6 md:p-8 overflow-y-auto custom-scroll flex-grow">
-                
-                <!-- Success Message -->
-                <div id="contactSuccessState" class="hidden bg-green-100 border-2 border-green-400 text-green-900 rounded-2xl p-6 text-center space-y-3">
-                    <div class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto text-2xl shadow">
-                        <i class="fa-solid fa-check"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold">Inquiry Successfully Submitted!</h3>
-                    <p class="text-sm">We have received your request for <span id="contactTypeConfirm" class="font-bold"></span>. Our team will contact you shortly.</p>
-                    <button onclick="resetContactForm()" class="px-6 py-2 bg-green-700 text-white text-xs font-bold rounded-full uppercase">Send Another Inquiry</button>
-                </div>
-
-                <!-- Dynamic Form -->
-                <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
-                    
-                    <div>
-                        <label class="block text-xs font-bold uppercase mb-1">Inquiry Type *</label>
-                        <select id="inquiryTypeSelect" onchange="updateContactFields()" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                            <option value="Private Event Booking">Private Event Booking / Catering</option>
-                            <option value="Market Invite">Market / Festival Invite</option>
-                            <option value="Wholesale Order">Wholesale / Bulk Order</option>
-                            <option value="General Inquiry">General Inquiry / Feedback</option>
-                        </select>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Full Name *</label>
-                            <input type="text" required placeholder="e.g. Sarah Smith" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Email Address *</label>
-                            <input type="email" required placeholder="e.g. sarah@example.com" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Phone Number *</label>
-                            <input type="tel" required placeholder="e.g. 082 123 4567" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                        <div id="dynamicDateField">
-                            <label id="dynamicDateLabel" class="block text-xs font-bold uppercase mb-1">Event / Delivery Date *</label>
-                            <input type="date" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Extra Fields -->
-                    <div id="dynamicFieldsContainer" class="space-y-4">
-                        <!-- Dynamic fields rendered via JS -->
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold uppercase mb-1">Your Message / Requirements *</label>
-                        <textarea rows="3" required placeholder="Tell us about your event, headcount, or specific baked goods required..." class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-3.5 bg-black text-white text-sm font-bold uppercase tracking-wider rounded-full shadow-lg flex items-center justify-center gap-2 hover:opacity-80">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>Submit Inquiry</span>
-                    </button>
-                </form>
-
-            </div>
-
+  <!-- MODAL 1: OUR MENU -->
+  <div class="modal-overlay" id="menu-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Our Menu</h3>
+        <button class="modal-close-btn" onclick="closeModal('menu-modal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="menu-controls">
+          <input type="text" class="search-bar" id="menu-search" placeholder="Search menu items..." onkeyup="filterMenu()">
+          <div class="filter-pills">
+            <button class="pill-btn active" onclick="filterCategory('ALL', this)">ALL</button>
+            <button class="pill-btn" onclick="filterCategory('NEAPOLITAN PIZZA', this)">NEAPOLITAN PIZZA</button>
+            <button class="pill-btn" onclick="filterCategory('SMASH BURGERS', this)">SMASH BURGERS</button>
+            <button class="pill-btn" onclick="filterCategory('ARTISANAL BREADS', this)">ARTISANAL BREADS</button>
+          </div>
         </div>
+
+        <div id="menu-container"></div>
+
+        <div style="margin-top: 30px; text-align: right;">
+          <button class="custom-btn" style="background:#111; color:#fff; font-size:13px; padding:12px 24px;" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> PRINT / DOWNLOAD PDF MENU
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: WHERE ARE WE? -->
+  <div class="modal-overlay" id="where-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Where Are We?</h3>
+        <button class="modal-close-btn" onclick="closeModal('where-modal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Catch us at local pop-up markets, festivals, and community events every month!</p>
+        <div class="market-list" id="markets-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: EVENT BOOKINGS & CONTACT US -->
+  <div class="modal-overlay" id="contact-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Event Bookings & Contact Us</h3>
+        <button class="modal-close-btn" onclick="closeModal('contact-modal')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label>Inquiry Type</label>
+            <select class="form-control" id="inquiry-type" onchange="toggleFormFields()">
+              <option value="private">Private Event Booking / Catering</option>
+              <option value="market">Market / Festival Invite</option>
+              <option value="general">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="cms-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" class="form-control" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-control" required placeholder="john@example.com">
+            </div>
+          </div>
+
+          <div id="dynamic-event-fields">
+            <div class="cms-row">
+              <div class="form-group">
+                <label>Event Date</label>
+                <input type="date" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Estimated Guest Count</label>
+                <input type="number" class="form-control" placeholder="e.g. 50">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Your Message</label>
+            <textarea class="form-control" rows="4" required placeholder="Tell us more about your event or request..."></textarea>
+          </div>
+
+          <button type="submit" class="custom-btn" style="background:var(--text-main); color:#fff; width:100%;">
+            <i class="fa-solid fa-paper-plane"></i> SEND INQUIRY
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN CMS SIDEBAR PANEL -->
+  <div class="admin-panel" id="admin-panel">
+    <div class="admin-header">
+      <div>
+        <h3 style="font-size: 16px; font-weight: 800;">Die Meelhuis CMS</h3>
+        <span style="font-size: 11px; color: #7b9acc;">Live Website Editor & Customizer</span>
+      </div>
+      <button class="modal-close-btn" style="background:#28334f; color:#fff;" onclick="toggleAdminPanel()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
 
-
-    <!-- ==================== LIVE ADMIN CMS PANEL ==================== -->
-    <div id="adminPanel" class="fixed inset-y-0 right-0 z-50 w-full max-w-xl bg-gray-900 text-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col font-sans border-l border-gray-700">
-        
-        <!-- Admin Header -->
-        <div class="bg-gray-800 px-6 py-4 flex items-center justify-between border-b border-gray-700">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white">
-                    <i class="fa-solid fa-sliders"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-white">Die Meelhuis CMS</h3>
-                    <p class="text-xs text-gray-400">Live Website Editor & Customizer</p>
-                </div>
-            </div>
-            <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+    <div class="admin-body">
+      
+      <!-- GITHUB API SYNC SECTION -->
+      <div class="cms-section" style="border: 1px solid #238636;">
+        <div class="cms-section-title" style="color: #3fb950;">
+          <i class="fa-brands fa-github"></i> GITHUB API LIVE SYNC
         </div>
-
-        <!-- Admin Navigation Tabs -->
-        <div class="flex border-b border-gray-800 bg-gray-950 overflow-x-auto text-xs font-bold uppercase tracking-wider">
-            <button onclick="switchAdminTab('tabBranding')" class="admin-tab active border-b-2 border-blue-500 px-4 py-3 text-blue-400 whitespace-nowrap">Branding & Colors</button>
-            <button onclick="switchAdminTab('tabButtons')" class="admin-tab border-b-2 border-transparent px-4 py-3 text-gray-400 hover:text-white whitespace-nowrap">Button Customization</button>
-            <button onclick="switchAdminTab('tabHero')" class="admin-tab border-b-2 border-transparent px-4 py-3 text-gray-400 hover:text-white whitespace-nowrap">Hero Content</button>
-            <button onclick="switchAdminTab('tabMenu')" class="admin-tab border-b-2 border-transparent px-4 py-3 text-gray-400 hover:text-white whitespace-nowrap">Menu Manager</button>
-            <button onclick="switchAdminTab('tabSchedule')" class="admin-tab border-b-2 border-transparent px-4 py-3 text-gray-400 hover:text-white whitespace-nowrap">Schedule</button>
+        <div class="cms-input-group" style="margin-bottom: 10px;">
+          <label>GitHub Owner / Username</label>
+          <input type="text" id="gh-owner" class="cms-input" placeholder="page-one-digital" value="page-one-digital">
         </div>
-
-        <!-- Admin Tab Contents Area -->
-        <div class="p-6 overflow-y-auto custom-scroll flex-grow space-y-6 text-sm">
-            
-            <!-- TAB 1: BRANDING & COLORS -->
-            <div id="tabBranding" class="admin-content space-y-5">
-                <h4 class="text-xs font-extrabold uppercase tracking-widest text-blue-400">Color Palette & Global Fonts</h4>
-                
-                <!-- Quick Theme Presets -->
-                <div>
-                    <label class="block text-xs font-semibold text-gray-400 mb-2">Quick Theme Presets</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="applyPreset('electricBlue')" class="px-3 py-2 bg-blue-600 rounded-lg text-xs font-bold text-white hover:opacity-90">Electric Blue & Cream</button>
-                        <button onclick="applyPreset('darkRetro')" class="px-3 py-2 bg-gray-800 rounded-lg text-xs font-bold text-white hover:opacity-90 border border-gray-600">Retro Dark</button>
-                        <button onclick="applyPreset('vintageBakery')" class="px-3 py-2 bg-amber-800 rounded-lg text-xs font-bold text-amber-100 hover:opacity-90">Vintage Bakery</button>
-                        <button onclick="applyPreset('minimalWhite')" class="px-3 py-2 bg-gray-100 rounded-lg text-xs font-bold text-gray-900 hover:opacity-90">Minimalist White</button>
-                    </div>
-                </div>
-
-                <!-- Global Colors -->
-                <div class="space-y-3 pt-2 border-t border-gray-800">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-300">Page Background Color</span>
-                        <input type="color" id="inputBgColor" oninput="updateConfig('bgColor', this.value)" class="w-10 h-8 rounded bg-transparent cursor-pointer">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-300">Main Text Color</span>
-                        <input type="color" id="inputTextColor" oninput="updateConfig('textColor', this.value)" class="w-10 h-8 rounded bg-transparent cursor-pointer">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-300">Accent Color</span>
-                        <input type="color" id="inputAccentColor" oninput="updateConfig('accentColor', this.value)" class="w-10 h-8 rounded bg-transparent cursor-pointer">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-300">Modal Background Color</span>
-                        <input type="color" id="inputCardBg" oninput="updateConfig('cardBg', this.value)" class="w-10 h-8 rounded bg-transparent cursor-pointer">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-300">Modal Text Color</span>
-                        <input type="color" id="inputCardText" oninput="updateConfig('cardText', this.value)" class="w-10 h-8 rounded bg-transparent cursor-pointer">
-                    </div>
-                </div>
-
-                <!-- Global Font Family & Corner Radius -->
-                <div class="space-y-3 pt-2 border-t border-gray-800">
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">Global Website Font</label>
-                        <select id="inputFontFamily" onchange="updateConfig('fontFamily', this.value)" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg p-2.5 text-xs">
-                            <option value="'Fredoka', sans-serif">Fredoka (Retro Bold - Default)</option>
-                            <option value="'Outfit', sans-serif">Outfit (Clean Modern Sans)</option>
-                            <option value="'Montserrat', sans-serif">Montserrat (Geometric Heavy)</option>
-                            <option value="'Bungee', cursive">Bungee (Ultra Retro)</option>
-                            <option value="'Courier Prime', monospace">Courier Prime (Monospace)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 mb-1">Button Corner Radius</label>
-                        <select id="inputBorderRadius" onchange="updateConfig('borderRadius', this.value)" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg p-2.5 text-xs">
-                            <option value="9999px">Pill Shape (Fully Rounded - Default)</option>
-                            <option value="1rem">Soft Rounded (16px)</option>
-                            <option value="0.5rem">Slightly Rounded (8px)</option>
-                            <option value="0px">Sharp Square (0px)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 2: INDIVIDUAL BUTTON CUSTOMIZATION -->
-            <div id="tabButtons" class="admin-content hidden space-y-6">
-                <h4 class="text-xs font-extrabold uppercase tracking-widest text-blue-400">Individual Button Customization</h4>
-
-                <!-- BUTTON 1 CMS PANEL -->
-                <div class="p-4 bg-gray-800 rounded-xl border border-gray-700 space-y-3">
-                    <h5 class="font-bold text-xs uppercase tracking-wider text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-1"></i> Button 1: "Our Menu"
-                    </h5>
-                    
-                    <div>
-                        <label class="block text-[11px] text-gray-400 mb-1">Button Text Label</label>
-                        <input type="text" id="inputBtn1Text" oninput="updateConfig('btn1Text', this.value)" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-white">
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2">
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Background</span>
-                            <input type="color" id="inputBtn1Bg" oninput="updateConfig('btn1Bg', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Text Color</span>
-                            <input type="color" id="inputBtn1TextClr" oninput="updateConfig('btn1TextClr', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Border Color</span>
-                            <input type="color" id="inputBtn1Border" oninput="updateConfig('btn1Border', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block text-[10px] text-gray-400 mb-1">Font Family</label>
-                            <select id="inputBtn1Font" onchange="updateConfig('btn1Font', this.value)" class="w-full bg-gray-900 text-white border border-gray-700 rounded p-1.5 text-xs">
-                                <option value="'Fredoka', sans-serif">Fredoka</option>
-                                <option value="'Outfit', sans-serif">Outfit</option>
-                                <option value="'Montserrat', sans-serif">Montserrat</option>
-                                <option value="'Bungee', cursive">Bungee</option>
-                                <option value="'Courier Prime', monospace">Courier</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] text-gray-400 mb-1">Font Size</label>
-                            <select id="inputBtn1Size" onchange="updateConfig('btn1Size', this.value)" class="w-full bg-gray-900 text-white border border-gray-700 rounded p-1.5 text-xs">
-                                <option value="0.875rem">Small (14px)</option>
-                                <option value="1rem">Medium (16px)</option>
-                                <option value="1.125rem">Large (18px)</option>
-                                <option value="1.25rem">X-Large (20px)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BUTTON 2 CMS PANEL -->
-                <div class="p-4 bg-gray-800 rounded-xl border border-gray-700 space-y-3">
-                    <h5 class="font-bold text-xs uppercase tracking-wider text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-2"></i> Button 2: "Where Are We?"
-                    </h5>
-                    
-                    <div>
-                        <label class="block text-[11px] text-gray-400 mb-1">Button Text Label</label>
-                        <input type="text" id="inputBtn2Text" oninput="updateConfig('btn2Text', this.value)" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-white">
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2">
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Background</span>
-                            <input type="color" id="inputBtn2Bg" oninput="updateConfig('btn2Bg', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Text Color</span>
-                            <input type="color" id="inputBtn2TextClr" oninput="updateConfig('btn2TextClr', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Border Color</span>
-                            <input type="color" id="inputBtn2Border" oninput="updateConfig('btn2Border', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block text-[10px] text-gray-400 mb-1">Font Family</label>
-                            <select id="inputBtn2Font" onchange="updateConfig('btn2Font', this.value)" class="w-full bg-gray-900 text-white border border-gray-700 rounded p-1.5 text-xs">
-                                <option value="'Fredoka', sans-serif">Fredoka</option>
-                                <option value="'Outfit', sans-serif">Outfit</option>
-                                <option value="'Montserrat', sans-serif">Montserrat</option>
-                                <option value="'Bungee', cursive">Bungee</option>
-                                <option value="'Courier Prime', monospace">Courier</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] text-gray-400 mb-1">Font Size</label>
-                            <select id="inputBtn2Size" onchange="updateConfig('btn2Size', this.value)" class="w-full bg-gray-900 text-white border border-gray-700 rounded p-1.5 text-xs">
-                                <option value="0.875rem">Small (14px)</option>
-                                <option value="1rem">Medium (16px)</option>
-                                <option value="1.125rem">Large (18px)</option>
-                                <option value="1.25rem">X-Large (20px)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BUTTON 3 CMS PANEL -->
-                <div class="p-4 bg-gray-800 rounded-xl border border-gray-700 space-y-3">
-                    <h5 class="font-bold text-xs uppercase tracking-wider text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-3"></i> Button 3: "Event Bookings & Contact Us"
-                    </h5>
-                    
-                    <div>
-                        <label class="block text-[11px] text-gray-400 mb-1">Button Text Label</label>
-                        <input type="text" id="inputBtn3Text" oninput="updateConfig('btn3Text', this.value)" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-xs text-white">
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2">
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Background</span>
-                            <input type="color" id="inputBtn3Bg" oninput="updateConfig('btn3Bg', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Text Color</span>
-                            <input type="color" id="inputBtn3TextClr" oninput="updateConfig('btn3TextClr', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-[10px] text-gray-400 mb-1">Border Color</span>
-                            <input type="color" id="inputBtn3Border" oninput="updateConfig('btn3Border', this.value)" class="w-full h-8 rounded bg-transparent cursor-pointer">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block text-[10px] text-gray-400 mb-1">Font Family</label>
-                            <select id="inputBtn3Font" onchange="updateConfig('btn3Font', this.value)" class="w-full bg-gray-900 text-white border border-gray-700 rounded p-1.5 text-xs">
-                                <option value="'Fredoka', sans-serif">Fredoka</option>
-                                <option value="'Outfit', sans-serif">Outfit</option>
-                                <option value="'Montserrat', sans-serif">Montserrat</option>
-                                <option value="'Bungee', cursive">Bungee</option>
-                                <option value="'Courier Prime', monospace">Courier</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] text-gray-400 mb-1">Font Size</label>
-                            <select id="inputBtn3Size" onchange="updateConfig('btn3Size', this.value)" class="w-full bg-gray-900 text-white border border-gray-700 rounded p-1.5 text-xs">
-                                <option value="0.875rem">Small (14px)</option>
-                                <option value="1rem">Medium (16px)</option>
-                                <option value="1.125rem">Large (18px)</option>
-                                <option value="1.25rem">X-Large (20px)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 3: HERO CONTENT -->
-            <div id="tabHero" class="admin-content hidden space-y-4">
-                <h4 class="text-xs font-extrabold uppercase tracking-widest text-blue-400">Hero Text Content</h4>
-                
-                <div>
-                    <label class="block text-xs text-gray-300 mb-1">Brand Title Name</label>
-                    <input type="text" id="inputHeroTitle" oninput="updateConfig('heroTitle', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-xs text-white">
-                </div>
-
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-xs text-gray-300 mb-1">EST Prefix</label>
-                        <input type="text" id="inputEstPrefix" oninput="updateConfig('estPrefix', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-xs text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-300 mb-1">EST Year</label>
-                        <input type="text" id="inputEstYear" oninput="updateConfig('estYear', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-xs text-white">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs text-gray-300 mb-1">Hero Subtitle / Specialty</label>
-                    <input type="text" id="inputHeroTagline" oninput="updateConfig('heroTagline', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-xs text-white">
-                </div>
-
-                <div>
-                    <label class="block text-xs text-gray-300 mb-1">Hashtags Line</label>
-                    <input type="text" id="inputHashtags" oninput="updateConfig('hashtags', this.value)" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-2 text-xs text-white">
-                </div>
-            </div>
-
-            <!-- TAB 4: MENU MANAGER -->
-            <div id="tabMenu" class="admin-content hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-xs font-extrabold uppercase tracking-widest text-blue-400">Manage Menu Items</h4>
-                    <button onclick="addNewMenuItem()" class="px-3 py-1 bg-blue-600 text-white rounded text-xs font-bold hover:bg-blue-500">+ Add Item</button>
-                </div>
-                
-                <div id="adminMenuList" class="space-y-3">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-
-            <!-- TAB 5: SCHEDULE MANAGER -->
-            <div id="tabSchedule" class="admin-content hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-xs font-extrabold uppercase tracking-widest text-blue-400">Manage Market Schedule</h4>
-                    <button onclick="addNewScheduleItem()" class="px-3 py-1 bg-blue-600 text-white rounded text-xs font-bold hover:bg-blue-500">+ Add Event</button>
-                </div>
-
-                <div id="adminScheduleList" class="space-y-3">
-                    <!-- Rendered via JS -->
-                </div>
-            </div>
-
+        <div class="cms-input-group" style="margin-bottom: 10px;">
+          <label>Repository Name</label>
+          <input type="text" id="gh-repo" class="cms-input" placeholder="die-meelhuis" value="die-meelhuis">
         </div>
-
-        <!-- Admin Footer Action Buttons -->
-        <div class="p-4 bg-gray-950 border-t border-gray-800 flex items-center justify-between gap-2">
-            <button onclick="resetToDefaults()" class="px-3 py-2 bg-red-900/50 hover:bg-red-800 text-red-200 border border-red-700 rounded-lg text-xs font-bold flex items-center gap-1.5">
-                <i class="fa-solid fa-rotate-left"></i>
-                <span>Reset Defaults</span>
-            </button>
-            <div class="flex gap-2">
-                <button onclick="exportConfigJSON()" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-xs font-bold flex items-center gap-1">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Export JSON</span>
-                </button>
-                <button onclick="toggleAdminPanel()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold">
-                    Close Panel
-                </button>
-            </div>
+        <div class="cms-input-group" style="margin-bottom: 10px;">
+          <label>Fine-Grained GitHub Access Token</label>
+          <input type="password" id="gh-token" class="cms-input" placeholder="github_pat_...">
         </div>
+        <button class="btn-github-push" onclick="pushToGitHub()">
+          <i class="fa-solid fa-cloud-arrow-up"></i> 🚀 Save & Push Live to GitHub
+        </button>
+        <div id="github-sync-status"></div>
+      </div>
+
+      <!-- HERO SECTION EDITING -->
+      <div class="cms-section">
+        <div class="cms-section-title"><i class="fa-solid fa-font"></i> Hero Copy & Text</div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Hero Main Title</label>
+          <input type="text" id="cms-hero-title" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Hero Subtitle</label>
+          <input type="text" id="cms-hero-subtitle" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-input-group">
+          <label>Hashtags</label>
+          <input type="text" id="cms-hero-hashtags" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+      </div>
+
+      <!-- PAGE GLOBAL COLORS -->
+      <div class="cms-section">
+        <div class="cms-section-title"><i class="fa-solid fa-palette"></i> Page Theme Colors</div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Background Color</label>
+            <input type="color" id="cms-bg-color" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Primary Text Color</label>
+            <input type="color" id="cms-primary-color" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTON 1 CMS -->
+      <div class="cms-section">
+        <div class="cms-section-title" style="color: #ffd700;">1. BUTTON 1: "OUR MENU"</div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Button Text Label</label>
+          <input type="text" id="cms-btn1-label" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Background</label>
+            <input type="color" id="cms-btn1-bg" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Text Color</label>
+            <input type="color" id="cms-btn1-text" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTON 2 CMS -->
+      <div class="cms-section">
+        <div class="cms-section-title" style="color: #ffd700;">2. BUTTON 2: "WHERE ARE WE?"</div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Button Text Label</label>
+          <input type="text" id="cms-btn2-label" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Background</label>
+            <input type="color" id="cms-btn2-bg" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Text Color</label>
+            <input type="color" id="cms-btn2-text" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTON 3 CMS -->
+      <div class="cms-section">
+        <div class="cms-section-title" style="color: #ffd700;">3. BUTTON 3: "EVENT BOOKINGS"</div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Button Text Label</label>
+          <input type="text" id="cms-btn3-label" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Background</label>
+            <input type="color" id="cms-btn3-bg" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Text Color</label>
+            <input type="color" id="cms-btn3-text" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+        </div>
+      </div>
 
     </div>
+  </div>
 
+  <script>
+    // DEFAULT WEBSITE CONFIGURATION
+    const DEFAULT_CONFIG = {
+      heroTitle: "DIE MEELHUIS",
+      heroSubtitle: "NEAPOLITAN STYLE PIZZAS & SMASH BURGERS",
+      heroHashtags: "#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES",
+      bgColor: "#0052cc",
+      primaryColor: "#f7f3e9",
+      btn1Label: "OUR MENU",
+      btn1Bg: "#f7f3e9",
+      btn1Text: "#0052cc",
+      btn2Label: "WHERE ARE WE?",
+      btn2Bg: "#0052cc",
+      btn2Text: "#ffffff",
+      btn3Label: "EVENT BOOKINGS & CONTACT US",
+      btn3Bg: "#f7f3e9",
+      btn3Text: "#0052cc",
+      ghOwner: "page-one-digital",
+      ghRepo: "die-meelhuis",
+      ghToken: ""
+    };
 
-    <!-- ==================== STATE MANAGEMENT ENGINE ==================== -->
-    <script>
-        // DEFAULT SITE CONFIGURATION
-        const defaultConfig = {
-            bgColor: '#0055c8',
-            textColor: '#FAF6EE',
-            accentColor: '#EFE6D5',
-            cardBg: '#FAF6EE',
-            cardText: '#121212',
-            fontFamily: "'Fredoka', sans-serif",
-            borderRadius: '9999px',
-            
-            heroTitle: 'DIE MEELHUIS',
-            estPrefix: 'EST.',
-            estYear: '2023',
-            heroTagline: 'NEAPOLITAN STYLE PIZZAS & SMASH BURGERS',
-            hashtags: '#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES',
-            
-            // Button 1 Config
-            btn1Text: 'OUR MENU',
-            btn1Bg: '#FAF6EE',
-            btn1TextClr: '#0055c8',
-            btn1Border: '#FAF6EE',
-            btn1Font: "'Fredoka', sans-serif",
-            btn1Size: '1rem',
+    const menuData = [
+      { category: "NEAPOLITAN PIZZA", title: "Margherita Woodfired Pizza", price: "R 95", desc: "San Marzano tomato base, fresh fior di latte mozzarella, and basil." },
+      { category: "NEAPOLITAN PIZZA", title: "Truffle & Mushroom Pizza", price: "R 125", desc: "Wild mushrooms, truffle cream oil, mozzarella, and thyme." },
+      { category: "SMASH BURGERS", title: "Classic Double Smash Burger", price: "R 95", desc: "Two smashed beef patties, cheddar, house pickles, and secret sauce." },
+      { category: "SMASH BURGERS", title: "Bacon & Jalapeño Smash Burger", price: "R 110", desc: "Crispy bacon, spicy pickled jalapeños, double cheese, and garlic aioli." },
+      { category: "ARTISANAL BREADS", title: "Slow-Fermented Sourdough Loaf", price: "R 55", desc: "36-hour fermented crusty sourdough bread baked daily." }
+    ];
 
-            // Button 2 Config
-            btn2Text: 'WHERE ARE WE?',
-            btn2Bg: '#0055c8',
-            btn2TextClr: '#FAF6EE',
-            btn2Border: '#FAF6EE',
-            btn2Font: "'Fredoka', sans-serif",
-            btn2Size: '1rem',
+    const marketData = [
+      { day: "12", month: "NOV", title: "Pretoria East Night Market", time: "17:00 – 22:00", loc: "Bus Stop 7 Market Grounds" },
+      { day: "25", month: "NOV", title: "Pierre van Ryneveld Dorpsfees", time: "09:00 – 17:00", loc: "Pierre van Ryneveld Park" },
+      { day: "03", month: "DEC", title: "Menlyn Rooftop Christmas Market", time: "10:00 – 21:00", loc: "Menlyn Park Rooftop" }
+    ];
 
-            // Button 3 Config
-            btn3Text: 'EVENT BOOKINGS & CONTACT US',
-            btn3Bg: '#EFE6D5',
-            btn3TextClr: '#0055c8',
-            btn3Border: '#EFE6D5',
-            btn3Font: "'Fredoka', sans-serif",
-            btn3Size: '1rem',
+    let currentConfig = { ...DEFAULT_CONFIG };
 
-            menuItems: [
-                { id: 1, title: 'Margherita Woodfired Pizza', category: 'Neapolitan Pizza', price: 'R 95', desc: 'San Marzano tomato base, fresh fior di latte mozzarella, and basil.' },
-                { id: 2, title: 'Classic Double Smash Burger', category: 'Smash Burgers', price: 'R 88', desc: 'Two smashed beef patties, cheddar, house pickles, and secret sauce.' },
-                { id: 3, title: 'Slow-Fermented Sourdough Loaf', category: 'Artisanal Breads', price: 'R 55', desc: '36-hour fermented crusty sourdough bread baked daily.' },
-                { id: 4, title: 'Truffle & Mushroom Pizza', category: 'Neapolitan Pizza', price: 'R 125', desc: 'Wild mushrooms, truffle cream oil, mozzarella, and thyme.' },
-                { id: 5, title: 'Bacon & Jalapeno Smash Burger', category: 'Smash Burgers', price: 'R 105', desc: 'Crispy bacon, spicy pickled jalapenos, double cheese, and garlic aioli.' },
-                { id: 6, title: 'Traditional Melktert Tartlet', category: 'Sweet Treats', price: 'R 32', desc: 'Creamy cinnamon-infused custard tartlet.' }
-            ],
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedConfig();
+      renderMenu(menuData);
+      renderMarkets(marketData);
+    });
 
-            scheduleItems: [
-                { id: 1, monthKey: 'october', monthLabel: 'OCT', day: '24', title: 'The Village Country Market', hours: '08:00 AM – 14:00 PM', location: 'Pretoria East Botanical Gardens', badge: 'Confirmed Market' },
-                { id: 2, monthKey: 'october', monthLabel: 'OCT', day: '31', title: 'Spring Artisan Food Fair', hours: '09:00 AM – 16:00 PM', location: 'Centurion Heritage Park', badge: 'Pop-Up Stall' },
-                { id: 3, monthKey: 'november', monthLabel: 'NOV', day: '12', title: 'Hazel Food Market', hours: '08:00 AM – 14:00 PM', location: 'Greenlyn Village Centre, Menlo Park', badge: 'Monthly Feature' },
-                { id: 4, monthKey: 'december', monthLabel: 'DEC', day: '05', title: 'Festive Night Market', hours: '16:00 PM – 21:00 PM', location: 'Irene Village Promenade', badge: 'Festive Special' }
-            ]
-        };
+    function loadSavedConfig() {
+      const saved = localStorage.getItem('meelhuis_config');
+      if (saved) {
+        try { currentConfig = { ...DEFAULT_CONFIG, ...JSON.parse(saved) }; } catch(e){}
+      }
+      applyConfigToDOM();
+    }
 
-        let config = JSON.parse(localStorage.getItem('die_meelhuis_config_v2')) || JSON.parse(JSON.stringify(defaultConfig));
-        let activeMenuCategory = 'All';
-        let activeScheduleMonth = 'all';
+    function applyConfigToDOM() {
+      document.getElementById('display-hero-title').innerText = currentConfig.heroTitle;
+      document.getElementById('display-hero-subtitle').innerText = currentConfig.heroSubtitle;
+      document.getElementById('display-hero-hashtags').innerText = currentConfig.heroHashtags;
 
-        // INITIALIZATION
-        window.addEventListener('DOMContentLoaded', () => {
-            applyConfigToDOM();
-            renderMenuModal();
-            renderScheduleModal();
-            updateContactFields();
+      document.getElementById('btn1-label-text').innerText = currentConfig.btn1Label;
+      document.getElementById('btn2-label-text').innerText = currentConfig.btn2Label;
+      document.getElementById('btn3-label-text').innerText = currentConfig.btn3Label;
+
+      document.documentElement.style.setProperty('--bg-color', currentConfig.bgColor);
+      document.documentElement.style.setProperty('--primary-color', currentConfig.primaryColor);
+
+      document.documentElement.style.setProperty('--btn1-bg', currentConfig.btn1Bg);
+      document.documentElement.style.setProperty('--btn1-text', currentConfig.btn1Text);
+      document.documentElement.style.setProperty('--btn2-bg', currentConfig.btn2Bg);
+      document.documentElement.style.setProperty('--btn2-text', currentConfig.btn2Text);
+      document.documentElement.style.setProperty('--btn3-bg', currentConfig.btn3Bg);
+      document.documentElement.style.setProperty('--btn3-text', currentConfig.btn3Text);
+
+      // Populate Inputs in CMS Panel
+      document.getElementById('cms-hero-title').value = currentConfig.heroTitle;
+      document.getElementById('cms-hero-subtitle').value = currentConfig.heroSubtitle;
+      document.getElementById('cms-hero-hashtags').value = currentConfig.heroHashtags;
+      document.getElementById('cms-bg-color').value = currentConfig.bgColor;
+      document.getElementById('cms-primary-color').value = currentConfig.primaryColor;
+
+      document.getElementById('cms-btn1-label').value = currentConfig.btn1Label;
+      document.getElementById('cms-btn1-bg').value = currentConfig.btn1Bg;
+      document.getElementById('cms-btn1-text').value = currentConfig.btn1Text;
+
+      document.getElementById('cms-btn2-label').value = currentConfig.btn2Label;
+      document.getElementById('cms-btn2-bg').value = currentConfig.btn2Bg;
+      document.getElementById('cms-btn2-text').value = currentConfig.btn2Text;
+
+      document.getElementById('cms-btn3-label').value = currentConfig.btn3Label;
+      document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg;
+      document.getElementById('cms-btn3-text').value = currentConfig.btn3Text;
+
+      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
+      document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
+      document.getElementById('gh-token').value = currentConfig.ghToken || '';
+    }
+
+    function updateLiveConfig() {
+      currentConfig.heroTitle = document.getElementById('cms-hero-title').value;
+      currentConfig.heroSubtitle = document.getElementById('cms-hero-subtitle').value;
+      currentConfig.heroHashtags = document.getElementById('cms-hero-hashtags').value;
+      currentConfig.bgColor = document.getElementById('cms-bg-color').value;
+      currentConfig.primaryColor = document.getElementById('cms-primary-color').value;
+
+      currentConfig.btn1Label = document.getElementById('cms-btn1-label').value;
+      currentConfig.btn1Bg = document.getElementById('cms-btn1-bg').value;
+      currentConfig.btn1Text = document.getElementById('cms-btn1-text').value;
+
+      currentConfig.btn2Label = document.getElementById('cms-btn2-label').value;
+      currentConfig.btn2Bg = document.getElementById('cms-btn2-bg').value;
+      currentConfig.btn2Text = document.getElementById('cms-btn2-text').value;
+
+      currentConfig.btn3Label = document.getElementById('cms-btn3-label').value;
+      currentConfig.btn3Bg = document.getElementById('cms-btn3-bg').value;
+      currentConfig.btn3Text = document.getElementById('cms-btn3-text').value;
+
+      currentConfig.ghOwner = document.getElementById('gh-owner').value;
+      currentConfig.ghRepo = document.getElementById('gh-repo').value;
+      currentConfig.ghToken = document.getElementById('gh-token').value;
+
+      localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
+      applyConfigToDOM();
+    }
+
+    // GITHUB DIRECT REST API SAVE FUNCTION
+    async function pushToGitHub() {
+      const statusDiv = document.getElementById('github-sync-status');
+      const owner = document.getElementById('gh-owner').value.trim();
+      const repo = document.getElementById('gh-repo').value.trim();
+      const token = document.getElementById('gh-token').value.trim();
+
+      if (!token) {
+        statusDiv.innerHTML = `<span class="status-badge error">Please paste your Fine-Grained GitHub Access Token above!</span>`;
+        return;
+      }
+
+      statusDiv.innerHTML = `<span class="status-badge" style="background:#0284c7; color:#fff;">Connecting to GitHub API...</span>`;
+
+      const path = 'data/config.json';
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+      const contentBase64 = btoa(JSON.stringify(currentConfig, null, 2));
+
+      try {
+        // Step 1: Check if file exists to get SHA
+        let sha = '';
+        const getRes = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
         });
 
-        // APPLY CONFIG TO DOM & CSS VARIABLES
-        function applyConfigToDOM() {
-            const root = document.documentElement;
-            
-            // Global CSS Variables
-            root.style.setProperty('--bg-color', config.bgColor);
-            root.style.setProperty('--text-color', config.textColor);
-            root.style.setProperty('--accent-color', config.accentColor);
-            root.style.setProperty('--card-bg', config.cardBg);
-            root.style.setProperty('--card-text', config.cardText);
-            root.style.setProperty('--font-family', config.fontFamily);
-            root.style.setProperty('--border-radius', config.borderRadius);
-
-            // Button 1 CSS Variables
-            root.style.setProperty('--btn1-bg', config.btn1Bg);
-            root.style.setProperty('--btn1-text', config.btn1TextClr);
-            root.style.setProperty('--btn1-border', config.btn1Border);
-            root.style.setProperty('--btn1-font', config.btn1Font);
-            root.style.setProperty('--btn1-size', config.btn1Size);
-
-            // Button 2 CSS Variables
-            root.style.setProperty('--btn2-bg', config.btn2Bg);
-            root.style.setProperty('--btn2-text', config.btn2TextClr);
-            root.style.setProperty('--btn2-border', config.btn2Border);
-            root.style.setProperty('--btn2-font', config.btn2Font);
-            root.style.setProperty('--btn2-size', config.btn2Size);
-
-            // Button 3 CSS Variables
-            root.style.setProperty('--btn3-bg', config.btn3Bg);
-            root.style.setProperty('--btn3-text', config.btn3TextClr);
-            root.style.setProperty('--btn3-border', config.btn3Border);
-            root.style.setProperty('--btn3-font', config.btn3Font);
-            root.style.setProperty('--btn3-size', config.btn3Size);
-
-            // Text Content Updates
-            document.getElementById('renderHeaderTitle').innerText = config.heroTitle;
-            document.getElementById('renderHeaderEst').innerText = `${config.estPrefix} ${config.estYear}`;
-            document.getElementById('renderHeroTitle').innerText = config.heroTitle;
-            document.getElementById('renderHeroEstPrefix').innerText = config.estPrefix;
-            document.getElementById('renderHeroEstYear').innerText = config.estYear;
-            document.getElementById('renderHeroTagline').innerText = config.heroTagline;
-            document.getElementById('renderHeroHashtags').innerText = config.hashtags;
-
-            document.getElementById('renderBtn1Text').innerText = config.btn1Text;
-            document.getElementById('renderBtn2Text').innerText = config.btn2Text;
-            document.getElementById('renderBtn3Text').innerText = config.btn3Text;
-
-            syncAdminInputValues();
-
-            localStorage.setItem('die_meelhuis_config_v2', JSON.stringify(config));
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          sha = fileData.sha;
         }
 
-        // SYNC ADMIN INPUT CONTROLS
-        function syncAdminInputValues() {
-            document.getElementById('inputBgColor').value = config.bgColor;
-            document.getElementById('inputTextColor').value = config.textColor;
-            document.getElementById('inputAccentColor').value = config.accentColor;
-            document.getElementById('inputCardBg').value = config.cardBg;
-            document.getElementById('inputCardText').value = config.cardText;
-            document.getElementById('inputBorderRadius').value = config.borderRadius;
-            document.getElementById('inputFontFamily').value = config.fontFamily;
-
-            document.getElementById('inputHeroTitle').value = config.heroTitle;
-            document.getElementById('inputEstPrefix').value = config.estPrefix;
-            document.getElementById('inputEstYear').value = config.estYear;
-            document.getElementById('inputHeroTagline').value = config.heroTagline;
-            document.getElementById('inputHashtags').value = config.hashtags;
-
-            // Sync Button 1 Inputs
-            document.getElementById('inputBtn1Text').value = config.btn1Text;
-            document.getElementById('inputBtn1Bg').value = config.btn1Bg;
-            document.getElementById('inputBtn1TextClr').value = config.btn1TextClr;
-            document.getElementById('inputBtn1Border').value = config.btn1Border;
-            document.getElementById('inputBtn1Font').value = config.btn1Font;
-            document.getElementById('inputBtn1Size').value = config.btn1Size;
-
-            // Sync Button 2 Inputs
-            document.getElementById('inputBtn2Text').value = config.btn2Text;
-            document.getElementById('inputBtn2Bg').value = config.btn2Bg;
-            document.getElementById('inputBtn2TextClr').value = config.btn2TextClr;
-            document.getElementById('inputBtn2Border').value = config.btn2Border;
-            document.getElementById('inputBtn2Font').value = config.btn2Font;
-            document.getElementById('inputBtn2Size').value = config.btn2Size;
-
-            // Sync Button 3 Inputs
-            document.getElementById('inputBtn3Text').value = config.btn3Text;
-            document.getElementById('inputBtn3Bg').value = config.btn3Bg;
-            document.getElementById('inputBtn3TextClr').value = config.btn3TextClr;
-            document.getElementById('inputBtn3Border').value = config.btn3Border;
-            document.getElementById('inputBtn3Font').value = config.btn3Font;
-            document.getElementById('inputBtn3Size').value = config.btn3Size;
-
-            renderAdminMenuList();
-            renderAdminScheduleList();
-        }
-
-        function updateConfig(key, value) {
-            config[key] = value;
-            applyConfigToDOM();
-        }
-
-        // PRESET THEMES
-        function applyPreset(theme) {
-            if(theme === 'electricBlue') {
-                config.bgColor = '#0055c8';
-                config.textColor = '#FAF6EE';
-                config.accentColor = '#EFE6D5';
-                config.cardBg = '#FAF6EE';
-                config.cardText = '#121212';
-
-                config.btn1Bg = '#FAF6EE';
-                config.btn1TextClr = '#0055c8';
-                config.btn1Border = '#FAF6EE';
-
-                config.btn2Bg = '#0055c8';
-                config.btn2TextClr = '#FAF6EE';
-                config.btn2Border = '#FAF6EE';
-
-                config.btn3Bg = '#EFE6D5';
-                config.btn3TextClr = '#0055c8';
-                config.btn3Border = '#EFE6D5';
-            } else if(theme === 'darkRetro') {
-                config.bgColor = '#111827';
-                config.textColor = '#F9FAFB';
-                config.accentColor = '#374151';
-                config.cardBg = '#1F2937';
-                config.cardText = '#F9FAFB';
-
-                config.btn1Bg = '#3B82F6';
-                config.btn1TextClr = '#FFFFFF';
-                config.btn1Border = '#3B82F6';
-
-                config.btn2Bg = '#111827';
-                config.btn2TextClr = '#F9FAFB';
-                config.btn2Border = '#F9FAFB';
-
-                config.btn3Bg = '#F59E0B';
-                config.btn3TextClr = '#111827';
-                config.btn3Border = '#F59E0B';
-            } else if(theme === 'vintageBakery') {
-                config.bgColor = '#78350f';
-                config.textColor = '#fef3c7';
-                config.accentColor = '#92400e';
-                config.cardBg = '#fef3c7';
-                config.cardText = '#451a03';
-
-                config.btn1Bg = '#fef3c7';
-                config.btn1TextClr = '#78350f';
-                config.btn1Border = '#fef3c7';
-
-                config.btn2Bg = '#78350f';
-                config.btn2TextClr = '#fef3c7';
-                config.btn2Border = '#fef3c7';
-
-                config.btn3Bg = '#d97706';
-                config.btn3TextClr = '#ffffff';
-                config.btn3Border = '#d97706';
-            } else if(theme === 'minimalWhite') {
-                config.bgColor = '#FFFFFF';
-                config.textColor = '#111827';
-                config.accentColor = '#F3F4F6';
-                config.cardBg = '#FFFFFF';
-                config.cardText = '#111827';
-
-                config.btn1Bg = '#111827';
-                config.btn1TextClr = '#FFFFFF';
-                config.btn1Border = '#111827';
-
-                config.btn2Bg = '#FFFFFF';
-                config.btn2TextClr = '#111827';
-                config.btn2Border = '#111827';
-
-                config.btn3Bg = '#2563EB';
-                config.btn3TextClr = '#FFFFFF';
-                config.btn3Border = '#2563EB';
-            }
-            applyConfigToDOM();
-        }
-
-        function resetToDefaults() {
-            if(confirm("Are you sure you want to reset all styling, buttons, menu items, and schedule back to default?")) {
-                config = JSON.parse(JSON.stringify(defaultConfig));
-                applyConfigToDOM();
-                renderMenuModal();
-                renderScheduleModal();
-            }
-        }
-
-        function exportConfigJSON() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", "die_meelhuis_config.json");
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-        }
-
-        // MODAL TOGGLES
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            if(modal) {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            if(modal) {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function toggleAdminPanel() {
-            const panel = document.getElementById('adminPanel');
-            panel.classList.toggle('translate-x-full');
-        }
-
-        function switchAdminTab(tabId) {
-            document.querySelectorAll('.admin-tab').forEach(tab => {
-                tab.classList.remove('border-blue-500', 'text-blue-400');
-                tab.classList.add('border-transparent', 'text-gray-400');
-            });
-            event.currentTarget.classList.remove('border-transparent', 'text-gray-400');
-            event.currentTarget.classList.add('border-blue-500', 'text-blue-400');
-
-            document.querySelectorAll('.admin-content').forEach(content => content.classList.add('hidden'));
-            document.getElementById(tabId).classList.remove('hidden');
-        }
-
-        // MENU MODAL ENGINE
-        function renderMenuModal() {
-            const searchVal = document.getElementById('menuSearch').value.toLowerCase();
-            const categories = ['All', ...new Set(config.menuItems.map(item => item.category))];
-            
-            const filterContainer = document.getElementById('categoryFilterContainer');
-            filterContainer.innerHTML = categories.map(cat => `
-                <button onclick="setMenuCategory('${cat}')" 
-                        class="px-3 py-1 rounded-full text-xs font-bold uppercase transition ${activeMenuCategory === cat ? 'bg-black text-white' : 'bg-black/10 hover:bg-black/20'}">
-                    ${cat}
-                </button>
-            `).join('');
-
-            const filtered = config.menuItems.filter(item => {
-                const matchesCat = (activeMenuCategory === 'All' || item.category === activeMenuCategory);
-                const matchesSearch = item.title.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
-                return matchesCat && matchesSearch;
-            });
-
-            const grouped = {};
-            filtered.forEach(item => {
-                if(!grouped[item.category]) grouped[item.category] = [];
-                grouped[item.category].push(item);
-            });
-
-            const printableArea = document.getElementById('printableMenu');
-            if(Object.keys(grouped).length === 0) {
-                printableArea.innerHTML = `<p class="text-center text-xs opacity-60 py-8">No menu items found matching search.</p>`;
-                return;
-            }
-
-            printableArea.innerHTML = `
-                <div class="text-center pb-4 border-b border-black/10">
-                    <span class="text-xs font-bold uppercase tracking-widest">${config.heroTitle} • EST. ${config.estYear}</span>
-                    <h3 class="text-3xl font-black uppercase">OUR MENU</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    ${Object.keys(grouped).map(cat => `
-                        <div class="space-y-4">
-                            <div class="border-b-2 border-black/20 pb-1">
-                                <h4 class="text-lg font-bold uppercase">${cat}</h4>
-                            </div>
-                            <ul class="space-y-3">
-                                ${grouped[cat].map(item => `
-                                    <li class="flex justify-between items-start">
-                                        <div>
-                                            <h5 class="font-bold text-sm">${item.title}</h5>
-                                            <p class="text-xs opacity-75">${item.desc}</p>
-                                        </div>
-                                        <span class="font-bold text-sm ml-3">${item.price}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-
-        function setMenuCategory(cat) {
-            activeMenuCategory = cat;
-            renderMenuModal();
-        }
-
-        function renderAdminMenuList() {
-            const list = document.getElementById('adminMenuList');
-            list.innerHTML = config.menuItems.map((item, idx) => `
-                <div class="p-3 bg-gray-800 rounded-lg space-y-2 text-xs border border-gray-700">
-                    <div class="flex justify-between items-center gap-2">
-                        <input type="text" value="${item.title}" onchange="updateMenuItem(${idx}, 'title', this.value)" class="bg-gray-900 border border-gray-700 rounded p-1 text-white font-bold w-full">
-                        <input type="text" value="${item.price}" onchange="updateMenuItem(${idx}, 'price', this.value)" class="bg-gray-900 border border-gray-700 rounded p-1 text-white font-bold w-20 text-right">
-                        <button onclick="deleteMenuItem(${idx})" class="text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <input type="text" value="${item.category}" onchange="updateMenuItem(${idx}, 'category', this.value)" placeholder="Category" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                        <input type="text" value="${item.desc}" onchange="updateMenuItem(${idx}, 'desc', this.value)" placeholder="Description" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function updateMenuItem(index, field, value) {
-            config.menuItems[index][field] = value;
-            applyConfigToDOM();
-            renderMenuModal();
-        }
-
-        function addNewMenuItem() {
-            config.menuItems.push({ id: Date.now(), title: 'New Menu Item', category: 'Specialties', price: 'R 00', desc: 'Delicious item description.' });
-            applyConfigToDOM();
-            renderMenuModal();
-        }
-
-        function deleteMenuItem(index) {
-            config.menuItems.splice(index, 1);
-            applyConfigToDOM();
-            renderMenuModal();
-        }
-
-        // SCHEDULE ENGINE
-        function renderScheduleModal() {
-            const months = ['all', ...new Set(config.scheduleItems.map(item => item.monthKey))];
-            
-            const monthFilters = document.getElementById('scheduleMonthFilters');
-            monthFilters.innerHTML = months.map(m => `
-                <button onclick="setScheduleMonth('${m}')" 
-                        class="px-4 py-1.5 rounded-full text-xs font-bold uppercase transition ${activeScheduleMonth === m ? 'bg-black text-white' : 'bg-black/10 hover:bg-black/20'}">
-                    ${m === 'all' ? 'All Months' : m}
-                </button>
-            `).join('');
-
-            const filtered = config.scheduleItems.filter(item => activeScheduleMonth === 'all' || item.monthKey === activeScheduleMonth);
-            const container = document.getElementById('scheduleListContainer');
-
-            if(filtered.length === 0) {
-                container.innerHTML = `<p class="text-center text-xs opacity-60 py-8">No scheduled market events for this month.</p>`;
-                return;
-            }
-
-            container.innerHTML = filtered.map(item => `
-                <div class="bg-white/60 p-5 rounded-2xl border border-black/10 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-black text-white rounded-2xl p-3 text-center min-w-[70px]">
-                            <span class="block text-[10px] uppercase font-bold">${item.monthLabel}</span>
-                            <span class="block text-2xl font-black">${item.day}</span>
-                        </div>
-                        <div>
-                            <span class="inline-block bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mb-1">${item.badge}</span>
-                            <h4 class="text-lg font-bold text-black">${item.title}</h4>
-                            <p class="text-xs text-gray-600 flex items-center gap-1 mt-1">
-                                <i class="fa-solid fa-clock"></i> ${item.hours}
-                            </p>
-                            <p class="text-xs text-gray-500 flex items-center gap-1 mt-0.5">
-                                <i class="fa-solid fa-location-dot"></i> ${item.location}
-                            </p>
-                        </div>
-                    </div>
-                    <a href="https://maps.google.com" target="_blank" class="px-4 py-2 bg-black text-white text-xs font-bold rounded-full uppercase flex items-center justify-center gap-1.5 self-start md:self-center hover:opacity-80">
-                        <i class="fa-solid fa-directions"></i>
-                        <span>Get Directions</span>
-                    </a>
-                </div>
-            `).join('');
-        }
-
-        function setScheduleMonth(month) {
-            activeScheduleMonth = month;
-            renderScheduleModal();
-        }
-
-        function renderAdminScheduleList() {
-            const list = document.getElementById('adminScheduleList');
-            list.innerHTML = config.scheduleItems.map((item, idx) => `
-                <div class="p-3 bg-gray-800 rounded-lg space-y-2 text-xs border border-gray-700">
-                    <div class="flex justify-between items-center gap-2">
-                        <input type="text" value="${item.title}" onchange="updateScheduleItem(${idx}, 'title', this.value)" class="bg-gray-900 border border-gray-700 rounded p-1 text-white font-bold w-full">
-                        <button onclick="deleteScheduleItem(${idx})" class="text-red-400 hover:text-red-300 p-1"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2">
-                        <input type="text" value="${item.monthLabel}" onchange="updateScheduleItem(${idx}, 'monthLabel', this.value)" placeholder="MMM" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                        <input type="text" value="${item.day}" onchange="updateScheduleItem(${idx}, 'day', this.value)" placeholder="Day" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                        <input type="text" value="${item.monthKey}" onchange="updateScheduleItem(${idx}, 'monthKey', this.value)" placeholder="monthkey" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <input type="text" value="${item.hours}" onchange="updateScheduleItem(${idx}, 'hours', this.value)" placeholder="Hours" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                        <input type="text" value="${item.badge}" onchange="updateScheduleItem(${idx}, 'badge', this.value)" placeholder="Badge Tag" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300">
-                    </div>
-                    <input type="text" value="${item.location}" onchange="updateScheduleItem(${idx}, 'location', this.value)" placeholder="Location Address" class="bg-gray-900 border border-gray-700 rounded p-1 text-gray-300 w-full">
-                </div>
-            `).join('');
-        }
-
-        function updateScheduleItem(index, field, value) {
-            config.scheduleItems[index][field] = value;
-            applyConfigToDOM();
-            renderScheduleModal();
-        }
-
-        function addNewScheduleItem() {
-            config.scheduleItems.push({ id: Date.now(), monthKey: 'october', monthLabel: 'OCT', day: '30', title: 'New Market Pop-Up', hours: '09:00 AM – 15:00 PM', location: 'Market Grounds', badge: 'New Event' });
-            applyConfigToDOM();
-            renderScheduleModal();
-        }
-
-        function deleteScheduleItem(index) {
-            config.scheduleItems.splice(index, 1);
-            applyConfigToDOM();
-            renderScheduleModal();
-        }
-
-        // DYNAMIC FORM ENGINE
-        function updateContactFields() {
-            const type = document.getElementById('inquiryTypeSelect').value;
-            const container = document.getElementById('dynamicFieldsContainer');
-            const dateLabel = document.getElementById('dynamicDateLabel');
-
-            if(type === 'Private Event Booking') {
-                dateLabel.innerText = "Requested Event Date *";
-                container.innerHTML = `
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Expected Guests *</label>
-                            <input type="number" placeholder="e.g. 50" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Venue Location / City *</label>
-                            <input type="text" placeholder="e.g. Pretoria East" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                    </div>
-                `;
-            } else if(type === 'Market Invite') {
-                dateLabel.innerText = "Market Event Date *";
-                container.innerHTML = `
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Market / Event Name *</label>
-                            <input type="text" placeholder="e.g. Spring Fest Market" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Stall Size Provided *</label>
-                            <input type="text" placeholder="e.g. 3m x 3m Gazebo" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                    </div>
-                `;
-            } else if(type === 'Wholesale Order') {
-                dateLabel.innerText = "Delivery / Pickup Date *";
-                container.innerHTML = `
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Business Name *</label>
-                            <input type="text" placeholder="e.g. The Corner Cafe" class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase mb-1">Order Frequency *</label>
-                            <select class="w-full bg-white text-black border border-gray-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-sans">
-                                <option>One-time Bulk Order</option>
-                                <option>Weekly Recurring Supply</option>
-                                <option>Monthly Event Supply</option>
-                            </select>
-                        </div>
-                    </div>
-                `;
-            } else {
-                dateLabel.innerText = "Preferred Contact Date *";
-                container.innerHTML = ``;
-            }
-        }
-
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            const type = document.getElementById('inquiryTypeSelect').value;
-            document.getElementById('contactTypeConfirm').innerText = type;
-            document.getElementById('contactForm').classList.add('hidden');
-            document.getElementById('contactSuccessState').classList.remove('hidden');
-        }
-
-        function resetContactForm() {
-            document.getElementById('contactForm').reset();
-            document.getElementById('contactForm').classList.remove('hidden');
-            document.getElementById('contactSuccessState').classList.add('hidden');
-            updateContactFields();
-        }
-
-        // KEYBOARD SHORTCUT (Ctrl + Shift + A)
-        document.addEventListener('keydown', (e) => {
-            if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-                e.preventDefault();
-                toggleAdminPanel();
-            }
+        // Step 2: Push Commit to GitHub
+        const putRes = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: 'CMS Update: Colors & Button Styles',
+            content: contentBase64,
+            sha: sha || undefined
+          })
         });
-    </script>
+
+        if (putRes.ok) {
+          statusDiv.innerHTML = `<span class="status-badge success">🚀 Successfully Pushed Live to GitHub!</span>`;
+        } else {
+          const err = await putRes.json();
+          statusDiv.innerHTML = `<span class="status-badge error">GitHub Error: ${err.message}</span>`;
+        }
+      } catch (err) {
+        statusDiv.innerHTML = `<span class="status-badge error">Network Error: ${err.message}</span>`;
+      }
+    }
+
+    // MODALS HANDLING
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function toggleAdminPanel() {
+      document.getElementById('admin-panel').classList.toggle('active');
+    }
+
+    // RENDER MENU
+    function renderMenu(items) {
+      const container = document.getElementById('menu-container');
+      container.innerHTML = '';
+      
+      const categories = [...new Set(items.map(i => i.category))];
+      categories.forEach(cat => {
+        const catItems = items.filter(i => i.category === cat);
+        let html = `<div class="menu-category-title">${cat}</div><div class="menu-grid">`;
+        catItems.forEach(item => {
+          html += `
+            <div class="menu-item-card">
+              <div class="menu-item-header">
+                <span>${item.title}</span>
+                <span style="color:var(--text-main);">${item.price}</span>
+              </div>
+              <div class="menu-item-desc">${item.desc}</div>
+            </div>
+          `;
+        });
+        html += `</div>`;
+        container.innerHTML += html;
+      });
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (cat === 'ALL') {
+        renderMenu(menuData);
+      } else {
+        renderMenu(menuData.filter(i => i.category === cat));
+      }
+    }
+
+    function filterMenu() {
+      const query = document.getElementById('menu-search').value.toLowerCase();
+      const filtered = menuData.filter(i => i.title.toLowerCase().includes(query) || i.desc.toLowerCase().includes(query));
+      renderMenu(filtered);
+    }
+
+    // RENDER MARKETS
+    function renderMarkets(markets) {
+      const container = document.getElementById('markets-container');
+      container.innerHTML = markets.map(m => `
+        <div class="market-card">
+          <div class="market-date-badge">
+            <div class="day">${m.day}</div>
+            <div class="month">${m.month}</div>
+          </div>
+          <div class="market-info">
+            <h4>${m.title}</h4>
+            <p><i class="fa-regular fa-clock"></i> ${m.time} &nbsp;|&nbsp; <i class="fa-solid fa-location-pin"></i> ${m.loc}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFormFields() {
+      const type = document.getElementById('inquiry-type').value;
+      const dynamicGroup = document.getElementById('dynamic-event-fields');
+      dynamicGroup.style.display = type === 'general' ? 'none' : 'block';
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your inquiry has been received. Die Meelhuis team will get back to you shortly.');
+      closeModal('contact-modal');
+    }
+  </script>
 </body>
 </html>
