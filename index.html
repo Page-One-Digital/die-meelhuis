@@ -603,14 +603,6 @@
       cursor: pointer;
     }
 
-    .admin-footer {
-      padding: 15px 25px;
-      background: #1a2236;
-      border-top: 1px solid #2a344d;
-      display: flex;
-      gap: 10px;
-    }
-
     .btn-github-push {
       background: #238636;
       color: #ffffff;
@@ -888,6 +880,22 @@
             <input type="color" id="cms-btn1-text" class="cms-input" onchange="updateLiveConfig()">
           </div>
         </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Border Color</label>
+            <input type="color" id="cms-btn1-border" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Font Family</label>
+            <select id="cms-btn1-font" class="cms-input" onchange="updateLiveConfig()">
+              <option value="'Fredoka', sans-serif">Fredoka (Default)</option>
+              <option value="'Montserrat', sans-serif">Montserrat</option>
+              <option value="'Playfair Display', serif">Playfair Display</option>
+              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+              <option value="'Courier Prime', monospace">Courier Prime</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <!-- BUTTON 2 CMS -->
@@ -905,6 +913,22 @@
           <div class="cms-input-group">
             <label>Text Color</label>
             <input type="color" id="cms-btn2-text" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+        </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Border Color</label>
+            <input type="color" id="cms-btn2-border" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Font Family</label>
+            <select id="cms-btn2-font" class="cms-input" onchange="updateLiveConfig()">
+              <option value="'Fredoka', sans-serif">Fredoka (Default)</option>
+              <option value="'Montserrat', sans-serif">Montserrat</option>
+              <option value="'Playfair Display', serif">Playfair Display</option>
+              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+              <option value="'Courier Prime', monospace">Courier Prime</option>
+            </select>
           </div>
         </div>
       </div>
@@ -926,6 +950,22 @@
             <input type="color" id="cms-btn3-text" class="cms-input" onchange="updateLiveConfig()">
           </div>
         </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Border Color</label>
+            <input type="color" id="cms-btn3-border" class="cms-input" onchange="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Font Family</label>
+            <select id="cms-btn3-font" class="cms-input" onchange="updateLiveConfig()">
+              <option value="'Fredoka', sans-serif">Fredoka (Default)</option>
+              <option value="'Montserrat', sans-serif">Montserrat</option>
+              <option value="'Playfair Display', serif">Playfair Display</option>
+              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+              <option value="'Courier Prime', monospace">Courier Prime</option>
+            </select>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -939,15 +979,25 @@
       heroHashtags: "#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES",
       bgColor: "#0052cc",
       primaryColor: "#f7f3e9",
+
       btn1Label: "OUR MENU",
       btn1Bg: "#f7f3e9",
       btn1Text: "#0052cc",
+      btn1Border: "#f7f3e9",
+      btn1Font: "'Fredoka', sans-serif",
+
       btn2Label: "WHERE ARE WE?",
       btn2Bg: "#0052cc",
       btn2Text: "#ffffff",
+      btn2Border: "#ffffff",
+      btn2Font: "'Fredoka', sans-serif",
+
       btn3Label: "EVENT BOOKINGS & CONTACT US",
       btn3Bg: "#f7f3e9",
       btn3Text: "#0052cc",
+      btn3Border: "#f7f3e9",
+      btn3Font: "'Fredoka', sans-serif",
+
       ghOwner: "page-one-digital",
       ghRepo: "die-meelhuis",
       ghToken: ""
@@ -977,10 +1027,8 @@
     });
 
     async function fetchRemoteConfig() {
-      // 1. First load local cache if present
       loadSavedConfig();
 
-      // 2. Fetch the latest live config published from GitHub
       const owner = currentConfig.ghOwner || 'page-one-digital';
       const repo = currentConfig.ghRepo || 'die-meelhuis';
       const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?t=${Date.now()}`;
@@ -1020,12 +1068,23 @@
       document.documentElement.style.setProperty('--bg-color', currentConfig.bgColor);
       document.documentElement.style.setProperty('--primary-color', currentConfig.primaryColor);
 
+      // Apply Button 1 Styles
       document.documentElement.style.setProperty('--btn1-bg', currentConfig.btn1Bg);
       document.documentElement.style.setProperty('--btn1-text', currentConfig.btn1Text);
+      document.documentElement.style.setProperty('--btn1-border', currentConfig.btn1Border || currentConfig.btn1Bg);
+      if (currentConfig.btn1Font) document.documentElement.style.setProperty('--btn1-font', currentConfig.btn1Font);
+
+      // Apply Button 2 Styles
       document.documentElement.style.setProperty('--btn2-bg', currentConfig.btn2Bg);
       document.documentElement.style.setProperty('--btn2-text', currentConfig.btn2Text);
+      document.documentElement.style.setProperty('--btn2-border', currentConfig.btn2Border || currentConfig.btn2Bg);
+      if (currentConfig.btn2Font) document.documentElement.style.setProperty('--btn2-font', currentConfig.btn2Font);
+
+      // Apply Button 3 Styles
       document.documentElement.style.setProperty('--btn3-bg', currentConfig.btn3Bg);
       document.documentElement.style.setProperty('--btn3-text', currentConfig.btn3Text);
+      document.documentElement.style.setProperty('--btn3-border', currentConfig.btn3Border || currentConfig.btn3Bg);
+      if (currentConfig.btn3Font) document.documentElement.style.setProperty('--btn3-font', currentConfig.btn3Font);
 
       // Populate Inputs in CMS Panel
       document.getElementById('cms-hero-title').value = currentConfig.heroTitle;
@@ -1037,14 +1096,20 @@
       document.getElementById('cms-btn1-label').value = currentConfig.btn1Label;
       document.getElementById('cms-btn1-bg').value = currentConfig.btn1Bg;
       document.getElementById('cms-btn1-text').value = currentConfig.btn1Text;
+      document.getElementById('cms-btn1-border').value = currentConfig.btn1Border || currentConfig.btn1Bg;
+      document.getElementById('cms-btn1-font').value = currentConfig.btn1Font || "'Fredoka', sans-serif";
 
       document.getElementById('cms-btn2-label').value = currentConfig.btn2Label;
       document.getElementById('cms-btn2-bg').value = currentConfig.btn2Bg;
       document.getElementById('cms-btn2-text').value = currentConfig.btn2Text;
+      document.getElementById('cms-btn2-border').value = currentConfig.btn2Border || currentConfig.btn2Bg;
+      document.getElementById('cms-btn2-font').value = currentConfig.btn2Font || "'Fredoka', sans-serif";
 
       document.getElementById('cms-btn3-label').value = currentConfig.btn3Label;
       document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg;
       document.getElementById('cms-btn3-text').value = currentConfig.btn3Text;
+      document.getElementById('cms-btn3-border').value = currentConfig.btn3Border || currentConfig.btn3Bg;
+      document.getElementById('cms-btn3-font').value = currentConfig.btn3Font || "'Fredoka', sans-serif";
 
       document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
       document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
@@ -1061,14 +1126,20 @@
       currentConfig.btn1Label = document.getElementById('cms-btn1-label').value;
       currentConfig.btn1Bg = document.getElementById('cms-btn1-bg').value;
       currentConfig.btn1Text = document.getElementById('cms-btn1-text').value;
+      currentConfig.btn1Border = document.getElementById('cms-btn1-border').value;
+      currentConfig.btn1Font = document.getElementById('cms-btn1-font').value;
 
       currentConfig.btn2Label = document.getElementById('cms-btn2-label').value;
       currentConfig.btn2Bg = document.getElementById('cms-btn2-bg').value;
       currentConfig.btn2Text = document.getElementById('cms-btn2-text').value;
+      currentConfig.btn2Border = document.getElementById('cms-btn2-border').value;
+      currentConfig.btn2Font = document.getElementById('cms-btn2-font').value;
 
       currentConfig.btn3Label = document.getElementById('cms-btn3-label').value;
       currentConfig.btn3Bg = document.getElementById('cms-btn3-bg').value;
       currentConfig.btn3Text = document.getElementById('cms-btn3-text').value;
+      currentConfig.btn3Border = document.getElementById('cms-btn3-border').value;
+      currentConfig.btn3Font = document.getElementById('cms-btn3-font').value;
 
       currentConfig.ghOwner = document.getElementById('gh-owner').value;
       currentConfig.ghRepo = document.getElementById('gh-repo').value;
@@ -1078,7 +1149,7 @@
       applyConfigToDOM();
     }
 
-    // GITHUB DIRECT REST API SAVE FUNCTION (EXCLUDES TOKEN FROM PUBLIC JSON)
+    // GITHUB DIRECT REST API SAVE FUNCTION
     async function pushToGitHub() {
       const statusDiv = document.getElementById('github-sync-status');
       const owner = document.getElementById('gh-owner').value.trim();
@@ -1092,7 +1163,6 @@
 
       statusDiv.innerHTML = `<span class="status-badge" style="background:#0284c7; color:#fff;">Connecting to GitHub API...</span>`;
 
-      // Create a clean payload object THAT DOES NOT INCLUDE THE TOKEN
       const cleanConfigToSave = { ...currentConfig };
       delete cleanConfigToSave.ghToken;
 
@@ -1101,7 +1171,6 @@
       const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(cleanConfigToSave, null, 2))));
 
       try {
-        // Step 1: Check if file exists to get SHA
         let sha = '';
         const getRes = await fetch(url, {
           headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
@@ -1112,7 +1181,6 @@
           sha = fileData.sha;
         }
 
-        // Step 2: Push Commit to GitHub
         const putRes = await fetch(url, {
           method: 'PUT',
           headers: {
@@ -1121,7 +1189,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Colors & Button Styles',
+            message: 'CMS Update: Colors, Fonts & Button Styles',
             content: contentBase64,
             sha: sha || undefined
           })
