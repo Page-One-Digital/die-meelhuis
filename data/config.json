@@ -8,12 +8,11 @@
   "btn1Bg": "#f7f3e9",
   "btn1Text": "#0052cc",
   "btn2Label": "WHERE ARE WE?",
-  "btn2Bg": "#0052cc",
-  "btn2Text": "#ffffff",
+  "btn2Bg": "#f7f3e9",
+  "btn2Text": "#0052cc",
   "btn3Label": "EVENT BOOKINGS & CONTACT US",
   "btn3Bg": "#f7f3e9",
   "btn3Text": "#0052cc",
   "ghOwner": "page-one-digital",
-  "ghRepo": "die-meelhuis",
-  "ghToken": ""
+  "ghRepo": "die-meelhuis"
 }
