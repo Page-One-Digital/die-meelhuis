@@ -1,18 +1,32 @@
-{
-  "heroTitle": "DIE MEELHUIS",
-  "heroSubtitle": "NEAPOLITAN STYLE PIZZAS & SMASH BURGERS",
-  "heroHashtags": "#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES",
-  "bgColor": "#0052cc",
-  "primaryColor": "#f7f3e9",
-  "btn1Label": "OUR MENU",
-  "btn1Bg": "#f7f3e9",
-  "btn1Text": "#0052cc",
-  "btn2Label": "WHERE ARE WE?",
-  "btn2Bg": "#f7f3e9",
-  "btn2Text": "#0052cc",
-  "btn3Label": "EVENT BOOKINGS & CONTACT US",
-  "btn3Bg": "#f7f3e9",
-  "btn3Text": "#0052cc",
-  "ghOwner": "page-one-digital",
-  "ghRepo": "die-meelhuis"
-}
+const DEFAULT_CONFIG = {
+  heroTitle: "DIE MEELHUIS",
+  heroSubtitle: "NEAPOLITAN STYLE PIZZAS & SMASH BURGERS",
+  heroHashtags: "#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES",
+  bgColor: "#0052cc",
+  primaryColor: "#f7f3e9",
+  
+  btn1Label: "OUR MENU",
+  btn1Bg: "#f7f3e9",
+  btn1Text: "#0052cc",
+  btn1Border: "#f7f3e9",
+  btn1Font: "'Fredoka', sans-serif",
+  btn1Size: "16px",
+
+  btn2Label: "WHERE ARE WE?",
+  btn2Bg: "#0052cc",
+  btn2Text: "#ffffff",
+  btn2Border: "#ffffff",
+  btn2Font: "'Fredoka', sans-serif",
+  btn2Size: "16px",
+
+  btn3Label: "EVENT BOOKINGS & CONTACT US",
+  btn3Bg: "#f7f3e9",
+  btn3Text: "#0052cc",
+  btn3Border: "#f7f3e9",
+  btn3Font: "'Fredoka', sans-serif",
+  btn3Size: "16px",
+
+  ghOwner: "page-one-digital",
+  ghRepo: "die-meelhuis",
+  ghToken: ""
+};
