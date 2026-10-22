@@ -136,6 +136,11 @@
       backdrop-filter: blur(12px);
     }
 
+    /* CMS BUTTON HIDDEN BY DEFAULT FOR VISITORS */
+    .admin-trigger-btn {
+      display: none;
+    }
+
     .lang-switcher-btn:hover, .admin-trigger-btn:hover {
       background: rgba(255,255,255,0.28);
       border-color: var(--primary-color);
@@ -1106,8 +1111,8 @@
         <i class="fa-solid fa-globe"></i> <span id="lang-btn-text">AFRIKAANS</span>
       </button>
 
-      <!-- ADMIN PANEL TRIGGER -->
-      <button class="admin-trigger-btn" onclick="toggleAdminPanel()">
+      <!-- ADMIN PANEL TRIGGER (DYNAMICALLY HIDDEN FROM VISITORS) -->
+      <button class="admin-trigger-btn" id="admin-trigger-btn" onclick="toggleAdminPanel()">
         <i class="fa-solid fa-gear"></i> <span>ADMIN CMS</span>
       </button>
     </div>
@@ -1670,12 +1675,32 @@
     let currentConfig = { ...DEFAULT_CONFIG };
 
     window.addEventListener('DOMContentLoaded', async () => {
+      checkAdminAccess();
       loadSavedConfig();
       await fetchRemoteConfig();
       renderPills();
       renderMenu(menuData);
       renderMarkets(marketData);
     });
+
+    // ADMIN VISIBILITY TOGGLE (PUBLIC VS OWNER)
+    function checkAdminAccess() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const adminTrigger = document.getElementById('admin-trigger-btn');
+
+      if (urlParams.get('admin') === 'true') {
+        localStorage.setItem('meelhuis_is_admin', 'true');
+      } else if (urlParams.get('admin') === 'false') {
+        localStorage.removeItem('meelhuis_is_admin');
+      }
+
+      const isAdmin = localStorage.getItem('meelhuis_is_admin') === 'true';
+      if (isAdmin) {
+        adminTrigger.style.display = 'flex';
+      } else {
+        adminTrigger.style.display = 'none';
+      }
+    }
 
     function toggleLanguage() {
       currentLang = currentLang === 'EN' ? 'AF' : 'EN';
@@ -1736,7 +1761,6 @@
         if (res.ok) {
           const remoteData = await res.json();
           if (remoteData && Object.keys(remoteData).length > 0) {
-            // Only update if there are no pending unsaved local edits
             const localSaved = localStorage.getItem('meelhuis_config');
             if (!localSaved) {
               currentConfig = { ...DEFAULT_CONFIG, ...remoteData };
@@ -1844,7 +1868,6 @@
     }
 
     function updateLiveConfig() {
-      // READ VALUES FROM INPUTS AND ASSIGN DIRECTLY TO CONFIG
       currentConfig.heroTitle = document.getElementById('cms-hero-title').value;
       currentConfig.heroSubtitle = document.getElementById('cms-hero-subtitle').value;
       currentConfig.heroHashtags = document.getElementById('cms-hero-hashtags').value;
@@ -1878,7 +1901,6 @@
       currentConfig.ghOwner = document.getElementById('gh-owner').value;
       currentConfig.ghRepo = document.getElementById('gh-repo').value;
 
-      // AUTO PERSIST TOKEN IN LOCAL BROWSER STORAGE
       const tokenVal = document.getElementById('gh-token').value.trim();
       if (tokenVal) {
         localStorage.setItem('meelhuis_gh_token', tokenVal);
@@ -1927,7 +1949,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Fix Dynamic Address & Photo Sync',
+            message: 'CMS Update: Photo URLs, Address, Dynamic Map & Hidden Admin Toggle',
             content: contentBase64,
             sha: sha || undefined
           })
@@ -1935,7 +1957,6 @@
 
         if (putRes.ok) {
           statusDiv.innerHTML = `<span class="status-badge success">🚀 Successfully Pushed Live to GitHub!</span>`;
-          // Clear temporary local unsaved state after a successful push
           localStorage.removeItem('meelhuis_config');
         } else {
           const err = await putRes.json();
@@ -2049,7 +2070,6 @@
         window.open(`https://wa.me/${whatsappNum}?text=${encodedMsg}`, '_blank');
         closeModal('contact-modal');
       } else {
-        // Direct WEB / PC Submission Flow
         const successBanner = document.getElementById('submission-success');
         successBanner.style.display = 'block';
         setTimeout(() => {
