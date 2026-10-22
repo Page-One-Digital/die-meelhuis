@@ -1402,8 +1402,8 @@
           <input type="text" id="gh-repo" class="cms-input" placeholder="die-meelhuis" value="die-meelhuis">
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
-          <label>GitHub Access Token</label>
-          <input type="password" id="gh-token" class="cms-input" placeholder="ghp_... or github_pat_...">
+          <label>GitHub Access Token (Saved locally on PC)</label>
+          <input type="password" id="gh-token" class="cms-input" placeholder="ghp_... or github_pat_..." oninput="updateLiveConfig()">
         </div>
         <button class="btn-github-push" onclick="pushToGitHub()">
           <i class="fa-solid fa-cloud-arrow-up"></i> 🚀 Save & Push Live to GitHub
@@ -1650,8 +1650,7 @@
       photo2Title: "DOUBLE SMASH BURGER",
       photo2Tag: "100% PURE BEEF & SECRET SAUCE",
       ghOwner: "page-one-digital",
-      ghRepo: "die-meelhuis",
-      ghToken: ""
+      ghRepo: "die-meelhuis"
     };
 
     const menuData = [
@@ -1836,7 +1835,9 @@
 
       document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
       document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
-      document.getElementById('gh-token').value = currentConfig.ghToken || '';
+
+      // RECALL SAVED TOKEN FROM BROWSER LOCAL STORAGE
+      document.getElementById('gh-token').value = localStorage.getItem('meelhuis_gh_token') || '';
     }
 
     function updateLiveConfig() {
@@ -1872,7 +1873,12 @@
 
       currentConfig.ghOwner = document.getElementById('gh-owner').value;
       currentConfig.ghRepo = document.getElementById('gh-repo').value;
-      currentConfig.ghToken = document.getElementById('gh-token').value;
+
+      // AUTO PERSIST TOKEN IN LOCAL BROWSER STORAGE
+      const tokenVal = document.getElementById('gh-token').value.trim();
+      if (tokenVal) {
+        localStorage.setItem('meelhuis_gh_token', tokenVal);
+      }
 
       localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
       applyConfigToDOM();
@@ -1882,7 +1888,7 @@
       const statusDiv = document.getElementById('github-sync-status');
       const owner = document.getElementById('gh-owner').value.trim();
       const repo = document.getElementById('gh-repo').value.trim();
-      const token = document.getElementById('gh-token').value.trim();
+      const token = document.getElementById('gh-token').value.trim() || localStorage.getItem('meelhuis_gh_token');
 
       if (!token) {
         statusDiv.innerHTML = `<span class="status-badge error">Please paste your GitHub Access Token above!</span>`;
@@ -1917,7 +1923,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Photo URLs, Captions, Address & Dynamic Map Auto-Sync',
+            message: 'CMS Update: Photo URLs, Address, Dynamic Map & Persistent Local Token',
             content: contentBase64,
             sha: sha || undefined
           })
