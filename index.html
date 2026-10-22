@@ -1395,11 +1395,11 @@
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>GitHub Owner / Username</label>
-          <input type="text" id="gh-owner" class="cms-input" placeholder="page-one-digital" value="page-one-digital">
+          <input type="text" id="gh-owner" class="cms-input" placeholder="page-one-digital" value="page-one-digital" oninput="updateLiveConfig()">
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>Repository Name</label>
-          <input type="text" id="gh-repo" class="cms-input" placeholder="die-meelhuis" value="die-meelhuis">
+          <input type="text" id="gh-repo" class="cms-input" placeholder="die-meelhuis" value="die-meelhuis" oninput="updateLiveConfig()">
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
           <label>GitHub Access Token (Saved locally on PC)</label>
@@ -1670,6 +1670,7 @@
     let currentConfig = { ...DEFAULT_CONFIG };
 
     window.addEventListener('DOMContentLoaded', async () => {
+      loadSavedConfig();
       await fetchRemoteConfig();
       renderPills();
       renderMenu(menuData);
@@ -1726,8 +1727,6 @@
     }
 
     async function fetchRemoteConfig() {
-      loadSavedConfig();
-
       const owner = currentConfig.ghOwner || 'page-one-digital';
       const repo = currentConfig.ghRepo || 'die-meelhuis';
       const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?t=${Date.now()}`;
@@ -1737,9 +1736,13 @@
         if (res.ok) {
           const remoteData = await res.json();
           if (remoteData && Object.keys(remoteData).length > 0) {
-            currentConfig = { ...DEFAULT_CONFIG, ...remoteData };
-            localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
-            applyConfigToDOM();
+            // Only update if there are no pending unsaved local edits
+            const localSaved = localStorage.getItem('meelhuis_config');
+            if (!localSaved) {
+              currentConfig = { ...DEFAULT_CONFIG, ...remoteData };
+              applyConfigToDOM();
+              populateCMSFields();
+            }
           }
         }
       } catch (err) {
@@ -1753,6 +1756,43 @@
         try { currentConfig = { ...DEFAULT_CONFIG, ...JSON.parse(saved) }; } catch(e){}
       }
       applyConfigToDOM();
+      populateCMSFields();
+    }
+
+    function populateCMSFields() {
+      document.getElementById('cms-hero-title').value = currentConfig.heroTitle || '';
+      document.getElementById('cms-hero-subtitle').value = currentConfig.heroSubtitle || '';
+      document.getElementById('cms-hero-hashtags').value = currentConfig.heroHashtags || '';
+      document.getElementById('cms-bg-color').value = currentConfig.bgColor || '#0b5ed7';
+      document.getElementById('cms-primary-color').value = currentConfig.primaryColor || '#f7f3e9';
+
+      document.getElementById('cms-btn1-label').value = currentConfig.btn1Label || '';
+      document.getElementById('cms-btn1-bg').value = currentConfig.btn1Bg || '#f7f3e9';
+      document.getElementById('cms-btn1-text').value = currentConfig.btn1Text || '#0b5ed7';
+
+      document.getElementById('cms-btn2-label').value = currentConfig.btn2Label || '';
+      document.getElementById('cms-btn2-bg').value = currentConfig.btn2Bg || '#f7f3e9';
+      document.getElementById('cms-btn2-text').value = currentConfig.btn2Text || '#0b5ed7';
+
+      document.getElementById('cms-btn3-label').value = currentConfig.btn3Label || '';
+      document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg || '#f7f3e9';
+      document.getElementById('cms-btn3-text').value = currentConfig.btn3Text || '#0b5ed7';
+
+      document.getElementById('cms-loc-address').value = currentConfig.locAddress || '';
+      document.getElementById('cms-loc-phone').value = currentConfig.locPhone || '';
+      document.getElementById('cms-loc-email').value = currentConfig.locEmail || '';
+
+      document.getElementById('cms-photo1-img').value = currentConfig.photo1Img || '';
+      document.getElementById('cms-photo1-title').value = currentConfig.photo1Title || '';
+      document.getElementById('cms-photo1-tag').value = currentConfig.photo1Tag || '';
+
+      document.getElementById('cms-photo2-img').value = currentConfig.photo2Img || '';
+      document.getElementById('cms-photo2-title').value = currentConfig.photo2Title || '';
+      document.getElementById('cms-photo2-tag').value = currentConfig.photo2Tag || '';
+
+      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
+      document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
+      document.getElementById('gh-token').value = localStorage.getItem('meelhuis_gh_token') || '';
     }
 
     function applyConfigToDOM() {
@@ -1800,47 +1840,11 @@
 
       // Dynamic Google Map Frame Update based on Address
       const encodedAddress = encodeURIComponent(currentConfig.locAddress);
-      document.getElementById('display-map-iframe').src = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
-
-      // Populate Inputs in CMS Panel
-      document.getElementById('cms-hero-title').value = currentConfig.heroTitle;
-      document.getElementById('cms-hero-subtitle').value = currentConfig.heroSubtitle;
-      document.getElementById('cms-hero-hashtags').value = currentConfig.heroHashtags;
-      document.getElementById('cms-bg-color').value = currentConfig.bgColor;
-      document.getElementById('cms-primary-color').value = currentConfig.primaryColor;
-
-      document.getElementById('cms-btn1-label').value = currentConfig.btn1Label;
-      document.getElementById('cms-btn1-bg').value = currentConfig.btn1Bg;
-      document.getElementById('cms-btn1-text').value = currentConfig.btn1Text;
-
-      document.getElementById('cms-btn2-label').value = currentConfig.btn2Label;
-      document.getElementById('cms-btn2-bg').value = currentConfig.btn2Bg;
-      document.getElementById('cms-btn2-text').value = currentConfig.btn2Text;
-
-      document.getElementById('cms-btn3-label').value = currentConfig.btn3Label;
-      document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg;
-      document.getElementById('cms-btn3-text').value = currentConfig.btn3Text;
-
-      document.getElementById('cms-loc-address').value = currentConfig.locAddress;
-      document.getElementById('cms-loc-phone').value = currentConfig.locPhone;
-      document.getElementById('cms-loc-email').value = currentConfig.locEmail;
-
-      document.getElementById('cms-photo1-img').value = currentConfig.photo1Img;
-      document.getElementById('cms-photo1-title').value = currentConfig.photo1Title;
-      document.getElementById('cms-photo1-tag').value = currentConfig.photo1Tag;
-
-      document.getElementById('cms-photo2-img').value = currentConfig.photo2Img;
-      document.getElementById('cms-photo2-title').value = currentConfig.photo2Title;
-      document.getElementById('cms-photo2-tag').value = currentConfig.photo2Tag;
-
-      document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
-      document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
-
-      // RECALL SAVED TOKEN FROM BROWSER LOCAL STORAGE
-      document.getElementById('gh-token').value = localStorage.getItem('meelhuis_gh_token') || '';
+      document.getElementById('display-map-iframe').src = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=14&ie=UTF8&iwloc=&output=embed&refresh=${Date.now()}`;
     }
 
     function updateLiveConfig() {
+      // READ VALUES FROM INPUTS AND ASSIGN DIRECTLY TO CONFIG
       currentConfig.heroTitle = document.getElementById('cms-hero-title').value;
       currentConfig.heroSubtitle = document.getElementById('cms-hero-subtitle').value;
       currentConfig.heroHashtags = document.getElementById('cms-hero-hashtags').value;
@@ -1923,7 +1927,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Photo URLs, Address, Dynamic Map & Persistent Local Token',
+            message: 'CMS Update: Fix Dynamic Address & Photo Sync',
             content: contentBase64,
             sha: sha || undefined
           })
@@ -1931,6 +1935,8 @@
 
         if (putRes.ok) {
           statusDiv.innerHTML = `<span class="status-badge success">🚀 Successfully Pushed Live to GitHub!</span>`;
+          // Clear temporary local unsaved state after a successful push
+          localStorage.removeItem('meelhuis_config');
         } else {
           const err = await putRes.json();
           statusDiv.innerHTML = `<span class="status-badge error">GitHub Error: ${err.message}</span>`;
