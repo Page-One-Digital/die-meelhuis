@@ -1153,7 +1153,7 @@
         <div class="photo-card">
           <img id="display-photo1-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80" alt="Woodfired Neapolitan Pizza">
           <div class="photo-caption-overlay">
-            <div class="photo-caption-title" id="display-photo1-title">WOODFIRED NEAPOLITAN</div>
+            <div class="photo-caption-title" id="display-photo1-title">NEAPOLITAN</div>
             <div class="photo-caption-tag" id="display-photo1-tag">36-HOUR SLOW FERMENTED DOUGH</div>
           </div>
         </div>
@@ -1225,7 +1225,7 @@
         <div class="map-frame-container">
           <iframe 
             id="display-map-iframe"
-            src="https://maps.google.com/maps?q=Bus%20Stop%207%20Market%20Grounds%2C%20Pretoria%20East%2C%20Gauteng%2C%20South%20Africa&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+            src="https://maps.google.com/maps?q=Centurion%2C%20Gauteng%2C%20South%20Africa&t=&z=14&ie=UTF8&iwloc=&output=embed" 
             allowfullscreen="" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
@@ -1241,7 +1241,7 @@
             </div>
             <div class="contact-info-text">
               <h4 id="lbl-loc-address">Our Primary Location</h4>
-              <p id="val-loc-address">Bus Stop 7 Market Grounds, Pretoria East, Gauteng, South Africa</p>
+              <p id="val-loc-address">Centurion, Gauteng, South Africa</p>
             </div>
           </div>
 
@@ -1561,9 +1561,9 @@
 
   <script>
     // AUTOMATIC FORCE CLEAR OF OLD BROWSER MEMORY (OPERA & CHROME)
-    if (!localStorage.getItem('meelhuis_cache_v2')) {
+    if (!localStorage.getItem('meelhuis_cache_v5')) {
       localStorage.removeItem('meelhuis_config');
-      localStorage.setItem('meelhuis_cache_v2', 'true');
+      localStorage.setItem('meelhuis_cache_v5', 'true');
     }
 
     // DYNAMIC LANGUAGE DICTIONARY
@@ -1651,11 +1651,11 @@
       btn3Label: "EVENT BOOKINGS & CONTACT US",
       btn3Bg: "#f7f3e9",
       btn3Text: "#0b5ed7",
-      locAddress: "Bus Stop 7 Market Grounds, Pretoria East, Gauteng, South Africa",
+      locAddress: "Centurion, Gauteng, South Africa",
       locPhone: "+27 83 276 9515",
       locEmail: "info@diemeelhuis.co.za",
       photo1Img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80",
-      photo1Title: "WOODFIRED NEAPOLITAN",
+      photo1Title: "NEAPOLITAN",
       photo1Tag: "36-HOUR SLOW FERMENTED DOUGH",
       photo2Img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
       photo2Title: "DOUBLE SMASH BURGER",
@@ -1761,7 +1761,6 @@
       const owner = currentConfig.ghOwner || 'page-one-digital';
       const repo = currentConfig.ghRepo || 'die-meelhuis';
       
-      // FORCE FRESH FETCH FROM GITHUB RAW CDN
       const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?cachebust=${Date.now()}`;
 
       try {
@@ -1825,17 +1824,14 @@
     }
 
     function applyConfigToDOM() {
-      // Hero Copy
       document.getElementById('display-hero-title').innerText = currentConfig.heroTitle;
       document.getElementById('display-hero-subtitle').innerText = currentConfig.heroSubtitle;
       document.getElementById('display-hero-hashtags').innerText = currentConfig.heroHashtags;
 
-      // Hero Buttons
       document.getElementById('btn1-label-text').innerText = currentConfig.btn1Label;
       document.getElementById('btn2-label-text').innerText = currentConfig.btn2Label;
       document.getElementById('btn3-label-text').innerText = currentConfig.btn3Label;
 
-      // Theme Colors
       document.documentElement.style.setProperty('--bg-color', currentConfig.bgColor);
       document.documentElement.style.setProperty('--primary-color', currentConfig.primaryColor);
       document.documentElement.style.setProperty('--btn1-bg', currentConfig.btn1Bg);
@@ -1845,7 +1841,6 @@
       document.documentElement.style.setProperty('--btn3-bg', currentConfig.btn3Bg);
       document.documentElement.style.setProperty('--btn3-text', currentConfig.btn3Text);
 
-      // Featured Photos & Captions
       document.getElementById('display-photo1-img').src = currentConfig.photo1Img;
       document.getElementById('display-photo1-title').innerText = currentConfig.photo1Title;
       document.getElementById('display-photo1-tag').innerText = currentConfig.photo1Tag;
@@ -1854,20 +1849,17 @@
       document.getElementById('display-photo2-title').innerText = currentConfig.photo2Title;
       document.getElementById('display-photo2-tag').innerText = currentConfig.photo2Tag;
 
-      // Location & Contact Details
       document.getElementById('val-loc-address').innerText = currentConfig.locAddress;
       document.getElementById('val-loc-phone-text').innerText = currentConfig.locPhone;
       document.getElementById('val-loc-phone-link').href = `tel:${currentConfig.locPhone.replace(/\s+/g, '')}`;
       document.getElementById('val-loc-email-text').innerText = currentConfig.locEmail;
       document.getElementById('val-loc-email-link').href = `mailto:${currentConfig.locEmail}`;
 
-      // Floating WhatsApp link update
       const cleanPhone = currentConfig.locPhone.replace(/[^0-9]/g, '');
       if (cleanPhone) {
         document.getElementById('floating-wa-link').href = `https://wa.me/${cleanPhone}?text=Hi%20Die%20Meelhuis!%20I%20have%20a%20quick%20question.`;
       }
 
-      // Dynamic Google Map Frame Update based on Address
       const encodedAddress = encodeURIComponent(currentConfig.locAddress);
       document.getElementById('display-map-iframe').src = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=14&ie=UTF8&iwloc=&output=embed&refresh=${Date.now()}`;
     }
@@ -1954,7 +1946,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Automatic Local Storage Purge & Anti-Cache Fetch',
+            message: 'CMS Update: Complete Unbroken Push',
             content: contentBase64,
             sha: sha || undefined
           })
