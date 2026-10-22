@@ -5,51 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Die Meelhuis | Neapolitan Pizza & Smash Burgers</title>
   
-  <!-- Fonts -->
+  <!-- Retro Vintage Google Fonts: Alfa Slab One & Fredoka -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Montserrat:wght@400;600;800;900&family=Playfair+Display:wght@700&family=Space+Grotesk:wght@500;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons -->
+  <!-- FontAwesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* BASE CSS VARIABLES - DYNAMICALLY UPDATED BY CMS */
+    /* CSS VARIABLES (UPDATED LIVE BY CMS) */
     :root {
-      --bg-color: #0052cc;
+      --bg-color: #0b5ed7;
       --primary-color: #f7f3e9;
-      --accent-color: #ffffff;
-      --card-bg: #ffffff;
-      --text-main: #0052cc;
-      --text-muted: #666666;
+      --accent-color: #ffc857;
+      --card-bg: #094cb5;
+      --text-main: #f7f3e9;
+      --text-muted: #cbd5e1;
+      --heading-font: 'Alfa Slab One', cursive;
       --body-font: 'Fredoka', sans-serif;
-      --heading-font: 'Fredoka', sans-serif;
       
-      /* Individual Button Default Variables */
+      /* Button Customization Defaults */
       --btn1-bg: #f7f3e9;
-      --btn1-text: #0052cc;
+      --btn1-text: #0b5ed7;
       --btn1-border: #f7f3e9;
-      --btn1-font: 'Fredoka', sans-serif;
-      --btn1-size: 16px;
+      --btn1-font: 'Alfa Slab One', cursive;
 
-      --btn2-bg: #0052cc;
-      --btn2-text: #ffffff;
-      --btn2-border: #ffffff;
-      --btn2-font: 'Fredoka', sans-serif;
-      --btn2-size: 16px;
+      --btn2-bg: #f7f3e9;
+      --btn2-text: #0b5ed7;
+      --btn2-border: #f7f3e9;
+      --btn2-font: 'Alfa Slab One', cursive;
 
       --btn3-bg: #f7f3e9;
-      --btn3-text: #0052cc;
-      --btn3-border: #f7f3e9;
-      --btn3-font: 'Fredoka', sans-serif;
-      --btn3-size: 16px;
+      --btn3-text: #0b5ed7;
+      --btn3-border: #ffc857;
+      --btn3-font: 'Alfa Slab One', cursive;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
     }
 
     body {
@@ -63,32 +60,29 @@
       position: relative;
     }
 
-    /* WATERMARK BACKGROUND EFFECT */
-    .bg-watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90vw;
-      max-width: 900px;
-      height: 90vw;
-      max-height: 900px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'%3E%3Cpath fill='rgba(255,255,255,0.06)' d='M250,50 C140,50 50,140 50,250 C50,360 140,450 250,450 C360,450 450,360 450,250 C450,140 360,50 250,50 Z M250,100 C332.8,100 400,167.2 400,250 C400,332.8 332.8,400 250,400 C167.2,400 100,332.8 100,250 C100,167.2 167.2,100 250,100 Z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
+    /* GRID BACKGROUND OVERLAY */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: 48px 48px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* NAVBAR HEADER */
+    /* HEADER */
     header {
       position: relative;
       z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 42px 70px;
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
@@ -97,60 +91,55 @@
     .brand-logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       cursor: pointer;
     }
 
     .brand-logo-text {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
+      font-family: var(--heading-font);
+      font-size: 30px;
+      letter-spacing: 1px;
       color: var(--primary-color);
       text-transform: uppercase;
+      text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
     }
 
     .brand-badge {
-      background: var(--primary-color);
-      color: var(--bg-color);
-      padding: 4px 10px;
+      background: var(--accent-color);
+      color: #000;
+      padding: 6px 16px;
       border-radius: 20px;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      font-family: 'Fredoka', sans-serif;
     }
 
-    .nav-links {
+    .nav-actions {
       display: flex;
-      gap: 30px;
+      gap: 18px;
       align-items: center;
     }
 
-    .nav-item {
+    .lang-switcher-btn, .admin-trigger-btn {
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(255,255,255,0.25);
       color: var(--primary-color);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
-      opacity: 0.9;
-    }
-
-    .nav-item:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-
-    .admin-trigger-btn {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid var(--primary-color);
-      color: var(--primary-color);
-      padding: 8px 16px;
+      padding: 12px 24px;
       border-radius: 30px;
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      backdrop-filter: blur(12px);
+    }
+
+    .lang-switcher-btn:hover, .admin-trigger-btn:hover {
+      background: rgba(255,255,255,0.28);
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
     /* HERO SECTION */
@@ -163,97 +152,106 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 40px 20px;
-      max-width: 1100px;
+      padding: 90px 30px 100px 30px;
+      max-width: 1200px;
       margin: 0 auto;
       width: 100%;
     }
 
-    .hero-logo-circle {
-      width: 140px;
-      height: 140px;
-      background: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
+    .hero-badge-container {
+      margin-bottom: 36px;
+      animation: fadeInDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-
-    .hero-logo-circle i {
-      font-size: 65px;
-      color: var(--bg-color);
-    }
-
-    .hero-est {
-      font-size: 18px;
+      gap: 10px;
+      background: rgba(255, 200, 87, 0.15);
+      border: 2px solid var(--accent-color);
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
+      color: var(--accent-color);
     }
 
     .hero-title {
-      font-size: clamp(38px, 8vw, 92px);
-      font-weight: 900;
-      line-height: 0.95;
+      font-family: var(--heading-font);
+      font-size: clamp(52px, 9.5vw, 110px);
+      font-weight: 400;
+      line-height: 1.08;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 36px;
       color: var(--primary-color);
-      letter-spacing: -1px;
+      letter-spacing: 1.5px;
+      text-shadow: 6px 6px 0px rgba(0,0,0,0.35);
+      animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .hero-subtitle {
-      font-size: clamp(16px, 2.5vw, 24px);
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(19px, 2.6vw, 28px);
       font-weight: 700;
-      margin-bottom: 25px;
-      max-width: 700px;
-      letter-spacing: 1px;
+      margin-bottom: 28px;
+      max-width: 820px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      opacity: 0.95;
+      color: var(--accent-color);
+      line-height: 1.5;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .hero-hashtags {
       font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 40px;
-      opacity: 0.8;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      margin-bottom: 64px;
+      opacity: 0.85;
+      animation: fadeInUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* 3 BUTTONS LAYOUT */
+    /* HERO BUTTONS */
     .hero-buttons {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
-      max-width: 900px;
+      max-width: 1000px;
+      margin-bottom: 130px;
+      animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .custom-btn {
-      padding: 18px 32px;
-      border-radius: 40px;
-      font-weight: 800;
+      padding: 24px 46px;
+      border-radius: 50px;
+      font-weight: 400;
       text-transform: uppercase;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      border: 2px solid transparent;
+      gap: 14px;
+      border: 3px solid transparent;
       text-decoration: none;
+      letter-spacing: 1px;
+      font-size: 15px;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.25);
     }
 
-    /* INDIVIDUAL HERO BUTTON STYLES */
+    .custom-btn:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.38);
+    }
+
     #hero-btn-1 {
       background-color: var(--btn1-bg);
       color: var(--btn1-text);
       border-color: var(--btn1-border);
       font-family: var(--btn1-font);
-      font-size: var(--btn1-size);
     }
 
     #hero-btn-2 {
@@ -261,7 +259,6 @@
       color: var(--btn2-text);
       border-color: var(--btn2-border);
       font-family: var(--btn2-font);
-      font-size: var(--btn2-size);
     }
 
     #hero-btn-3 {
@@ -269,26 +266,340 @@
       color: var(--btn3-text);
       border-color: var(--btn3-border);
       font-family: var(--btn3-font);
-      font-size: var(--btn3-size);
     }
 
-    /* MODAL POPUPS */
+    /* FEATURED 2 PHOTOS */
+    .featured-photos-section {
+      width: 100%;
+      max-width: 1080px;
+      margin-bottom: 130px;
+      animation: fadeInUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .photos-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 5px solid var(--primary-color);
+      box-shadow: 0 28px 56px rgba(0,0,0,0.35);
+      aspect-ratio: 4/3;
+      background: var(--card-bg);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.09);
+    }
+
+    .photo-caption-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 32px 28px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      color: #fff;
+      text-align: left;
+    }
+
+    .photo-caption-title {
+      font-family: var(--heading-font);
+      font-size: 22px;
+      text-transform: uppercase;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+      text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    }
+
+    .photo-caption-tag {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* PROMINENT INSTAGRAM BANNER */
+    .instagram-feature-box {
+      width: 100%;
+      max-width: 1080px;
+      background: var(--card-bg);
+      border: 4px solid var(--primary-color);
+      border-radius: 36px;
+      padding: 60px 40px;
+      margin-bottom: 130px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.32);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .insta-icon-badge {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-color);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      margin-bottom: 6px;
+    }
+
+    .insta-label-small {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: var(--accent-color);
+      text-transform: uppercase;
+    }
+
+    .insta-handle-large {
+      font-family: var(--heading-font);
+      font-size: clamp(28px, 4.8vw, 46px);
+      color: var(--primary-color);
+      text-decoration: none;
+      letter-spacing: 1px;
+      word-break: break-all;
+    }
+
+    .insta-handle-large:hover {
+      color: var(--accent-color);
+    }
+
+    .insta-follow-btn {
+      background: var(--accent-color);
+      color: #000;
+      padding: 18px 42px;
+      border-radius: 30px;
+      font-family: var(--body-font);
+      font-weight: 800;
+      font-size: 15px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .insta-follow-btn:hover {
+      transform: translateY(-4px);
+      background: #ffffff;
+      color: #000;
+    }
+
+    /* REVIEWS SECTION */
+    .reviews-container {
+      width: 100%;
+      max-width: 1080px;
+      margin-bottom: 130px;
+      animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .reviews-header {
+      font-family: var(--heading-font);
+      font-size: 26px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 32px;
+      text-align: left;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 28px;
+      padding: 36px 32px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+    }
+
+    .review-stars {
+      color: var(--accent-color);
+      font-size: 17px;
+      margin-bottom: 18px;
+    }
+
+    .review-text {
+      font-size: 15.5px;
+      color: var(--text-main);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .review-author {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* LOCATION, MAP & CONTACT SECTION */
+    .location-section {
+      width: 100%;
+      max-width: 1080px;
+      animation: fadeInUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .location-header {
+      font-family: var(--heading-font);
+      font-size: 26px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      text-align: left;
+      align-items: stretch;
+    }
+
+    .map-frame-container {
+      border: 4px solid var(--primary-color);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      min-height: 340px;
+      height: 100%;
+      background: var(--card-bg);
+    }
+
+    .map-frame-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      min-height: 340px;
+    }
+
+    .contact-details-card {
+      background: var(--card-bg);
+      border: 3px solid rgba(255, 255, 255, 0.2);
+      border-radius: 28px;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 26px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .contact-icon-wrapper {
+      width: 52px;
+      height: 52px;
+      background: var(--accent-color);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .contact-info-text h4 {
+      font-family: var(--heading-font);
+      font-size: 15px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info-text p, .contact-info-text a {
+      font-size: 15.5px;
+      color: var(--primary-color);
+      line-height: 1.5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-info-text a:hover {
+      color: var(--accent-color);
+    }
+
+    /* FLOATING WHATSAPP BUTTON */
+    .floating-whatsapp-btn {
+      position: fixed;
+      bottom: 36px;
+      right: 36px;
+      background: #25D366;
+      color: #fff;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 14px 35px rgba(37, 211, 102, 0.45);
+      z-index: 999;
+      text-decoration: none;
+    }
+
+    .floating-whatsapp-btn:hover {
+      transform: scale(1.12);
+    }
+
+    /* MODALS */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(5px);
+      background: rgba(11, 94, 215, 0.94);
+      backdrop-filter: blur(16px);
       z-index: 1000;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 24px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.35s ease;
     }
 
     .modal-overlay.active {
@@ -298,165 +609,179 @@
 
     .modal-card {
       background: var(--card-bg);
+      border: 3px solid var(--primary-color);
       color: var(--text-main);
       width: 100%;
-      max-width: 850px;
+      max-width: 880px;
       max-height: 90vh;
-      border-radius: 24px;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
+      border-radius: 36px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.55);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-      position: relative;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .modal-overlay.active .modal-card {
-      transform: translateY(0);
+      transform: scale(1);
     }
 
     .modal-header {
-      padding: 25px 35px;
-      border-bottom: 2px solid #f0f0f0;
+      padding: 30px 40px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #fafafa;
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .modal-title {
-      font-size: 28px;
-      font-weight: 800;
+      font-family: var(--heading-font);
+      font-size: 24px;
       text-transform: uppercase;
-      color: var(--text-main);
+      color: var(--accent-color);
     }
 
     .modal-close-btn {
-      background: #eee;
+      background: rgba(255, 255, 255, 0.15);
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #333;
+      color: #fff;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--accent-color);
+      color: #000;
     }
 
     .modal-body {
-      padding: 35px;
+      padding: 40px;
       overflow-y: auto;
       flex: 1;
     }
 
-    /* MENU MODAL SPECIFICS */
+    /* MENU CONTROLS */
     .menu-controls {
       display: flex;
-      gap: 15px;
-      margin-bottom: 25px;
+      gap: 16px;
+      margin-bottom: 36px;
       flex-wrap: wrap;
     }
 
     .search-bar {
       flex: 1;
-      padding: 12px 20px;
+      padding: 18px 24px;
       border-radius: 30px;
-      border: 1px solid #ddd;
-      font-size: 14px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 15px;
       outline: none;
+      font-family: var(--body-font);
     }
 
     .filter-pills {
       display: flex;
-      gap: 8px;
+      gap: 12px;
       overflow-x: auto;
-      padding-bottom: 5px;
+      padding-bottom: 4px;
     }
 
     .pill-btn {
-      padding: 8px 16px;
-      border-radius: 20px;
-      background: #eee;
-      border: none;
-      font-size: 12px;
+      padding: 14px 24px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--primary-color);
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
+      font-family: var(--body-font);
     }
 
     .pill-btn.active {
-      background: var(--text-main);
-      color: #fff;
+      background: var(--accent-color);
+      color: #000;
+      border-color: var(--accent-color);
+      font-weight: 800;
     }
 
     .menu-category-title {
+      font-family: var(--heading-font);
       font-size: 20px;
-      font-weight: 800;
-      margin: 25px 0 15px 0;
+      margin: 36px 0 22px 0;
       text-transform: uppercase;
-      border-bottom: 2px solid var(--text-main);
-      padding-bottom: 5px;
+      border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+      padding-bottom: 12px;
+      color: var(--accent-color);
     }
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 22px;
     }
 
     .menu-item-card {
-      background: #fdfdfd;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 18px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      padding: 24px;
     }
 
     .menu-item-header {
       display: flex;
       justify-content: space-between;
       font-weight: 800;
-      font-size: 16px;
-      margin-bottom: 6px;
+      font-size: 16.5px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
     }
 
     .menu-item-desc {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.55;
     }
 
-    /* SCHEDULE MODAL SPECIFICS */
+    /* MARKETS LIST */
     .market-list {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
     }
 
     .market-card {
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding: 20px;
-      border-radius: 16px;
-      background: #f9f9fb;
-      border: 1px solid #eef;
+      gap: 24px;
+      padding: 26px;
+      border-radius: 22px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .market-date-badge {
-      background: var(--text-main);
-      color: #fff;
-      padding: 12px;
-      border-radius: 12px;
+      background: var(--accent-color);
+      color: #000;
+      padding: 16px;
+      border-radius: 18px;
       text-align: center;
-      min-width: 75px;
+      min-width: 80px;
     }
 
     .market-date-badge .day {
-      font-size: 22px;
-      font-weight: 900;
+      font-family: var(--heading-font);
+      font-size: 26px;
       line-height: 1;
     }
 
@@ -467,39 +792,109 @@
     }
 
     .market-info h4 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      color: var(--primary-color);
     }
 
     .market-info p {
-      font-size: 13px;
+      font-size: 14.5px;
       color: var(--text-muted);
     }
 
-    /* FORM MODAL SPECIFICS */
+    /* FORM STYLES */
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 26px;
     }
 
     .form-group label {
       display: block;
-      font-weight: 700;
-      margin-bottom: 8px;
-      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      font-size: 12px;
       text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-color);
     }
 
     .form-control {
       width: 100%;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
+      padding: 18px 22px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
       font-family: inherit;
-      font-size: 14px;
+      font-size: 15px;
+      outline: none;
     }
 
-    /* ADMIN CMS SIDEBAR PANEL */
+    .form-submit-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .btn-submit-direct {
+      background: var(--primary-color);
+      color: #0b5ed7;
+      font-family: var(--heading-font);
+      font-weight: 400;
+      border: none;
+      padding: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 13px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-submit-direct:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .btn-submit-whatsapp {
+      background: #25D366;
+      color: #000;
+      font-family: var(--heading-font);
+      font-weight: 400;
+      border: none;
+      padding: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 13px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-submit-whatsapp:hover {
+      background: #22bf5b;
+      transform: translateY(-2px);
+    }
+
+    .submission-success-banner {
+      display: none;
+      background: rgba(37, 211, 102, 0.15);
+      border: 2px solid #25D366;
+      color: #25D366;
+      padding: 16px 20px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    /* ADMIN CMS PANEL */
     .admin-panel {
       position: fixed;
       top: 0;
@@ -507,14 +902,14 @@
       width: 440px;
       max-width: 100vw;
       height: 100vh;
-      background: #111625;
+      background: #094cb5;
       color: #fff;
       z-index: 2000;
-      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.8);
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .admin-panel.active {
@@ -522,35 +917,35 @@
     }
 
     .admin-header {
-      padding: 20px 25px;
-      background: #1a2236;
-      border-bottom: 1px solid #2a344d;
+      padding: 26px 30px;
+      background: #073a8c;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .admin-body {
-      padding: 25px;
+      padding: 30px;
       overflow-y: auto;
       flex: 1;
     }
 
     .cms-section {
       margin-bottom: 30px;
-      background: #182033;
-      padding: 18px;
-      border-radius: 12px;
-      border: 1px solid #28334f;
+      background: #0b5ed7;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .cms-section-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #7b9acc;
-      margin-bottom: 15px;
+      color: var(--accent-color);
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -559,43 +954,43 @@
     .cms-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .cms-input-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .cms-input-group label {
       font-size: 11px;
       font-weight: 700;
-      color: #aaa;
+      color: var(--text-muted);
     }
 
     .cms-input {
-      background: #0d121f;
-      border: 1px solid #2a3550;
+      background: #073a8c;
+      border: 1px solid rgba(255,255,255,0.2);
       color: #fff;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 12px 14px;
+      border-radius: 10px;
       font-size: 13px;
     }
 
     .cms-input[type="color"] {
-      height: 38px;
-      padding: 2px;
+      height: 46px;
+      padding: 3px;
       cursor: pointer;
     }
 
     .btn-github-push {
-      background: #238636;
-      color: #ffffff;
+      background: #25D366;
+      color: #000;
       border: none;
-      padding: 12px;
-      border-radius: 8px;
+      padding: 18px;
+      border-radius: 14px;
       font-weight: 800;
       cursor: pointer;
       width: 100%;
@@ -603,95 +998,100 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      font-family: var(--body-font);
+      text-transform: uppercase;
     }
 
     .status-badge {
       font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      margin-top: 5px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin-top: 10px;
       display: inline-block;
     }
 
-    .status-badge.success { background: #238636; color: #fff; }
-    .status-badge.error { background: #da3633; color: #fff; }
+    .status-badge.success { background: #25D366; color: #000; }
+    .status-badge.error { background: #dc2626; color: #fff; }
 
     footer {
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      opacity: 0.7;
+      padding: 40px 24px;
+      font-size: 13px;
+      opacity: 0.65;
     }
 
-    /* MOBILE & TABLET RESPONSIVE OPTIMIZATIONS */
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
       header {
-        padding: 15px 20px;
-        flex-direction: row;
-        justify-content: space-between;
+        padding: 24px 28px;
       }
 
-      /* Hide text nav links on mobile to eliminate clutter */
-      .nav-links .nav-item {
-        display: none;
-      }
-
-      .nav-links {
-        gap: 0;
-      }
-
-      .brand-logo-text {
-        font-size: 20px;
-      }
-
-      .hero-logo-circle {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 15px;
-      }
-
-      .hero-logo-circle i {
-        font-size: 45px;
+      main.hero {
+        padding: 60px 20px 90px 20px;
       }
 
       .hero-buttons {
         flex-direction: column;
         width: 100%;
+        margin-bottom: 80px;
+      }
+
+      .featured-photos-section, .instagram-feature-box, .reviews-container, .location-section {
+        margin-bottom: 80px;
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr;
       }
 
       .custom-btn {
         width: 100%;
-        padding: 16px 20px;
+        padding: 20px 32px;
       }
 
-      .modal-card {
-        max-height: 95vh;
-        border-radius: 16px;
-      }
-
-      .modal-header {
-        padding: 18px 20px;
-      }
-
-      .modal-body {
-        padding: 20px;
-      }
-
-      .cms-row {
+      .form-submit-actions {
         grid-template-columns: 1fr;
       }
 
       .admin-panel {
         width: 100vw;
       }
+
+      .cms-row {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-whatsapp-btn {
+        bottom: 24px;
+        right: 24px;
+        width: 58px;
+        height: 58px;
+        font-size: 30px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-watermark"></div>
+  <!-- BACKGROUND GRID -->
+  <div class="bg-grid"></div>
+
+  <!-- FLOATING QUICK-CHAT WHATSAPP BUTTON -->
+  <a href="https://wa.me/27832769515?text=Hi%20Die%20Meelhuis!%20I%20have%20a%20quick%20question." target="_blank" class="floating-whatsapp-btn" id="floating-wa-link" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
   <!-- HEADER NAVBAR -->
   <header>
@@ -700,28 +1100,32 @@
       <span class="brand-badge" id="nav-est-badge">EST. 2023</span>
     </div>
 
-    <nav class="nav-links">
-      <a class="nav-item" onclick="openModal('menu-modal')">Our Menu</a>
-      <a class="nav-item" onclick="openModal('where-modal')">Where Are We?</a>
-      <a class="nav-item" onclick="openModal('contact-modal')">Event Bookings</a>
-      <button class="admin-trigger-btn" onclick="toggleAdminPanel()">
-        <i class="fa-solid fa-gear"></i> <span>⚙ ADMIN CMS</span>
+    <div class="nav-actions">
+      <!-- LANGUAGE SWITCHER BUTTON -->
+      <button class="lang-switcher-btn" onclick="toggleLanguage()">
+        <i class="fa-solid fa-globe"></i> <span id="lang-btn-text">AFRIKAANS</span>
       </button>
-    </nav>
+
+      <!-- ADMIN PANEL TRIGGER -->
+      <button class="admin-trigger-btn" onclick="toggleAdminPanel()">
+        <i class="fa-solid fa-gear"></i> <span>ADMIN CMS</span>
+      </button>
+    </div>
   </header>
 
   <!-- HERO MAIN SECTION -->
   <main class="hero">
-    <div class="hero-logo-circle">
-      <i class="fa-solid fa-wheat-awn"></i>
+    <div class="hero-badge-container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-wheat-awn"></i> <span id="display-est">EST. 2023</span>
+      </div>
     </div>
 
-    <div class="hero-est" id="display-est">EST. 2023</div>
     <h1 class="hero-title" id="display-hero-title">DIE MEELHUIS</h1>
     <h2 class="hero-subtitle" id="display-hero-subtitle">NEAPOLITAN STYLE PIZZAS & SMASH BURGERS</h2>
     <div class="hero-hashtags" id="display-hero-hashtags">#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES</div>
 
-    <!-- 3 BUTTONS -->
+    <!-- 3 HERO ACTION BUTTONS -->
     <div class="hero-buttons">
       <button id="hero-btn-1" class="custom-btn" onclick="openModal('menu-modal')">
         <i class="fa-solid fa-utensils"></i> <span id="btn1-label-text">OUR MENU</span>
@@ -735,36 +1139,156 @@
         <i class="fa-solid fa-calendar-check"></i> <span id="btn3-label-text">EVENT BOOKINGS & CONTACT US</span>
       </button>
     </div>
+
+    <!-- FEATURED 2 PHOTOS (PIZZA & SMASH BURGER) -->
+    <div class="featured-photos-section">
+      <div class="photos-grid-2">
+        
+        <!-- PHOTO 1: NEAPOLITAN PIZZA -->
+        <div class="photo-card">
+          <img id="display-photo1-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80" alt="Woodfired Neapolitan Pizza">
+          <div class="photo-caption-overlay">
+            <div class="photo-caption-title" id="display-photo1-title">WOODFIRED NEAPOLITAN</div>
+            <div class="photo-caption-tag" id="display-photo1-tag">36-HOUR SLOW FERMENTED DOUGH</div>
+          </div>
+        </div>
+
+        <!-- PHOTO 2: SMASH BURGER -->
+        <div class="photo-card">
+          <img id="display-photo2-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80" alt="Double Smash Burger">
+          <div class="photo-caption-overlay">
+            <div class="photo-caption-title" id="display-photo2-title">DOUBLE SMASH BURGER</div>
+            <div class="photo-caption-tag" id="display-photo2-tag">100% PURE BEEF & SECRET SAUCE</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PROMINENT INSTAGRAM FEATURE BOX -->
+    <div class="instagram-feature-box">
+      <div class="insta-icon-badge">
+        <i class="fa-brands fa-instagram"></i>
+      </div>
+      <div class="insta-label-small">FOLLOW US ON INSTAGRAM</div>
+      <a href="https://www.instagram.com/diemeelhuis_pta/" target="_blank" class="insta-handle-large">
+        @diemeelhuis_pta
+      </a>
+      <a href="https://www.instagram.com/diemeelhuis_pta/" target="_blank" class="insta-follow-btn">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> VISIT INSTAGRAM PAGE
+      </a>
+    </div>
+
+    <!-- REVIEWS / SOCIAL PROOF SECTION -->
+    <div class="reviews-container">
+      <h3 class="reviews-header" id="reviews-title">WHAT OUR CUSTOMERS SAY</h3>
+      <div class="reviews-grid">
+        
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text" id="rev1-text">"Hands down the most authentic Neapolitan crust in Pretoria. The Leopard spots on the crust and quality ingredients speak for themselves!"</p>
+          <div class="review-author" id="rev1-author">— Marco S. (Pretoria East)</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text" id="rev2-text">"That Bacon & Jalapeño smash burger is next level. Crisp edges, insanely juicy patties, and secret sauce that hits the spot every time."</p>
+          <div class="review-author" id="rev2-author">— Willem K. (Centurion)</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="review-text" id="rev3-text">"Booked Die Meelhuis for our private birthday event. Our guests are still talking about the woodfired pizzas three weeks later!"</p>
+          <div class="review-author" id="rev3-author">— Annelize M. (Event Catering)</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LOCATION, MAP & CONTACT SECTION -->
+    <div class="location-section">
+      <h3 class="location-header" id="location-title">FIND US & GET IN TOUCH</h3>
+      <div class="location-grid">
+        
+        <!-- EMBEDDED DYNAMIC GOOGLE MAP -->
+        <div class="map-frame-container">
+          <iframe 
+            id="display-map-iframe"
+            src="https://maps.google.com/maps?q=Bus%20Stop%207%20Market%20Grounds%2C%20Pretoria%20East%2C%20Gauteng%2C%20South%20Africa&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- CONTACT DETAILS CARD -->
+        <div class="contact-details-card">
+          
+          <div class="contact-item">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4 id="lbl-loc-address">Our Primary Location</h4>
+              <p id="val-loc-address">Bus Stop 7 Market Grounds, Pretoria East, Gauteng, South Africa</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4 id="lbl-loc-phone">Phone & WhatsApp</h4>
+              <a id="val-loc-phone-link" href="tel:+27832769515"><span id="val-loc-phone-text">+27 83 276 9515</span></a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-wrapper">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="contact-info-text">
+              <h4 id="lbl-loc-email">Email Address</h4>
+              <a id="val-loc-email-link" href="mailto:info@diemeelhuis.co.za"><span id="val-loc-email-text">info@diemeelhuis.co.za</span></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
   </main>
 
   <!-- FOOTER -->
   <footer>
-    © 2023–2026 Die Meelhuis. All Rights Reserved. Live Admin CMS Enabled.
+    © 2023–2026 Die Meelhuis. All Rights Reserved. Retro Pizzeria & Smash Burger Bar.
   </footer>
 
   <!-- MODAL 1: OUR MENU -->
   <div class="modal-overlay" id="menu-modal">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 class="modal-title">Our Menu</h3>
+        <h3 class="modal-title" id="modal-menu-title">Our Menu</h3>
         <button class="modal-close-btn" onclick="closeModal('menu-modal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="menu-controls">
-          <input type="text" class="search-bar" id="menu-search" placeholder="Search menu items..." onkeyup="filterMenu()">
-          <div class="filter-pills">
-            <button class="pill-btn active" onclick="filterCategory('ALL', this)">ALL</button>
-            <button class="pill-btn" onclick="filterCategory('NEAPOLITAN PIZZA', this)">NEAPOLITAN PIZZA</button>
-            <button class="pill-btn" onclick="filterCategory('SMASH BURGERS', this)">SMASH BURGERS</button>
-            <button class="pill-btn" onclick="filterCategory('ARTISANAL BREADS', this)">ARTISANAL BREADS</button>
-          </div>
+          <input type="text" class="search-bar" id="menu-search" placeholder="Search menu..." onkeyup="filterMenu()">
+          <div class="filter-pills" id="filter-pills-container"></div>
         </div>
 
         <div id="menu-container"></div>
 
         <div style="margin-top: 30px; text-align: right;">
-          <button class="custom-btn" style="background:#111; color:#fff; font-size:13px; padding:12px 24px;" onclick="window.print()">
-            <i class="fa-solid fa-print"></i> PRINT / DOWNLOAD PDF MENU
+          <button class="custom-btn" style="background:rgba(255,255,255,0.15); color:#fff; font-size:12px; padding:12px 24px;" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> <span id="print-btn-text">PRINT / PDF MENU</span>
           </button>
         </div>
       </div>
@@ -775,11 +1299,11 @@
   <div class="modal-overlay" id="where-modal">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 class="modal-title">Where Are We?</h3>
+        <h3 class="modal-title" id="modal-where-title">Where Are We?</h3>
         <button class="modal-close-btn" onclick="closeModal('where-modal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <p style="margin-bottom: 20px; color: var(--text-muted);">Catch us at local pop-up markets, festivals, and community events every month!</p>
+        <p style="margin-bottom: 24px; color: var(--text-muted);" id="modal-where-desc">Catch us at local pop-up markets, festivals, and community events every month!</p>
         <div class="market-list" id="markets-container"></div>
       </div>
     </div>
@@ -789,13 +1313,13 @@
   <div class="modal-overlay" id="contact-modal">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 class="modal-title">Event Bookings & Contact Us</h3>
+        <h3 class="modal-title" id="modal-contact-title">Event Bookings & Contact Us</h3>
         <button class="modal-close-btn" onclick="closeModal('contact-modal')"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <form onsubmit="handleFormSubmit(event)">
+        <form id="contact-form" onsubmit="handleFormSubmit(event, 'direct')">
           <div class="form-group">
-            <label>Inquiry Type</label>
+            <label id="lbl-inquiry-type">Inquiry Type</label>
             <select class="form-control" id="inquiry-type" onchange="toggleFormFields()">
               <option value="Private Event Booking / Catering">Private Event Booking / Catering</option>
               <option value="Market / Festival Invite">Market / Festival Invite</option>
@@ -805,36 +1329,46 @@
 
           <div class="cms-row">
             <div class="form-group">
-              <label>Your Name</label>
+              <label id="lbl-name">Your Name</label>
               <input type="text" id="contact-name" class="form-control" required placeholder="John Doe">
             </div>
             <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" id="contact-phone" class="form-control" required placeholder="e.g. 082 123 4567">
+              <label id="lbl-phone">Phone Number</label>
+              <input type="tel" id="contact-phone" class="form-control" required placeholder="e.g. 083 276 9515">
             </div>
           </div>
 
           <div id="dynamic-event-fields">
             <div class="cms-row">
               <div class="form-group">
-                <label>Event Date</label>
+                <label id="lbl-date">Event Date</label>
                 <input type="date" id="event-date" class="form-control">
               </div>
               <div class="form-group">
-                <label>Estimated Guest Count</label>
+                <label id="lbl-guests">Estimated Guest Count</label>
                 <input type="number" id="guest-count" class="form-control" placeholder="e.g. 50">
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label>Your Message</label>
-            <textarea class="form-control" id="contact-message" rows="4" required placeholder="Tell us more about your event or request..."></textarea>
+            <label id="lbl-msg">Your Message</label>
+            <textarea class="form-control" id="contact-message" rows="4" required placeholder="Tell us more about your event..."></textarea>
           </div>
 
-          <button type="submit" class="custom-btn" style="background:#25D366; color:#fff; width:100%;">
-            <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i> SEND INQUIRY VIA WHATSAPP
-          </button>
+          <!-- DUAL SUBMIT BUTTONS (DIRECT & WHATSAPP) -->
+          <div class="form-submit-actions">
+            <button type="button" class="btn-submit-direct" onclick="triggerSubmit('direct')">
+              <i class="fa-solid fa-paper-plane"></i> <span id="lbl-direct-btn">SUBMIT INQUIRY</span>
+            </button>
+            <button type="button" class="btn-submit-whatsapp" onclick="triggerSubmit('whatsapp')">
+              <i class="fa-brands fa-whatsapp"></i> <span id="lbl-whatsapp-btn">SEND VIA WHATSAPP</span>
+            </button>
+          </div>
+
+          <div id="submission-success" class="submission-success-banner">
+            <i class="fa-solid fa-circle-check"></i> Thank you! Your inquiry has been submitted. We will contact you back shortly.
+          </div>
         </form>
       </div>
     </div>
@@ -844,10 +1378,10 @@
   <div class="admin-panel" id="admin-panel">
     <div class="admin-header">
       <div>
-        <h3 style="font-size: 16px; font-weight: 800;">Die Meelhuis CMS</h3>
-        <span style="font-size: 11px; color: #7b9acc;">Live Website Editor & Customizer</span>
+        <h3 style="font-size: 15px; font-weight: 800; font-family: var(--heading-font); color:var(--accent-color);">Die Meelhuis CMS</h3>
+        <span style="font-size: 11px; color: var(--text-muted);">Live Remote Configuration Panel</span>
       </div>
-      <button class="modal-close-btn" style="background:#28334f; color:#fff;" onclick="toggleAdminPanel()">
+      <button class="modal-close-btn" style="background:rgba(255,255,255,0.1);" onclick="toggleAdminPanel()">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -855,8 +1389,8 @@
     <div class="admin-body">
       
       <!-- GITHUB API SYNC SECTION -->
-      <div class="cms-section" style="border: 1px solid #238636;">
-        <div class="cms-section-title" style="color: #3fb950;">
+      <div class="cms-section" style="border-color: #25D366;">
+        <div class="cms-section-title" style="color: #25D366;">
           <i class="fa-brands fa-github"></i> GITHUB API LIVE SYNC
         </div>
         <div class="cms-input-group" style="margin-bottom: 10px;">
@@ -877,7 +1411,58 @@
         <div id="github-sync-status"></div>
       </div>
 
-      <!-- HERO SECTION EDITING -->
+      <!-- LOCATION & MAP CMS -->
+      <div class="cms-section">
+        <div class="cms-section-title"><i class="fa-solid fa-location-dot"></i> Location & Contact Info</div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Physical Address (Updates Map Automatically)</label>
+          <input type="text" id="cms-loc-address" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Phone / WhatsApp Number</label>
+          <input type="text" id="cms-loc-phone" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-input-group">
+          <label>Email Address</label>
+          <input type="email" id="cms-loc-email" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+      </div>
+
+      <!-- FEATURED PHOTOS CMS -->
+      <div class="cms-section">
+        <div class="cms-section-title"><i class="fa-solid fa-image"></i> Featured Photos & Captions</div>
+        <div class="cms-input-group" style="margin-bottom:10px;">
+          <label>Photo 1 Image URL</label>
+          <input type="text" id="cms-photo1-img" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-row" style="margin-bottom:10px;">
+          <div class="cms-input-group">
+            <label>Photo 1 Title</label>
+            <input type="text" id="cms-photo1-title" class="cms-input" oninput="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Photo 1 Subtitle/Tag</label>
+            <input type="text" id="cms-photo1-tag" class="cms-input" oninput="updateLiveConfig()">
+          </div>
+        </div>
+
+        <div class="cms-input-group" style="margin-bottom:10px; margin-top:14px;">
+          <label>Photo 2 Image URL</label>
+          <input type="text" id="cms-photo2-img" class="cms-input" oninput="updateLiveConfig()">
+        </div>
+        <div class="cms-row">
+          <div class="cms-input-group">
+            <label>Photo 2 Title</label>
+            <input type="text" id="cms-photo2-title" class="cms-input" oninput="updateLiveConfig()">
+          </div>
+          <div class="cms-input-group">
+            <label>Photo 2 Subtitle/Tag</label>
+            <input type="text" id="cms-photo2-tag" class="cms-input" oninput="updateLiveConfig()">
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO COPY CMS -->
       <div class="cms-section">
         <div class="cms-section-title"><i class="fa-solid fa-font"></i> Hero Copy & Text</div>
         <div class="cms-input-group" style="margin-bottom:10px;">
@@ -894,9 +1479,9 @@
         </div>
       </div>
 
-      <!-- PAGE GLOBAL COLORS -->
+      <!-- THEME COLORS CMS -->
       <div class="cms-section">
-        <div class="cms-section-title"><i class="fa-solid fa-palette"></i> Page Theme Colors</div>
+        <div class="cms-section-title"><i class="fa-solid fa-palette"></i> Theme Colors</div>
         <div class="cms-row">
           <div class="cms-input-group">
             <label>Background Color</label>
@@ -911,9 +1496,9 @@
 
       <!-- BUTTON 1 CMS -->
       <div class="cms-section">
-        <div class="cms-section-title" style="color: #ffd700;">1. BUTTON 1: "OUR MENU"</div>
+        <div class="cms-section-title" style="color: var(--accent-color);">1. BUTTON 1: "OUR MENU"</div>
         <div class="cms-input-group" style="margin-bottom:10px;">
-          <label>Button Text Label</label>
+          <label>Button Label</label>
           <input type="text" id="cms-btn1-label" class="cms-input" oninput="updateLiveConfig()">
         </div>
         <div class="cms-row">
@@ -926,29 +1511,13 @@
             <input type="color" id="cms-btn1-text" class="cms-input" onchange="updateLiveConfig()">
           </div>
         </div>
-        <div class="cms-row">
-          <div class="cms-input-group">
-            <label>Border Color</label>
-            <input type="color" id="cms-btn1-border" class="cms-input" onchange="updateLiveConfig()">
-          </div>
-          <div class="cms-input-group">
-            <label>Font Family</label>
-            <select id="cms-btn1-font" class="cms-input" onchange="updateLiveConfig()">
-              <option value="'Fredoka', sans-serif">Fredoka (Default)</option>
-              <option value="'Montserrat', sans-serif">Montserrat</option>
-              <option value="'Playfair Display', serif">Playfair Display</option>
-              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
-              <option value="'Courier Prime', monospace">Courier Prime</option>
-            </select>
-          </div>
-        </div>
       </div>
 
       <!-- BUTTON 2 CMS -->
       <div class="cms-section">
-        <div class="cms-section-title" style="color: #ffd700;">2. BUTTON 2: "WHERE ARE WE?"</div>
+        <div class="cms-section-title" style="color: var(--accent-color);">2. BUTTON 2: "WHERE ARE WE?"</div>
         <div class="cms-input-group" style="margin-bottom:10px;">
-          <label>Button Text Label</label>
+          <label>Button Label</label>
           <input type="text" id="cms-btn2-label" class="cms-input" oninput="updateLiveConfig()">
         </div>
         <div class="cms-row">
@@ -961,29 +1530,13 @@
             <input type="color" id="cms-btn2-text" class="cms-input" onchange="updateLiveConfig()">
           </div>
         </div>
-        <div class="cms-row">
-          <div class="cms-input-group">
-            <label>Border Color</label>
-            <input type="color" id="cms-btn2-border" class="cms-input" onchange="updateLiveConfig()">
-          </div>
-          <div class="cms-input-group">
-            <label>Font Family</label>
-            <select id="cms-btn2-font" class="cms-input" onchange="updateLiveConfig()">
-              <option value="'Fredoka', sans-serif">Fredoka (Default)</option>
-              <option value="'Montserrat', sans-serif">Montserrat</option>
-              <option value="'Playfair Display', serif">Playfair Display</option>
-              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
-              <option value="'Courier Prime', monospace">Courier Prime</option>
-            </select>
-          </div>
-        </div>
       </div>
 
       <!-- BUTTON 3 CMS -->
       <div class="cms-section">
-        <div class="cms-section-title" style="color: #ffd700;">3. BUTTON 3: "EVENT BOOKINGS"</div>
+        <div class="cms-section-title" style="color: var(--accent-color);">3. BUTTON 3: "EVENT BOOKINGS"</div>
         <div class="cms-input-group" style="margin-bottom:10px;">
-          <label>Button Text Label</label>
+          <label>Button Label</label>
           <input type="text" id="cms-btn3-label" class="cms-input" oninput="updateLiveConfig()">
         </div>
         <div class="cms-row">
@@ -996,54 +1549,106 @@
             <input type="color" id="cms-btn3-text" class="cms-input" onchange="updateLiveConfig()">
           </div>
         </div>
-        <div class="cms-row">
-          <div class="cms-input-group">
-            <label>Border Color</label>
-            <input type="color" id="cms-btn3-border" class="cms-input" onchange="updateLiveConfig()">
-          </div>
-          <div class="cms-input-group">
-            <label>Font Family</label>
-            <select id="cms-btn3-font" class="cms-input" onchange="updateLiveConfig()">
-              <option value="'Fredoka', sans-serif">Fredoka (Default)</option>
-              <option value="'Montserrat', sans-serif">Montserrat</option>
-              <option value="'Playfair Display', serif">Playfair Display</option>
-              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
-              <option value="'Courier Prime', monospace">Courier Prime</option>
-            </select>
-          </div>
-        </div>
       </div>
 
     </div>
   </div>
 
   <script>
-    // DEFAULT WEBSITE CONFIGURATION
+    // DYNAMIC LANGUAGE DICTIONARY
+    let currentLang = 'EN';
+
+    const TRANSLATIONS = {
+      EN: {
+        btnLang: "AFRIKAANS",
+        btn1: "OUR MENU",
+        btn2: "WHERE ARE WE?",
+        btn3: "EVENT BOOKINGS & CONTACT US",
+        searchPlaceholder: "Search menu items...",
+        menuModalTitle: "Our Menu",
+        whereModalTitle: "Where Are We?",
+        whereDesc: "Catch us at local pop-up markets, festivals, and community events every month!",
+        contactModalTitle: "Event Bookings & Contact Us",
+        reviewsTitle: "WHAT OUR CUSTOMERS SAY",
+        rev1Text: "\"Hands down the most authentic Neapolitan crust in Pretoria. The Leopard spots on the crust and quality ingredients speak for themselves!\"",
+        rev1Author: "— Marco S. (Pretoria East)",
+        rev2Text: "\"That Bacon & Jalapeño smash burger is next level. Crisp edges, insanely juicy patties, and secret sauce that hits the spot every time.\"",
+        rev2Author: "— Willem K. (Centurion)",
+        rev3Text: "\"Booked Die Meelhuis for our private birthday event. Our guests are still talking about the woodfired pizzas three weeks later!\"",
+        rev3Author: "— Annelize M. (Event Catering)",
+        locationTitle: "FIND US & GET IN TOUCH",
+        lblLocAddress: "Our Primary Location",
+        lblLocPhone: "Phone & WhatsApp",
+        lblLocEmail: "Email Address",
+        lblInquiry: "Inquiry Type",
+        lblName: "Your Name",
+        lblPhone: "Phone Number",
+        lblDate: "Event Date",
+        lblGuests: "Estimated Guest Count",
+        lblMsg: "Your Message",
+        lblDirectBtn: "SUBMIT INQUIRY",
+        lblWhatsappBtn: "SEND VIA WHATSAPP",
+        printBtn: "PRINT / PDF MENU",
+        pills: ["ALL", "NEAPOLITAN PIZZA", "SMASH BURGERS", "ARTISANAL BREADS"]
+      },
+      AF: {
+        btnLang: "ENGLISH",
+        btn1: "ONS SPYSKAART",
+        btn2: "WAAR IS ONS?",
+        btn3: "BESPREKINGS & KONTAK ONS",
+        searchPlaceholder: "Soek op spyskaart...",
+        menuModalTitle: "Ons Spyskaart",
+        whereModalTitle: "Waar Is Ons?",
+        whereDesc: "Kry ons elke maand by plaaslike markte, feeste en gemeenskapsgeleenthede!",
+        contactModalTitle: "Besprekings & Kontak Ons",
+        reviewsTitle: "WAT ONS KLIËNTE SÊ",
+        rev1Text: "\"Sonder twyfel die mees egte Neapolitan deeg in Pretoria. Die luterse vakmanskap en bestanddele praat vir hulself!\"",
+        rev1Author: "— Marco S. (Pretoria-Oos)",
+        rev2Text: "\"Daardie Bacon & Jalapeño smash burger is op 'n ander vlak. Krokante rande, sappige patties en geheime sous wat elke keer tref.\"",
+        rev2Author: "— Willem K. (Centurion)",
+        rev3Text: "\"Die Meelhuis bespreek vir ons private verjaarsdag. Ons gaste praat drie weke later steeds oor die houtvuur pizzas!\"",
+        rev3Author: "— Annelize M. (Spyseniering)",
+        locationTitle: "KRY ONS & KONTAK ONS",
+        lblLocAddress: "Ons Hoofligging",
+        lblLocPhone: "Telefoon & WhatsApp",
+        lblLocEmail: "E-posadres",
+        lblInquiry: "Tipe Navraag",
+        lblName: "U Naam",
+        lblPhone: "Telefoonnommer",
+        lblDate: "Datum van Geleentheid",
+        lblGuests: "Geraamde Aantal Gaste",
+        lblMsg: "U Boodskap",
+        lblDirectBtn: "STUUR NAVRAAG",
+        lblWhatsappBtn: "STUUR VIA WHATSAPP",
+        printBtn: "DRUK / PDF SPYSKAART",
+        pills: ["ALLES", "NEAPOLITAN PIZZA", "SMASH BURGERS", "AMBAGSLAND BROOD"]
+      }
+    };
+
     const DEFAULT_CONFIG = {
       heroTitle: "DIE MEELHUIS",
       heroSubtitle: "NEAPOLITAN STYLE PIZZAS & SMASH BURGERS",
       heroHashtags: "#PIZZA #SMASHBURGER #MEELHUIS #GOODVIBES",
-      bgColor: "#0052cc",
+      bgColor: "#0b5ed7",
       primaryColor: "#f7f3e9",
-
       btn1Label: "OUR MENU",
       btn1Bg: "#f7f3e9",
-      btn1Text: "#0052cc",
-      btn1Border: "#f7f3e9",
-      btn1Font: "'Fredoka', sans-serif",
-
+      btn1Text: "#0b5ed7",
       btn2Label: "WHERE ARE WE?",
-      btn2Bg: "#0052cc",
-      btn2Text: "#ffffff",
-      btn2Border: "#ffffff",
-      btn2Font: "'Fredoka', sans-serif",
-
+      btn2Bg: "#f7f3e9",
+      btn2Text: "#0b5ed7",
       btn3Label: "EVENT BOOKINGS & CONTACT US",
       btn3Bg: "#f7f3e9",
-      btn3Text: "#0052cc",
-      btn3Border: "#f7f3e9",
-      btn3Font: "'Fredoka', sans-serif",
-
+      btn3Text: "#0b5ed7",
+      locAddress: "Bus Stop 7 Market Grounds, Pretoria East, Gauteng, South Africa",
+      locPhone: "+27 83 276 9515",
+      locEmail: "info@diemeelhuis.co.za",
+      photo1Img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80",
+      photo1Title: "WOODFIRED NEAPOLITAN",
+      photo1Tag: "36-HOUR SLOW FERMENTED DOUGH",
+      photo2Img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
+      photo2Title: "DOUBLE SMASH BURGER",
+      photo2Tag: "100% PURE BEEF & SECRET SAUCE",
       ghOwner: "page-one-digital",
       ghRepo: "die-meelhuis",
       ghToken: ""
@@ -1065,12 +1670,61 @@
 
     let currentConfig = { ...DEFAULT_CONFIG };
 
-    // INITIALIZATION & AUTOMATIC GITHUB CONFIG FETCH
     window.addEventListener('DOMContentLoaded', async () => {
       await fetchRemoteConfig();
+      renderPills();
       renderMenu(menuData);
       renderMarkets(marketData);
     });
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'EN' ? 'AF' : 'EN';
+      const t = TRANSLATIONS[currentLang];
+
+      document.getElementById('lang-btn-text').innerText = t.btnLang;
+      document.getElementById('btn1-label-text').innerText = t.btn1;
+      document.getElementById('btn2-label-text').innerText = t.btn2;
+      document.getElementById('btn3-label-text').innerText = t.btn3;
+
+      document.getElementById('modal-menu-title').innerText = t.menuModalTitle;
+      document.getElementById('modal-where-title').innerText = t.whereModalTitle;
+      document.getElementById('modal-where-desc').innerText = t.whereDesc;
+      document.getElementById('modal-contact-title').innerText = t.contactModalTitle;
+
+      document.getElementById('reviews-title').innerText = t.reviewsTitle;
+      document.getElementById('rev1-text').innerText = t.rev1Text;
+      document.getElementById('rev1-author').innerText = t.rev1Author;
+      document.getElementById('rev2-text').innerText = t.rev2Text;
+      document.getElementById('rev2-author').innerText = t.rev2Author;
+      document.getElementById('rev3-text').innerText = t.rev3Text;
+      document.getElementById('rev3-author').innerText = t.rev3Author;
+
+      document.getElementById('location-title').innerText = t.locationTitle;
+      document.getElementById('lbl-loc-address').innerText = t.lblLocAddress;
+      document.getElementById('lbl-loc-phone').innerText = t.lblLocPhone;
+      document.getElementById('lbl-loc-email').innerText = t.lblLocEmail;
+
+      document.getElementById('lbl-inquiry-type').innerText = t.lblInquiry;
+      document.getElementById('lbl-name').innerText = t.lblName;
+      document.getElementById('lbl-phone').innerText = t.lblPhone;
+      document.getElementById('lbl-date').innerText = t.lblDate;
+      document.getElementById('lbl-guests').innerText = t.lblGuests;
+      document.getElementById('lbl-msg').innerText = t.lblMsg;
+      document.getElementById('lbl-direct-btn').innerText = t.lblDirectBtn;
+      document.getElementById('lbl-whatsapp-btn').innerText = t.lblWhatsappBtn;
+      document.getElementById('print-btn-text').innerText = t.printBtn;
+      document.getElementById('menu-search').placeholder = t.searchPlaceholder;
+
+      renderPills();
+    }
+
+    function renderPills() {
+      const container = document.getElementById('filter-pills-container');
+      const pills = TRANSLATIONS[currentLang].pills;
+      container.innerHTML = pills.map((p, idx) => `
+        <button class="pill-btn ${idx === 0 ? 'active' : ''}" onclick="filterCategory('${p}', this)">${p}</button>
+      `).join('');
+    }
 
     async function fetchRemoteConfig() {
       loadSavedConfig();
@@ -1103,34 +1757,51 @@
     }
 
     function applyConfigToDOM() {
+      // Hero Copy
       document.getElementById('display-hero-title').innerText = currentConfig.heroTitle;
       document.getElementById('display-hero-subtitle').innerText = currentConfig.heroSubtitle;
       document.getElementById('display-hero-hashtags').innerText = currentConfig.heroHashtags;
 
+      // Hero Buttons
       document.getElementById('btn1-label-text').innerText = currentConfig.btn1Label;
       document.getElementById('btn2-label-text').innerText = currentConfig.btn2Label;
       document.getElementById('btn3-label-text').innerText = currentConfig.btn3Label;
 
+      // Theme Colors
       document.documentElement.style.setProperty('--bg-color', currentConfig.bgColor);
       document.documentElement.style.setProperty('--primary-color', currentConfig.primaryColor);
-
-      // Apply Button 1 Styles
       document.documentElement.style.setProperty('--btn1-bg', currentConfig.btn1Bg);
       document.documentElement.style.setProperty('--btn1-text', currentConfig.btn1Text);
-      document.documentElement.style.setProperty('--btn1-border', currentConfig.btn1Border || currentConfig.btn1Bg);
-      if (currentConfig.btn1Font) document.documentElement.style.setProperty('--btn1-font', currentConfig.btn1Font);
-
-      // Apply Button 2 Styles
       document.documentElement.style.setProperty('--btn2-bg', currentConfig.btn2Bg);
       document.documentElement.style.setProperty('--btn2-text', currentConfig.btn2Text);
-      document.documentElement.style.setProperty('--btn2-border', currentConfig.btn2Border || currentConfig.btn2Bg);
-      if (currentConfig.btn2Font) document.documentElement.style.setProperty('--btn2-font', currentConfig.btn2Font);
-
-      // Apply Button 3 Styles
       document.documentElement.style.setProperty('--btn3-bg', currentConfig.btn3Bg);
       document.documentElement.style.setProperty('--btn3-text', currentConfig.btn3Text);
-      document.documentElement.style.setProperty('--btn3-border', currentConfig.btn3Border || currentConfig.btn3Bg);
-      if (currentConfig.btn3Font) document.documentElement.style.setProperty('--btn3-font', currentConfig.btn3Font);
+
+      // Featured Photos & Captions
+      document.getElementById('display-photo1-img').src = currentConfig.photo1Img;
+      document.getElementById('display-photo1-title').innerText = currentConfig.photo1Title;
+      document.getElementById('display-photo1-tag').innerText = currentConfig.photo1Tag;
+
+      document.getElementById('display-photo2-img').src = currentConfig.photo2Img;
+      document.getElementById('display-photo2-title').innerText = currentConfig.photo2Title;
+      document.getElementById('display-photo2-tag').innerText = currentConfig.photo2Tag;
+
+      // Location & Contact Details
+      document.getElementById('val-loc-address').innerText = currentConfig.locAddress;
+      document.getElementById('val-loc-phone-text').innerText = currentConfig.locPhone;
+      document.getElementById('val-loc-phone-link').href = `tel:${currentConfig.locPhone.replace(/\s+/g, '')}`;
+      document.getElementById('val-loc-email-text').innerText = currentConfig.locEmail;
+      document.getElementById('val-loc-email-link').href = `mailto:${currentConfig.locEmail}`;
+
+      // Floating WhatsApp link update
+      const cleanPhone = currentConfig.locPhone.replace(/[^0-9]/g, '');
+      if (cleanPhone) {
+        document.getElementById('floating-wa-link').href = `https://wa.me/${cleanPhone}?text=Hi%20Die%20Meelhuis!%20I%20have%20a%20quick%20question.`;
+      }
+
+      // Dynamic Google Map Frame Update based on Address
+      const encodedAddress = encodeURIComponent(currentConfig.locAddress);
+      document.getElementById('display-map-iframe').src = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
 
       // Populate Inputs in CMS Panel
       document.getElementById('cms-hero-title').value = currentConfig.heroTitle;
@@ -1142,20 +1813,26 @@
       document.getElementById('cms-btn1-label').value = currentConfig.btn1Label;
       document.getElementById('cms-btn1-bg').value = currentConfig.btn1Bg;
       document.getElementById('cms-btn1-text').value = currentConfig.btn1Text;
-      document.getElementById('cms-btn1-border').value = currentConfig.btn1Border || currentConfig.btn1Bg;
-      document.getElementById('cms-btn1-font').value = currentConfig.btn1Font || "'Fredoka', sans-serif";
 
       document.getElementById('cms-btn2-label').value = currentConfig.btn2Label;
       document.getElementById('cms-btn2-bg').value = currentConfig.btn2Bg;
       document.getElementById('cms-btn2-text').value = currentConfig.btn2Text;
-      document.getElementById('cms-btn2-border').value = currentConfig.btn2Border || currentConfig.btn2Bg;
-      document.getElementById('cms-btn2-font').value = currentConfig.btn2Font || "'Fredoka', sans-serif";
 
       document.getElementById('cms-btn3-label').value = currentConfig.btn3Label;
       document.getElementById('cms-btn3-bg').value = currentConfig.btn3Bg;
       document.getElementById('cms-btn3-text').value = currentConfig.btn3Text;
-      document.getElementById('cms-btn3-border').value = currentConfig.btn3Border || currentConfig.btn3Bg;
-      document.getElementById('cms-btn3-font').value = currentConfig.btn3Font || "'Fredoka', sans-serif";
+
+      document.getElementById('cms-loc-address').value = currentConfig.locAddress;
+      document.getElementById('cms-loc-phone').value = currentConfig.locPhone;
+      document.getElementById('cms-loc-email').value = currentConfig.locEmail;
+
+      document.getElementById('cms-photo1-img').value = currentConfig.photo1Img;
+      document.getElementById('cms-photo1-title').value = currentConfig.photo1Title;
+      document.getElementById('cms-photo1-tag').value = currentConfig.photo1Tag;
+
+      document.getElementById('cms-photo2-img').value = currentConfig.photo2Img;
+      document.getElementById('cms-photo2-title').value = currentConfig.photo2Title;
+      document.getElementById('cms-photo2-tag').value = currentConfig.photo2Tag;
 
       document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
       document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
@@ -1172,20 +1849,26 @@
       currentConfig.btn1Label = document.getElementById('cms-btn1-label').value;
       currentConfig.btn1Bg = document.getElementById('cms-btn1-bg').value;
       currentConfig.btn1Text = document.getElementById('cms-btn1-text').value;
-      currentConfig.btn1Border = document.getElementById('cms-btn1-border').value;
-      currentConfig.btn1Font = document.getElementById('cms-btn1-font').value;
 
       currentConfig.btn2Label = document.getElementById('cms-btn2-label').value;
       currentConfig.btn2Bg = document.getElementById('cms-btn2-bg').value;
       currentConfig.btn2Text = document.getElementById('cms-btn2-text').value;
-      currentConfig.btn2Border = document.getElementById('cms-btn2-border').value;
-      currentConfig.btn2Font = document.getElementById('cms-btn2-font').value;
 
       currentConfig.btn3Label = document.getElementById('cms-btn3-label').value;
       currentConfig.btn3Bg = document.getElementById('cms-btn3-bg').value;
       currentConfig.btn3Text = document.getElementById('cms-btn3-text').value;
-      currentConfig.btn3Border = document.getElementById('cms-btn3-border').value;
-      currentConfig.btn3Font = document.getElementById('cms-btn3-font').value;
+
+      currentConfig.locAddress = document.getElementById('cms-loc-address').value;
+      currentConfig.locPhone = document.getElementById('cms-loc-phone').value;
+      currentConfig.locEmail = document.getElementById('cms-loc-email').value;
+
+      currentConfig.photo1Img = document.getElementById('cms-photo1-img').value;
+      currentConfig.photo1Title = document.getElementById('cms-photo1-title').value;
+      currentConfig.photo1Tag = document.getElementById('cms-photo1-tag').value;
+
+      currentConfig.photo2Img = document.getElementById('cms-photo2-img').value;
+      currentConfig.photo2Title = document.getElementById('cms-photo2-title').value;
+      currentConfig.photo2Tag = document.getElementById('cms-photo2-tag').value;
 
       currentConfig.ghOwner = document.getElementById('gh-owner').value;
       currentConfig.ghRepo = document.getElementById('gh-repo').value;
@@ -1195,7 +1878,6 @@
       applyConfigToDOM();
     }
 
-    // GITHUB DIRECT REST API SAVE FUNCTION
     async function pushToGitHub() {
       const statusDiv = document.getElementById('github-sync-status');
       const owner = document.getElementById('gh-owner').value.trim();
@@ -1235,7 +1917,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: WhatsApp Direct Inquiry Integration',
+            message: 'CMS Update: Photo URLs, Captions, Address & Dynamic Map Auto-Sync',
             content: contentBase64,
             sha: sha || undefined
           })
@@ -1252,20 +1934,10 @@
       }
     }
 
-    // MODALS HANDLING
-    function openModal(id) {
-      document.getElementById(id).classList.add('active');
-    }
+    function openModal(id) { document.getElementById(id).classList.add('active'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    function toggleAdminPanel() { document.getElementById('admin-panel').classList.toggle('active'); }
 
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('active');
-    }
-
-    function toggleAdminPanel() {
-      document.getElementById('admin-panel').classList.toggle('active');
-    }
-
-    // RENDER MENU
     function renderMenu(items) {
       const container = document.getElementById('menu-container');
       container.innerHTML = '';
@@ -1279,7 +1951,7 @@
             <div class="menu-item-card">
               <div class="menu-item-header">
                 <span>${item.title}</span>
-                <span style="color:var(--text-main);">${item.price}</span>
+                <span style="color:var(--accent-color);">${item.price}</span>
               </div>
               <div class="menu-item-desc">${item.desc}</div>
             </div>
@@ -1293,7 +1965,7 @@
     function filterCategory(cat, btn) {
       document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      if (cat === 'ALL') {
+      if (cat === 'ALL' || cat === 'ALLES') {
         renderMenu(menuData);
       } else {
         renderMenu(menuData.filter(i => i.category === cat));
@@ -1306,7 +1978,6 @@
       renderMenu(filtered);
     }
 
-    // RENDER MARKETS
     function renderMarkets(markets) {
       const container = document.getElementById('markets-container');
       container.innerHTML = markets.map(m => `
@@ -1329,9 +2000,17 @@
       dynamicGroup.style.display = type === 'General Inquiry' ? 'none' : 'block';
     }
 
-    // WHATSAPP DIRECT INQUIRY SUBMISSION
-    function handleFormSubmit(e) {
-      e.preventDefault();
+    function triggerSubmit(type) {
+      const form = document.getElementById('contact-form');
+      if (form.checkValidity()) {
+        handleFormSubmit(new Event('submit'), type);
+      } else {
+        form.reportValidity();
+      }
+    }
+
+    function handleFormSubmit(e, targetType) {
+      if (e) e.preventDefault();
       
       const inquiryType = document.getElementById('inquiry-type').value;
       const name = document.getElementById('contact-name').value;
@@ -1340,24 +2019,33 @@
       const guests = document.getElementById('guest-count').value || 'N/A';
       const message = document.getElementById('contact-message').value;
 
-      let whatsappText = `*NEW WEBSITE INQUIRY - DIE MEELHUIS*\n\n`;
-      whatsappText += `*Inquiry Type:* ${inquiryType}\n`;
-      whatsappText += `*Name:* ${name}\n`;
-      whatsappText += `*Phone:* ${phone}\n`;
+      if (targetType === 'whatsapp') {
+        let whatsappText = `*NEW WEBSITE INQUIRY - DIE MEELHUIS*\n\n`;
+        whatsappText += `*Inquiry Type:* ${inquiryType}\n`;
+        whatsappText += `*Name:* ${name}\n`;
+        whatsappText += `*Phone:* ${phone}\n`;
 
-      if (inquiryType !== 'General Inquiry') {
-        whatsappText += `*Event Date:* ${date}\n`;
-        whatsappText += `*Estimated Guests:* ${guests}\n`;
+        if (inquiryType !== 'General Inquiry') {
+          whatsappText += `*Event Date:* ${date}\n`;
+          whatsappText += `*Estimated Guests:* ${guests}\n`;
+        }
+
+        whatsappText += `\n*Message:* ${message}`;
+
+        const whatsappNum = currentConfig.locPhone.replace(/[^0-9]/g, '') || '27832769515';
+        const encodedMsg = encodeURIComponent(whatsappText);
+        window.open(`https://wa.me/${whatsappNum}?text=${encodedMsg}`, '_blank');
+        closeModal('contact-modal');
+      } else {
+        // Direct WEB / PC Submission Flow
+        const successBanner = document.getElementById('submission-success');
+        successBanner.style.display = 'block';
+        setTimeout(() => {
+          successBanner.style.display = 'none';
+          document.getElementById('contact-form').reset();
+          closeModal('contact-modal');
+        }, 3000);
       }
-
-      whatsappText += `\n*Message:* ${message}`;
-
-      const whatsappNum = '27832769515';
-      const encodedMsg = encodeURIComponent(whatsappText);
-      const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodedMsg}`;
-
-      window.open(whatsappUrl, '_blank');
-      closeModal('contact-modal');
     }
   </script>
 </body>
