@@ -1560,6 +1560,12 @@
   </div>
 
   <script>
+    // AUTOMATIC FORCE CLEAR OF OLD BROWSER MEMORY (OPERA & CHROME)
+    if (!localStorage.getItem('meelhuis_cache_v2')) {
+      localStorage.removeItem('meelhuis_config');
+      localStorage.setItem('meelhuis_cache_v2', 'true');
+    }
+
     // DYNAMIC LANGUAGE DICTIONARY
     let currentLang = 'EN';
 
@@ -1755,7 +1761,7 @@
       const owner = currentConfig.ghOwner || 'page-one-digital';
       const repo = currentConfig.ghRepo || 'die-meelhuis';
       
-      // ANTI-CACHE URL FLAG + NO-STORE HEADER
+      // FORCE FRESH FETCH FROM GITHUB RAW CDN
       const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?cachebust=${Date.now()}`;
 
       try {
@@ -1763,12 +1769,9 @@
         if (res.ok) {
           const remoteData = await res.json();
           if (remoteData && Object.keys(remoteData).length > 0) {
-            const localSaved = localStorage.getItem('meelhuis_config');
-            if (!localSaved) {
-              currentConfig = { ...DEFAULT_CONFIG, ...remoteData };
-              applyConfigToDOM();
-              populateCMSFields();
-            }
+            currentConfig = { ...DEFAULT_CONFIG, ...remoteData };
+            applyConfigToDOM();
+            populateCMSFields();
           }
         }
       } catch (err) {
@@ -1951,7 +1954,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Anti-Cache Config Fetch & Live Address Sync',
+            message: 'CMS Update: Automatic Local Storage Purge & Anti-Cache Fetch',
             content: contentBase64,
             sha: sha || undefined
           })
