@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* CSS VARIABLES (UNIFORM BUTTON BORDERS) */
+    /* CSS VARIABLES (UNIFORM BUTTON BORDERS & RETRO LUXURY) */
     :root {
       --bg-color: #0b5ed7;
       --primary-color: #f7f3e9;
@@ -46,7 +46,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body {
@@ -60,19 +60,25 @@
       position: relative;
     }
 
-    /* GRID BACKGROUND OVERLAY */
+    /* GRID BACKGROUND OVERLAY WITH RETRO DRIFT */
     .bg-grid {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-size: 48px 48px;
+      background-size: 56px 56px;
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
       pointer-events: none;
       z-index: 0;
+      animation: gridDrift 40s linear infinite;
+    }
+
+    @keyframes gridDrift {
+      0% { background-position: 0 0; }
+      100% { background-position: 56px 56px; }
     }
 
     /* HEADER */
@@ -86,6 +92,7 @@
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
+      animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .brand-logo-container {
@@ -95,13 +102,17 @@
       cursor: pointer;
     }
 
+    .brand-logo-container:hover {
+      transform: scale(1.02);
+    }
+
     .brand-logo-text {
       font-family: var(--heading-font);
-      font-size: 30px;
+      font-size: 32px;
       letter-spacing: 1px;
       color: var(--primary-color);
       text-transform: uppercase;
-      text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+      text-shadow: 4px 4px 0px rgba(0,0,0,0.35);
     }
 
     .brand-badge {
@@ -113,6 +124,13 @@
       font-weight: 800;
       letter-spacing: 1px;
       font-family: 'Fredoka', sans-serif;
+      box-shadow: 0 4px 15px rgba(255, 200, 87, 0.4);
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 200, 87, 0.4); }
+      50% { transform: scale(1.06); box-shadow: 0 6px 22px rgba(255, 200, 87, 0.7); }
     }
 
     .nav-actions {
@@ -136,7 +154,6 @@
       backdrop-filter: blur(12px);
     }
 
-    /* CMS BUTTON HIDDEN BY DEFAULT FOR VISITORS */
     .admin-trigger-btn {
       display: none;
     }
@@ -144,7 +161,8 @@
     .lang-switcher-btn:hover, .admin-trigger-btn:hover {
       background: rgba(255,255,255,0.28);
       border-color: var(--primary-color);
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
     /* HERO SECTION */
@@ -181,6 +199,7 @@
       letter-spacing: 2.5px;
       text-transform: uppercase;
       color: var(--accent-color);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
 
     .hero-title {
@@ -248,8 +267,8 @@
     }
 
     .custom-btn:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.38);
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.4);
     }
 
     #hero-btn-1 {
@@ -297,16 +316,22 @@
       background: var(--card-bg);
     }
 
+    .photo-card:hover {
+      transform: translateY(-6px) rotate(0.5deg);
+      box-shadow: 0 35px 70px rgba(0,0,0,0.45);
+      border-color: var(--accent-color);
+    }
+
     .photo-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .photo-card:hover img {
-      transform: scale(1.09);
+      transform: scale(1.1);
     }
 
     .photo-caption-overlay {
@@ -315,7 +340,7 @@
       left: 0;
       width: 100%;
       padding: 32px 28px;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0) 100%);
       color: #fff;
       text-align: left;
     }
@@ -354,6 +379,12 @@
       animation: fadeInUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
+    .instagram-feature-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-color);
+      box-shadow: 0 38px 85px rgba(0,0,0,0.45);
+    }
+
     .insta-icon-badge {
       width: 80px;
       height: 80px;
@@ -366,6 +397,12 @@
       font-size: 40px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.3);
       margin-bottom: 6px;
+      animation: iconFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .insta-label-small {
@@ -387,6 +424,7 @@
 
     .insta-handle-large:hover {
       color: var(--accent-color);
+      text-shadow: 0 0 20px rgba(255, 200, 87, 0.6);
     }
 
     .insta-follow-btn {
@@ -407,9 +445,10 @@
     }
 
     .insta-follow-btn:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px) scale(1.05);
       background: #ffffff;
       color: #000;
+      box-shadow: 0 18px 38px rgba(0,0,0,0.35);
     }
 
     /* REVIEWS SECTION */
@@ -445,8 +484,9 @@
     }
 
     .review-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.02);
       border-color: var(--accent-color);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.35);
     }
 
     .review-stars {
@@ -505,6 +545,11 @@
       background: var(--card-bg);
     }
 
+    .map-frame-container:hover {
+      border-color: var(--accent-color);
+      box-shadow: 0 28px 65px rgba(0,0,0,0.4);
+    }
+
     .map-frame-container iframe {
       width: 100%;
       height: 100%;
@@ -522,6 +567,11 @@
       justify-content: center;
       gap: 26px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .contact-details-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-4px);
     }
 
     .contact-item {
@@ -565,7 +615,7 @@
       color: var(--accent-color);
     }
 
-    /* FLOATING WHATSAPP BUTTON */
+    /* FLOATING WHATSAPP BUTTON WITH PULSE */
     .floating-whatsapp-btn {
       position: fixed;
       bottom: 36px;
@@ -582,10 +632,17 @@
       box-shadow: 0 14px 35px rgba(37, 211, 102, 0.45);
       z-index: 999;
       text-decoration: none;
+      animation: waPulse 2.5s infinite;
+    }
+
+    @keyframes waPulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
     .floating-whatsapp-btn:hover {
-      transform: scale(1.12);
+      transform: scale(1.15) rotate(10deg);
     }
 
     /* MODALS */
@@ -665,6 +722,7 @@
     .modal-close-btn:hover {
       background: var(--accent-color);
       color: #000;
+      transform: rotate(90deg);
     }
 
     .modal-body {
@@ -691,6 +749,11 @@
       font-size: 15px;
       outline: none;
       font-family: var(--body-font);
+    }
+
+    .search-bar:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(255, 200, 87, 0.3);
     }
 
     .filter-pills {
@@ -720,6 +783,10 @@
       font-weight: 800;
     }
 
+    .pill-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
     .menu-category-title {
       font-family: var(--heading-font);
       font-size: 20px;
@@ -741,6 +808,11 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 22px;
       padding: 24px;
+    }
+
+    .menu-item-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-4px);
     }
 
     .menu-item-header {
@@ -773,6 +845,11 @@
       border-radius: 22px;
       background: rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .market-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
     }
 
     .market-date-badge {
@@ -835,6 +912,10 @@
       outline: none;
     }
 
+    .form-control:focus {
+      border-color: var(--accent-color);
+    }
+
     .form-submit-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -861,7 +942,7 @@
 
     .btn-submit-direct:hover {
       background: #ffffff;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     .btn-submit-whatsapp {
@@ -883,7 +964,7 @@
 
     .btn-submit-whatsapp:hover {
       background: #22bf5b;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     .submission-success-banner {
@@ -904,17 +985,17 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: 440px;
+      width: 460px;
       max-width: 100vw;
       height: 100vh;
       background: #094cb5;
       color: #fff;
       z-index: 2000;
-      box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+      box-shadow: -15px 0 50px rgba(0,0,0,0.85);
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .admin-panel.active {
@@ -984,10 +1065,22 @@
       font-size: 13px;
     }
 
+    .cms-input:focus {
+      border-color: var(--accent-color);
+    }
+
     .cms-input[type="color"] {
       height: 46px;
       padding: 3px;
       cursor: pointer;
+    }
+
+    .cms-review-item {
+      background: #073a8c;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 16px;
+      border-radius: 14px;
+      margin-bottom: 14px;
     }
 
     .btn-github-push {
@@ -1005,6 +1098,11 @@
       gap: 8px;
       font-family: var(--body-font);
       text-transform: uppercase;
+    }
+
+    .btn-github-push:hover {
+      background: #22bf5b;
+      transform: translateY(-2px);
     }
 
     .status-badge {
@@ -1029,7 +1127,7 @@
 
     /* ANIMATIONS */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(32px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -1184,35 +1282,11 @@
       </a>
     </div>
 
-    <!-- REVIEWS / SOCIAL PROOF SECTION -->
+    <!-- REVIEWS / SOCIAL PROOF SECTION (DYNAMICALLY RENDERED) -->
     <div class="reviews-container">
       <h3 class="reviews-header" id="reviews-title">WHAT OUR CUSTOMERS SAY</h3>
-      <div class="reviews-grid">
-        
-        <div class="review-card">
-          <div class="review-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="review-text" id="rev1-text">"Hands down the most authentic Neapolitan crust in Pretoria. The Leopard spots on the crust and quality ingredients speak for themselves!"</p>
-          <div class="review-author" id="rev1-author">— Marco S. (Pretoria East)</div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="review-text" id="rev2-text">"That Bacon & Jalapeño smash burger is next level. Crisp edges, insanely juicy patties, and secret sauce that hits the spot every time."</p>
-          <div class="review-author" id="rev2-author">— Willem K. (Centurion)</div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-          </div>
-          <p class="review-text" id="rev3-text">"Booked Die Meelhuis for our private birthday event. Our guests are still talking about the woodfired pizzas three weeks later!"</p>
-          <div class="review-author" id="rev3-author">— Annelize M. (Event Catering)</div>
-        </div>
-
+      <div class="reviews-grid" id="reviews-grid-container">
+        <!-- Rendered via JavaScript -->
       </div>
     </div>
 
@@ -1416,6 +1490,15 @@
         <div id="github-sync-status"></div>
       </div>
 
+      <!-- REVIEWS CMS SECTION (ADD & EDIT) -->
+      <div class="cms-section">
+        <div class="cms-section-title"><i class="fa-solid fa-star"></i> Customer Reviews Manager</div>
+        <div id="cms-reviews-editor-container"></div>
+        <button class="custom-btn" style="width:100%; padding:14px; background:var(--accent-color); color:#000; font-size:12px; margin-top:10px;" onclick="addNewReviewField()">
+          <i class="fa-solid fa-plus"></i> Add New Review
+        </button>
+      </div>
+
       <!-- LOCATION & MAP CMS -->
       <div class="cms-section">
         <div class="cms-section-title"><i class="fa-solid fa-location-dot"></i> Location & Contact Info</div>
@@ -1560,10 +1643,10 @@
   </div>
 
   <script>
-    // AUTOMATIC FORCE CLEAR OF OLD BROWSER MEMORY (OPERA & CHROME)
-    if (!localStorage.getItem('meelhuis_cache_v6')) {
+    // AUTOMATIC FORCE CLEAR OF OLD BROWSER MEMORY
+    if (!localStorage.getItem('meelhuis_cache_v7')) {
       localStorage.removeItem('meelhuis_config');
-      localStorage.setItem('meelhuis_cache_v6', 'true');
+      localStorage.setItem('meelhuis_cache_v7', 'true');
     }
 
     // DYNAMIC LANGUAGE DICTIONARY
@@ -1581,12 +1664,6 @@
         whereDesc: "Catch us at local pop-up markets, festivals, and community events every month!",
         contactModalTitle: "Event Bookings & Contact Us",
         reviewsTitle: "WHAT OUR CUSTOMERS SAY",
-        rev1Text: "\"Hands down the most authentic Neapolitan crust in Pretoria. The Leopard spots on the crust and quality ingredients speak for themselves!\"",
-        rev1Author: "— Marco S. (Pretoria East)",
-        rev2Text: "\"That Bacon & Jalapeño smash burger is next level. Crisp edges, insanely juicy patties, and secret sauce that hits the spot every time.\"",
-        rev2Author: "— Willem K. (Centurion)",
-        rev3Text: "\"Booked Die Meelhuis for our private birthday event. Our guests are still talking about the woodfired pizzas three weeks later!\"",
-        rev3Author: "— Annelize M. (Event Catering)",
         locationTitle: "FIND US & GET IN TOUCH",
         lblLocAddress: "Our Primary Location",
         lblLocPhone: "Phone & WhatsApp",
@@ -1613,12 +1690,6 @@
         whereDesc: "Kry ons elke maand by plaaslike markte, feeste en gemeenskapsgeleenthede!",
         contactModalTitle: "Besprekings & Kontak Ons",
         reviewsTitle: "WAT ONS KLIËNTE SÊ",
-        rev1Text: "\"Sonder twyfel die mees egte Neapolitan deeg in Pretoria. Die luterse vakmanskap en bestanddele praat vir hulself!\"",
-        rev1Author: "— Marco S. (Pretoria-Oos)",
-        rev2Text: "\"Daardie Bacon & Jalapeño smash burger is op 'n ander vlak. Krokante rande, sappige patties en geheime sous wat elke keer tref.\"",
-        rev2Author: "— Willem K. (Centurion)",
-        rev3Text: "\"Die Meelhuis bespreek vir ons private verjaarsdag. Ons gaste praat drie weke later steeds oor die houtvuur pizzas!\"",
-        rev3Author: "— Annelize M. (Spyseniering)",
         locationTitle: "KRY ONS & KONTAK ONS",
         lblLocAddress: "Ons Hoofligging",
         lblLocPhone: "Telefoon & WhatsApp",
@@ -1660,6 +1731,11 @@
       photo2Img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
       photo2Title: "DOUBLE SMASH BURGER",
       photo2Tag: "100% PURE BEEF & SECRET SAUCE",
+      reviews: [
+        { text: "Hands down the most authentic Neapolitan crust in Pretoria. The Leopard spots on the crust and quality ingredients speak for themselves!", author: "— Marco S. (Pretoria East)", stars: 5 },
+        { text: "That Bacon & Jalapeño smash burger is next level. Crisp edges, insanely juicy patties, and secret sauce that hits the spot every time.", author: "— Willem K. (Centurion)", stars: 5 },
+        { text: "Booked Die Meelhuis for our private birthday event. Our guests are still talking about the woodfired pizzas three weeks later!", author: "— Annelize M. (Event Catering)", stars: 5 }
+      ],
       ghOwner: "page-one-digital",
       ghRepo: "die-meelhuis"
     };
@@ -1723,13 +1799,6 @@
       document.getElementById('modal-contact-title').innerText = t.contactModalTitle;
 
       document.getElementById('reviews-title').innerText = t.reviewsTitle;
-      document.getElementById('rev1-text').innerText = t.rev1Text;
-      document.getElementById('rev1-author').innerText = t.rev1Author;
-      document.getElementById('rev2-text').innerText = t.rev2Text;
-      document.getElementById('rev2-author').innerText = t.rev2Author;
-      document.getElementById('rev3-text').innerText = t.rev3Text;
-      document.getElementById('rev3-author').innerText = t.rev3Author;
-
       document.getElementById('location-title').innerText = t.locationTitle;
       document.getElementById('lbl-loc-address').innerText = t.lblLocAddress;
       document.getElementById('lbl-loc-phone').innerText = t.lblLocPhone;
@@ -1821,6 +1890,81 @@
       document.getElementById('gh-owner').value = currentConfig.ghOwner || 'page-one-digital';
       document.getElementById('gh-repo').value = currentConfig.ghRepo || 'die-meelhuis';
       document.getElementById('gh-token').value = localStorage.getItem('meelhuis_gh_token') || '';
+
+      renderReviewsEditor();
+    }
+
+    function renderReviewsEditor() {
+      const container = document.getElementById('cms-reviews-editor-container');
+      const reviews = currentConfig.reviews || DEFAULT_CONFIG.reviews;
+
+      container.innerHTML = reviews.map((rev, index) => `
+        <div class="cms-review-item">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <span style="font-size:11px; font-weight:800; color:var(--accent-color);">REVIEW #${index + 1}</span>
+            <button class="custom-btn" style="padding:4px 10px; font-size:11px; background:#dc2626; color:#fff; border-radius:6px;" onclick="deleteReview(${index})">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </div>
+          <div class="cms-input-group" style="margin-bottom:8px;">
+            <label>Review Text</label>
+            <textarea class="cms-input" rows="3" oninput="updateReviewData(${index}, 'text', this.value)">${rev.text}</textarea>
+          </div>
+          <div class="cms-row" style="margin-bottom:0;">
+            <div class="cms-input-group">
+              <label>Author / Source</label>
+              <input type="text" class="cms-input" value="${rev.author}" oninput="updateReviewData(${index}, 'author', this.value)">
+            </div>
+            <div class="cms-input-group">
+              <label>Stars (1-5)</label>
+              <input type="number" min="1" max="5" class="cms-input" value="${rev.stars || 5}" oninput="updateReviewData(${index}, 'stars', this.value)">
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateReviewData(index, field, value) {
+      if (!currentConfig.reviews) currentConfig.reviews = [...DEFAULT_CONFIG.reviews];
+      currentConfig.reviews[index][field] = field === 'stars' ? parseInt(value) || 5 : value;
+      localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
+      renderReviewsDOM();
+    }
+
+    function addNewReviewField() {
+      if (!currentConfig.reviews) currentConfig.reviews = [...DEFAULT_CONFIG.reviews];
+      currentConfig.reviews.push({ text: "New customer review...", author: "— Customer Name", stars: 5 });
+      renderReviewsEditor();
+      renderReviewsDOM();
+      localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
+    }
+
+    function deleteReview(index) {
+      if (!currentConfig.reviews) currentConfig.reviews = [...DEFAULT_CONFIG.reviews];
+      currentConfig.reviews.splice(index, 1);
+      renderReviewsEditor();
+      renderReviewsDOM();
+      localStorage.setItem('meelhuis_config', JSON.stringify(currentConfig));
+    }
+
+    function renderReviewsDOM() {
+      const grid = document.getElementById('reviews-grid-container');
+      const reviews = currentConfig.reviews || DEFAULT_CONFIG.reviews;
+
+      grid.innerHTML = reviews.map(rev => {
+        let starsHTML = '';
+        const starCount = rev.stars || 5;
+        for (let i = 0; i < starCount; i++) {
+          starsHTML += '<i class="fa-solid fa-star"></i>';
+        }
+        return `
+          <div class="review-card">
+            <div class="review-stars">${starsHTML}</div>
+            <p class="review-text">"${rev.text}"</p>
+            <div class="review-author">${rev.author}</div>
+          </div>
+        `;
+      }).join('');
     }
 
     function applyConfigToDOM() {
@@ -1862,6 +2006,8 @@
 
       const encodedAddress = encodeURIComponent(currentConfig.locAddress);
       document.getElementById('display-map-iframe').src = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=14&ie=UTF8&iwloc=&output=embed&refresh=${Date.now()}`;
+
+      renderReviewsDOM();
     }
 
     function updateLiveConfig() {
@@ -1946,7 +2092,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Uniform Button Borders',
+            message: 'CMS Update: Reviews & Retro Animations',
             content: contentBase64,
             sha: sha || undefined
           })
