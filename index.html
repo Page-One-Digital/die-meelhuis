@@ -1754,10 +1754,12 @@
     async function fetchRemoteConfig() {
       const owner = currentConfig.ghOwner || 'page-one-digital';
       const repo = currentConfig.ghRepo || 'die-meelhuis';
-      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?t=${Date.now()}`;
+      
+      // ANTI-CACHE URL FLAG + NO-STORE HEADER
+      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data/config.json?cachebust=${Date.now()}`;
 
       try {
-        const res = await fetch(rawUrl);
+        const res = await fetch(rawUrl, { cache: 'no-store' });
         if (res.ok) {
           const remoteData = await res.json();
           if (remoteData && Object.keys(remoteData).length > 0) {
@@ -1949,7 +1951,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'CMS Update: Photo URLs, Address, Dynamic Map & Hidden Admin Toggle',
+            message: 'CMS Update: Anti-Cache Config Fetch & Live Address Sync',
             content: contentBase64,
             sha: sha || undefined
           })
