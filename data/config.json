@@ -16,12 +16,29 @@
   "locAddress": "23 Beves Ave, Pierre van Ryneveld Park, Centurion, 0045",
   "locPhone": "+27 83 276 9515",
   "locEmail": "info@diemeelhuis.co.za",
-  "photo1Img": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80",
+  "photo1Img": "https://github.com/Page-One-Digital/die-meelhuis/blob/main/861296624_17991379047027333_4850398809782678045_n.jpg",
   "photo1Title": "NEAPOLITAN",
   "photo1Tag": "36-HOUR SLOW FERMENTED DOUGH",
-  "photo2Img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80",
+  "photo2Img": "https://raw.githubusercontent.com/Page-One-Digital/die-meelhuis/refs/heads/main/829909655_17988360057027333_4804694209363033071_n.jpg",
   "photo2Title": "SMASH BURGER",
   "photo2Tag": "100% PURE BEEF & SECRET SAUCE",
+  "reviews": [
+    {
+      "text": "Hands down the most authentic Neapolitan crust in Pretoria. The Leopard spots on the crust and quality ingredients speak for themselves!",
+      "author": "— Marco S. (Pretoria East)",
+      "stars": 5
+    },
+    {
+      "text": "That Bacon & Jalapeño smash burger is next level. Crisp edges, insanely juicy patties, and secret sauce that hits the spot every time.",
+      "author": "— Willem K. (Centurion)",
+      "stars": 5
+    },
+    {
+      "text": "Booked Die Meelhuis for our private birthday event. Our guests are still talking about the woodfired pizzas three weeks later!",
+      "author": "— Annelize M. (Event Catering)",
+      "stars": 5
+    }
+  ],
   "ghOwner": "page-one-digital",
   "ghRepo": "die-meelhuis",
   "btn1Border": "#f7f3e9",
